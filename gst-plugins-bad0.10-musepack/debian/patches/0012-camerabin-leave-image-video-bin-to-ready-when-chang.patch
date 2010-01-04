@@ -1,0 +1,22 @@
+From 555b72b9913237ccfa87dc3eb7e0c99b7e72145b Mon Sep 17 00:00:00 2001
+From: Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>
+Date: Fri, 3 Jul 2009 18:49:52 +0300
+Subject: [PATCH] camerabin: leave image/video bin to ready when changing mode
+
+---
+ gst/camerabin/gstcamerabin.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/gst/camerabin/gstcamerabin.c b/gst/camerabin/gstcamerabin.c
+index 42d470d..411a0ee 100644
+--- a/gst/camerabin/gstcamerabin.c
++++ b/gst/camerabin/gstcamerabin.c
+@@ -954,7 +954,7 @@ gst_camerabin_change_mode (GstCameraBin * camera, gint mode)
+     camera->mode = mode;
+     if (camera->active_bin) {
+       GST_DEBUG_OBJECT (camera, "stopping active bin");
+-      gst_element_set_state (camera->active_bin, GST_STATE_NULL);
++      gst_element_set_state (camera->active_bin, GST_STATE_READY);
+     }
+     if (camera->mode == MODE_IMAGE) {
+       GstStateChangeReturn state_ret;

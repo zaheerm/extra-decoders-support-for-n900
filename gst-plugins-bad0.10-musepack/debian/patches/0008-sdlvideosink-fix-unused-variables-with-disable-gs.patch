@@ -1,0 +1,29 @@
+From 0f2e2e8e281a55763173bbff7207cba1753dd6d3 Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Ren=C3=A9=20Stadler?= <rene.stadler@nokia.com>
+Date: Mon, 20 Apr 2009 15:52:05 +0300
+Subject: [PATCH] sdlvideosink: fix unused variables with --disable-gst-debug
+
+---
+ ext/sdl/sdlvideosink.c |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/ext/sdl/sdlvideosink.c b/ext/sdl/sdlvideosink.c
+index 22c7aa5..7898e7f 100644
+--- a/ext/sdl/sdlvideosink.c
++++ b/ext/sdl/sdlvideosink.c
+@@ -977,6 +977,7 @@ gst_sdlvideosink_navigation_send_event (GstNavigation * navigation,
+     GST_DEBUG_OBJECT (sdlvideosink, "translated navigation event x "
+         "coordinate from %f to %f", old_x, x);
+     gst_structure_set (structure, "pointer_x", G_TYPE_DOUBLE, x, NULL);
++    old_x = x;
+   }
+   if (gst_structure_get_double (structure, "pointer_y", &old_y)) {
+     y = old_y;
+@@ -991,6 +992,7 @@ gst_sdlvideosink_navigation_send_event (GstNavigation * navigation,
+     GST_DEBUG_OBJECT (sdlvideosink, "translated navigation event y "
+         "coordinate from %f to %f", old_y, y);
+     gst_structure_set (structure, "pointer_y", G_TYPE_DOUBLE, y, NULL);
++    old_y = y;
+   }
+ 
+   pad = gst_pad_get_peer (GST_VIDEO_SINK_PAD (sdlvideosink));

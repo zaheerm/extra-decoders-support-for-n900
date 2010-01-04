@@ -1,0 +1,40 @@
+From b6a8b794901edc1485ba075a224517ed635714ae Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Tommi=20My=C3=B6h=C3=A4nen?= <ext-tommi.1.myohanen@nokia.com>
+Date: Wed, 12 Aug 2009 15:48:38 +0300
+Subject: [PATCH] camerabin: don't use video queue if USE_VIDEOQUEUE is not defined (Maemo-specific)
+
+---
+ gst/camerabin/camerabinvideo.c |    3 +++
+ gst/camerabin/camerabinvideo.h |    1 +
+ 2 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/gst/camerabin/camerabinvideo.c b/gst/camerabin/camerabinvideo.c
+index 2fb5fb6..64d16c6 100644
+--- a/gst/camerabin/camerabinvideo.c
++++ b/gst/camerabin/camerabinvideo.c
+@@ -569,10 +569,13 @@ gst_camerabin_video_create_elements (GstCameraBinVideo * vid)
+ 
+   /* Add queue element for video */
+   vid->tee_video_srcpad = gst_element_get_request_pad (vid->tee, "src%d");
++
++#ifdef USE_VIDEOQUEUE
+   if (!(vid->video_queue =
+           gst_camerabin_create_and_add_element (vidbin, "queue"))) {
+     goto error;
+   }
++#endif
+ 
+   /* Add probe for rewriting video timestamps */
+   vid->vid_tee_probe_id = gst_pad_add_buffer_probe (vid->tee_video_srcpad,
+diff --git a/gst/camerabin/camerabinvideo.h b/gst/camerabin/camerabinvideo.h
+index c318e9c..43e5d77 100644
+--- a/gst/camerabin/camerabinvideo.h
++++ b/gst/camerabin/camerabinvideo.h
+@@ -25,6 +25,7 @@
+ 
+ G_BEGIN_DECLS
+ //#define USE_TIMEOVERLAY 1
++//#define USE_VIDEOQUEUE 1
+ #define ARG_DEFAULT_MUTE FALSE
+ #define GST_TYPE_CAMERABIN_VIDEO             (gst_camerabin_video_get_type())
+ #define GST_CAMERABIN_VIDEO_CAST(obj)        ((GstCameraBinVideo*)(obj))
