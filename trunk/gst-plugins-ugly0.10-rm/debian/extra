@@ -1,0 +1,60 @@
+#!/bin/sh
+
+if [ $# -lt 2 ]; then
+   echo "usage: $1 deps|control plugin"
+   exit 1
+fi
+
+case $1 in
+  deps)
+    case $2 in
+      amrnb)
+        echo "libamrnb-dev | amrnb-dev"
+        ;;
+      lame)
+        echo "libmp3lame-dev (>= 3.91) | liblame-dev (>= 3.91) | lame-dev (>= 3.91)"
+        ;;
+      *)
+        echo "ERROR invalid plugin: add your plugin to debian/extra"
+        exit 1
+        ;;
+    esac ;;
+
+  control)
+    case $2 in
+      amrnb)
+cat << EOF
+Package: @GST_PKGNAME@-amrnb
+Architecture: any
+Section: libs
+Depends: \${shlibs:Depends}, @GST_LIB@
+Description: amrnb plugin for GStreamer
+ This GStreamer plugin uses amrnb to encode audio stream into a floating-point
+ Adaptive Multi-Rate (AMR) speech codec compressed audio stream.
+ .
+  amrnb Homepage: http://www.penguin.cz/~utx/amr
+
+EOF
+;;
+      lame)
+cat << EOF
+Package: @GST_PKGNAME@-lame
+Architecture: any
+Section: libs
+Depends: \${shlibs:Depends}, @GST_LIB@
+Description: LAME plugin for GStreamer
+ This GStreamer plugin uses LAME to encode audio stream into a MPEG-1 layer 3
+ compressed audio stream.  This is commonly known as the "mp3" format.
+ .
+  LAME Homepage: http://lame.sourceforge.net/
+
+EOF
+;;
+      *)
+        echo "ERROR invalid plugin: add your plugin to debian/extra"
+        exit 1
+        ;;
+    esac ;;
+  *) echo "ERROR use deps or control" ;;
+esac
+

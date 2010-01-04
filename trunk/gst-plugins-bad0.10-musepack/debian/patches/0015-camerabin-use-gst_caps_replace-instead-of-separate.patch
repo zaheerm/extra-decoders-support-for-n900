@@ -1,0 +1,42 @@
+From 754c25bba6ac93cd778972c05b007869055e8a6b Mon Sep 17 00:00:00 2001
+From: Stefan Kost <ensonic@users.sf.net>
+Date: Fri, 17 Jul 2009 15:45:32 +0300
+Subject: [PATCH] camerabin: use gst_caps_replace instead of separate calls
+
+This fixes setting snapshot caps back to NULL also.
+---
+ gst/camerabin/gstcamerabin.c |   14 ++++----------
+ 1 files changed, 4 insertions(+), 10 deletions(-)
+
+diff --git a/gst/camerabin/gstcamerabin.c b/gst/camerabin/gstcamerabin.c
+index 411a0ee..f119dea 100644
+--- a/gst/camerabin/gstcamerabin.c
++++ b/gst/camerabin/gstcamerabin.c
+@@ -2871,12 +2871,8 @@ gst_camerabin_set_property (GObject * object, guint prop_id,
+       break;
+     case ARG_FILTER_CAPS:
+       GST_OBJECT_LOCK (camera);
+-      if (camera->view_finder_caps) {
+-        gst_caps_unref (camera->view_finder_caps);
+-      }
+-      /* just ref, we don't modify it inplace */
+-      camera->view_finder_caps =
+-          gst_caps_ref ((GstCaps *) gst_value_get_caps (value));
++      gst_caps_replace (&camera->view_finder_caps,
++          (GstCaps *) gst_value_get_caps (value));
+       GST_OBJECT_UNLOCK (camera);
+       if (GST_STATE (camera) != GST_STATE_NULL) {
+         gst_camerabin_set_capsfilter_caps (camera, camera->view_finder_caps);
+@@ -2884,10 +2880,8 @@ gst_camerabin_set_property (GObject * object, guint prop_id,
+       break;
+     case ARG_PREVIEW_CAPS:
+       GST_OBJECT_LOCK (camera);
+-      if (camera->preview_caps) {
+-        gst_caps_unref (camera->preview_caps);
+-      }
+-      camera->preview_caps = gst_caps_copy (gst_value_get_caps (value));
++      gst_caps_replace (&camera->preview_caps,
++          (GstCaps *) gst_value_get_caps (value));
+       GST_OBJECT_UNLOCK (camera);
+       gst_camerabin_preview_create_pipeline (camera);
+       break;

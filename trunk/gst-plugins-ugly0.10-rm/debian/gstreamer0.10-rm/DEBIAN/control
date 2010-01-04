@@ -1,0 +1,15 @@
+Package: gstreamer0.10-rm
+Version: 0.10.10.2-1maemo2-5
+Section: libs
+Priority: optional
+Architecture: armel
+Depends: libc6 (>= 2.5.0-1), libgcc1 (>= 1:4.2.1), libglib2.0-0 (>= 2.20.0), libgstreamer-plugins-base0.10-0 (>= 0.10.23), libgstreamer0.10-0 (>= 0.10.23), gstreamer0.10-plugins-base (>= 0.10.10.2-1maemo2-5)
+Installed-Size: 136
+Maintainer: Tomasz Dominikowski <dominikowski@gmail.com>
+Source: gst-plugins-ugly0.10-rm
+Description: Realmedia gst plugin from the ugly set
+ This package provides realmedia decoder element.
+Original-Uploaders: David I. Lehn <dlehn@debian.org>,
+           Loic Minier <lool@dooz.org>,
+           Sebastian Dröge <slomo@debian.org>
+Xsbc-Original-Maintainer: Maintainers of GStreamer packages <pkg-gstreamer-maintainers@lists.alioth.debian.org>
