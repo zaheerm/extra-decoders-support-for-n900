@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# Get OSSO environment variables (launchers, dbus bus, etc)
+if [ -f /etc/osso-af-init/af-defines.sh ]; then
+  source /etc/osso-af-init/af-defines.sh
+fi
+
+dbus-send --type=method_call --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.SystemNoteInfoprint string:"Updating icons, mime, and desktop file caches"
+
+# Update mime data base with new xml
+if [ -x /usr/bin/update-mime-database ]; then
+	update-mime-database /usr/share/mime
+fi
+
+# Update desktop database
+if [ -x /usr/bin/update-desktop-database ]; then
+	update-desktop-database
+fi
+
+dbus-send --type=method_call --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.SystemNoteInfoprint string:"Restarting media daemons"
+
+if [ -x /usr/bin/tracker-register-mimetype ]; then
+	/usr/bin/tracker-register-mimetype -c Videos -a video/mpegts -a video/mp2t -a video/x-matroska 
+fi
+
+if [ -x  /usr/bin/mafw.sh ]; then
+	/usr/bin/mafw.sh stop mafw-gst-renderer
+	sleep 1
+	/usr/bin/mafw.sh start mafw-gst-renderer
+fi
