@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mime-info [
+  <!ELEMENT mime-info (mime-type)+>
+  <!ATTLIST mime-info xmlns CDATA #FIXED "http://www.freedesktop.org/standards/shared-mime-info">
+
+  <!ELEMENT mime-type (comment+, (acronym,expanded-acronym)? , (generic-icon? | glob | magic | root-XML | alias | sub-class-of)*)>
+  <!ATTLIST mime-type type CDATA #REQUIRED>
+
+  <!-- a comment describing a document with the respective MIME type. Example: "WMV video" -->
+  <!ELEMENT comment (#PCDATA)>
+  <!ATTLIST comment xml:lang CDATA #IMPLIED>
+
+  <!-- a comment describing the respective unexpanded MIME type acronym. Example: "WMV" -->
+  <!ELEMENT acronym (#PCDATA)>
+  <!ATTLIST acronym xml:lang CDATA #IMPLIED>
+
+  <!-- a comment describing the respective expanded MIME type acronym. Example: "Windows Media Video" -->
+  <!ELEMENT expanded-acronym (#PCDATA)>
+  <!ATTLIST expanded-acronym xml:lang CDATA #IMPLIED>
+
+  <!-- a generic icon name as per the Icon Naming Specification, only required if computing
+  it from the mime-type would not work, See "generic-icon" in the Shared Mime Specification -->
+  <!ELEMENT generic-icon (#PCDATA)>
+  <!ATTLIST generic-icon name (application-x-executable|audio-x-generic|font-x-generic|image-x-generic|package-x-generic|text-html|text-x-generic|text-x-generic-template|text-x-script|video-x-generic|x-office-address-book|x-office-calendar|x-office-document|x-office-presentation|x-office-spreadsheet) #IMPLIED>
+
+  <!ELEMENT glob EMPTY>
+  <!ATTLIST glob pattern CDATA #REQUIRED>
+
+  <!ELEMENT magic (match)+>
+  <!ATTLIST magic priority CDATA #IMPLIED>
+
+  <!ELEMENT match (match)*>
+  <!ATTLIST match offset CDATA #REQUIRED>
+  <!ATTLIST match type (string|big16|big32|little16|little32|host16|host32|byte) #REQUIRED>
+  <!ATTLIST match value CDATA #REQUIRED>
+  <!ATTLIST match mask CDATA #IMPLIED>
+
+  <!ELEMENT root-XML EMPTY>
+  <!ATTLIST root-XML
+  	namespaceURI CDATA #REQUIRED
+	localName CDATA #REQUIRED>
+
+  <!ELEMENT alias EMPTY>
+  <!ATTLIST alias
+  	type CDATA #REQUIRED>
+
+  <!ELEMENT sub-class-of EMPTY>
+  <!ATTLIST sub-class-of
+  	type CDATA #REQUIRED>
+]>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-matroska">
+    <comment>Matroska stream</comment>
+    <comment xml:lang="be@latin">Płyń Matroska</comment>
+    <comment xml:lang="bg">Поток — Matroska</comment>
+    <comment xml:lang="ca">flux Matroska</comment>
+    <comment xml:lang="cs">Proud Matroska</comment>
+    <comment xml:lang="da">Matroskastrøm</comment>
+    <comment xml:lang="de">Matroska-Datenstrom</comment>
+    <comment xml:lang="es">flujo Matroska</comment>
+    <comment xml:lang="eu">Matroska korrontea</comment>
+    <comment xml:lang="fi">Matroska-virta</comment>
+    <comment xml:lang="fr">flux Matroska</comment>
+    <comment xml:lang="ga">sruth Matroska</comment>
+    <comment xml:lang="hu">Matroska adatfolyam</comment>
+    <comment xml:lang="id">Stream Matroska</comment>
+    <comment xml:lang="it">Stream Matroska</comment>
+    <comment xml:lang="ja">Matroska ストリーム</comment>
+    <comment xml:lang="ko">Matroska 스트림</comment>
+    <comment xml:lang="lt">Matroska srautas</comment>
+    <comment xml:lang="lv">Matroska straume</comment>
+    <comment xml:lang="nl">Matroska-stream</comment>
+    <comment xml:lang="nn">Matroska-straum</comment>
+    <comment xml:lang="pl">Strumień Matroska</comment>
+    <comment xml:lang="pt_BR">Transmissão do Matroska</comment>
+    <comment xml:lang="ru">поток Matroska</comment>
+    <comment xml:lang="sq">Stream Matroska</comment>
+    <comment xml:lang="sv">Matroska-ström</comment>
+    <comment xml:lang="vi">Luồng Matroska</comment>
+    <comment xml:lang="zh_CN">Matroska 流</comment>
+    <magic priority="50">
+      <match value="matroska" type="string" offset="8"/>
+    </magic>
+  </mime-type>
+  <mime-type type="video/x-matroska">
+    <comment>Matroska video</comment>
+    <comment xml:lang="be@latin">Videa Matroska</comment>
+    <comment xml:lang="bg">Видео — Matroska</comment>
+    <comment xml:lang="ca">vídeo Matroska</comment>
+    <comment xml:lang="cs">Video Matroska</comment>
+    <comment xml:lang="da">Matroskavideo</comment>
+    <comment xml:lang="de">Matroska-Video</comment>
+    <comment xml:lang="el">βίντεο Matroska</comment>
+    <comment xml:lang="en_GB">Matroska video</comment>
+    <comment xml:lang="eo">Matroska-video</comment>
+    <comment xml:lang="es">vídeo Matroska</comment>
+    <comment xml:lang="eu">Matroska bideoa</comment>
+    <comment xml:lang="fi">Matroska-video</comment>
+    <comment xml:lang="fr">vidéo Matroska</comment>
+    <comment xml:lang="ga">físeán Matroska</comment>
+    <comment xml:lang="hu">Matroska-videó</comment>
+    <comment xml:lang="id">Video Matroska</comment>
+    <comment xml:lang="it">Video Matroska</comment>
+    <comment xml:lang="ja">Matroska 動画</comment>
+    <comment xml:lang="ko">Matroska 비디오</comment>
+    <comment xml:lang="lt">Matroska vaizdas</comment>
+    <comment xml:lang="lv">Matroska video</comment>
+    <comment xml:lang="ms">Video Matroska</comment>
+    <comment xml:lang="nb">Matroska-film</comment>
+    <comment xml:lang="nl">Matroska-video</comment>
+    <comment xml:lang="nn">Matroska-video</comment>
+    <comment xml:lang="pl">Plik wideo Matroska</comment>
+    <comment xml:lang="pt">vídeo Matroska</comment>
+    <comment xml:lang="pt_BR">Vídeo Matroska</comment>
+    <comment xml:lang="ru">видео Matroska</comment>
+    <comment xml:lang="sq">Video Matroska</comment>
+    <comment xml:lang="sr">Матрошка видео</comment>
+    <comment xml:lang="sv">Matroska-video</comment>
+    <comment xml:lang="uk">Відео-кліп Matroska</comment>
+    <comment xml:lang="vi">Ảnh động Matroska</comment>
+    <comment xml:lang="zh_CN">Matroska 视频</comment>
+    <comment xml:lang="zh_TW">Matroska 影音檔</comment>
+    <glob pattern="*.mkv"/>
+    <sub-class-of type="application/x-matroska"/>
+  </mime-type>
+  <mime-type type="audio/x-matroska">
+    <comment>Matroska audio</comment>
+    <comment xml:lang="be@latin">Aŭdyjo Matroska</comment>
+    <comment xml:lang="bg">Аудио — Matroska</comment>
+    <comment xml:lang="ca">àudio Matroska</comment>
+    <comment xml:lang="cs">Zvuk Matroska</comment>
+    <comment xml:lang="da">Matroskalyd</comment>
+    <comment xml:lang="de">Matroska-Audio</comment>
+    <comment xml:lang="es">audio Matroska</comment>
+    <comment xml:lang="eu">Matroska audioa</comment>
+    <comment xml:lang="fi">Matroska-ääni</comment>
+    <comment xml:lang="fr">audio Matroska</comment>
+    <comment xml:lang="ga">fuaim Matroska</comment>
+    <comment xml:lang="hu">Matroska hang</comment>
+    <comment xml:lang="id">Audio Matroska</comment>
+    <comment xml:lang="it">Audio Matroska</comment>
+    <comment xml:lang="ja">Matroska オーディオ</comment>
+    <comment xml:lang="ko">Matroska 오디오</comment>
+    <comment xml:lang="lt">Matroska garsas</comment>
+    <comment xml:lang="lv">Matroska audio</comment>
+    <comment xml:lang="nb">Matroska-lyd</comment>
+    <comment xml:lang="nl">Matroska-audio</comment>
+    <comment xml:lang="nn">Matroska-lyd</comment>
+    <comment xml:lang="pl">Plik dźwiękowy Matroska</comment>
+    <comment xml:lang="pt_BR">Áudio do Matroska</comment>
+    <comment xml:lang="ru">аудио Matroska</comment>
+    <comment xml:lang="sq">Audio Matroska</comment>
+    <comment xml:lang="sv">Matroska-ljud</comment>
+    <comment xml:lang="uk">Звук Matroska</comment>
+    <comment xml:lang="vi">Âm thanh Matroska</comment>
+    <comment xml:lang="zh_CN">Matroska 音频</comment>
+    <glob pattern="*.mka"/>
+    <sub-class-of type="application/x-matroska"/>
+  </mime-type>
+   <mime-type type="audio/vnd.rn-realaudio">
+    <comment>RealAudio document</comment>
+    <comment xml:lang="be@latin">Dakument RealAudio</comment>
+    <comment xml:lang="bg">Документ — RealAudio</comment>
+    <comment xml:lang="ca">document RealAudio</comment>
+    <comment xml:lang="cs">Dokument RealAudio</comment>
+    <comment xml:lang="da">RealAudio-dokument</comment>
+    <comment xml:lang="de">RealAudio-Dokument</comment>
+    <comment xml:lang="en_GB">RealAudio document</comment>
+    <comment xml:lang="es">documento RealAudio</comment>
+    <comment xml:lang="eu">RealAudio dokumentua</comment>
+    <comment xml:lang="fi">RealAudio-asiakirja</comment>
+    <comment xml:lang="fr">document RealAudio</comment>
+    <comment xml:lang="ga">cáipéis RealAudio</comment>
+    <comment xml:lang="hu">RealAudio dokumentum</comment>
+    <comment xml:lang="id">Dokumen RealAudio</comment>
+    <comment xml:lang="it">Documento RealAudio</comment>
+    <comment xml:lang="ja">RealAudio ドキュメント</comment>
+    <comment xml:lang="ko">RealAudio 문서</comment>
+    <comment xml:lang="lt">RealAudio dokumentas</comment>
+    <comment xml:lang="lv">RealAudio dokuments</comment>
+    <comment xml:lang="nb">RealAudio-dokument</comment>
+    <comment xml:lang="nl">RealAudio-document</comment>
+    <comment xml:lang="nn">RealAudio-dokument</comment>
+    <comment xml:lang="pl">Dokument RealAudio</comment>
+    <comment xml:lang="pt_BR">Documento RealAudio</comment>
+    <comment xml:lang="ru">документ RealAudio</comment>
+    <comment xml:lang="sq">Dokument RealAudio</comment>
+    <comment xml:lang="sv">RealAudio-dokument</comment>
+    <comment xml:lang="uk">Документ RealAudio</comment>
+    <comment xml:lang="vi">Tài liệu âm thanh RealAudio</comment>
+    <comment xml:lang="zh_CN">RealAudio 文档</comment>
+    <glob pattern="*.ra"/>
+    <glob pattern="*.rax"/>
+    <alias type="audio/x-pn-realaudio"/>
+    <alias type="audio/vnd.m-realaudio"/>
+  </mime-type>
+  <mime-type type="application/ram">
+    <comment>RealMedia Metafile</comment>
+    <comment xml:lang="be@latin">Metafajł RealMedia</comment>
+    <comment xml:lang="bg">Метафайл — RealMedia</comment>
+    <comment xml:lang="ca">metafitxer RealMedia</comment>
+    <comment xml:lang="cs">RealMedia Metafile</comment>
+    <comment xml:lang="da">RealMedia-metafil</comment>
+    <comment xml:lang="de">RealMedia-Metadatei</comment>
+    <comment xml:lang="es">metarchivo RealMedia</comment>
+    <comment xml:lang="eu">RealMedia metafitxategia</comment>
+    <comment xml:lang="fi">RealMedia-metatiedosto</comment>
+    <comment xml:lang="fr">métafichier RealMedia</comment>
+    <comment xml:lang="ga">meiteachomhad RealMedia</comment>
+    <comment xml:lang="hu">RealMedia metafájl</comment>
+    <comment xml:lang="id">RealMedia Metafile</comment>
+    <comment xml:lang="it">Metafile RealMedia</comment>
+    <comment xml:lang="ja">RealMedia メタファイル</comment>
+    <comment xml:lang="ko">RealMedia 메타파일</comment>
+    <comment xml:lang="lt">RealMedia metafailas</comment>
+    <comment xml:lang="lv">RealMedia metafails</comment>
+    <comment xml:lang="nb">RealMedia-metafil</comment>
+    <comment xml:lang="nl">RealMedia-metabestand</comment>
+    <comment xml:lang="nn">RealMedia-metafil</comment>
+    <comment xml:lang="pl">Metaplik RealMedia</comment>
+    <comment xml:lang="pt_BR">Meta arquivo do RealMedia</comment>
+    <comment xml:lang="ru">мета-файл RealMedia</comment>
+    <comment xml:lang="sq">Metafile RealMedia</comment>
+    <comment xml:lang="sv">RealMedia-metafil</comment>
+    <comment xml:lang="vi">Siêu tập tin RealMedia</comment>
+    <comment xml:lang="zh_CN">RealMedia 元文件</comment>
+    <glob pattern="*.ram"/>
+    <sub-class-of type="text/plain"/>
+  </mime-type>
+  <mime-type type="video/vnd.rn-realvideo">
+    <comment>RealVideo document</comment>
+    <comment xml:lang="be@latin">Dakument RealVideo</comment>
+    <comment xml:lang="bg">Документ — RealVideo</comment>
+    <comment xml:lang="ca">document RealVideo</comment>
+    <comment xml:lang="cs">Dokument RealVideo</comment>
+    <comment xml:lang="da">RealAudio-dokument</comment>
+    <comment xml:lang="de">RealVideo-Dokument</comment>
+    <comment xml:lang="en_GB">RealVideo document</comment>
+    <comment xml:lang="es">documento RealVideo</comment>
+    <comment xml:lang="eu">RealVideo dokumentua</comment>
+    <comment xml:lang="fi">RealVideo-asiakirja</comment>
+    <comment xml:lang="fr">document RealVideo</comment>
+    <comment xml:lang="ga">cáipéis RealVideo</comment>
+    <comment xml:lang="hu">RealVideo dokumentum</comment>
+    <comment xml:lang="id">Dokumen RealVideo</comment>
+    <comment xml:lang="it">Documento RealVideo</comment>
+    <comment xml:lang="ja">RealVideo ドキュメント</comment>
+    <comment xml:lang="ko">RealVideo 문서</comment>
+    <comment xml:lang="lt">RealVideo dokumentas</comment>
+    <comment xml:lang="lv">RealVideo dokuments</comment>
+    <comment xml:lang="nb">RealAudio-dokument</comment>
+    <comment xml:lang="nl">RealVideo-document</comment>
+    <comment xml:lang="nn">RealVideo-dokument</comment>
+    <comment xml:lang="pl">Dokument RealVideo</comment>
+    <comment xml:lang="pt_BR">Documento RealVideo</comment>
+    <comment xml:lang="ru">документ RealVideo</comment>
+    <comment xml:lang="sq">Dokument RealVideo</comment>
+    <comment xml:lang="sv">RealVideo-dokument</comment>
+    <comment xml:lang="uk">Документ RealVideo</comment>
+    <comment xml:lang="vi">Tài liệu ảnh động RealVideo</comment>
+    <comment xml:lang="zh_CN">RealAudio 文档</comment>
+    <glob pattern="*.rv"/>
+    <glob pattern="*.rvx"/>
+    <alias type="video/x-real-video"/>
+  </mime-type>
+  <mime-type type="application/vnd.rn-realmedia">
+    <comment>RealMedia document</comment>
+    <comment xml:lang="be@latin">Dakument RealMedia</comment>
+    <comment xml:lang="bg">Документ — RealMedia</comment>
+    <comment xml:lang="ca">document RealMedia</comment>
+    <comment xml:lang="cs">Dokument RealMedia</comment>
+    <comment xml:lang="da">RealMedia-dokument</comment>
+    <comment xml:lang="de">RealMedia-Dokument</comment>
+    <comment xml:lang="en_GB">RealMedia document</comment>
+    <comment xml:lang="es">documento RealMedia</comment>
+    <comment xml:lang="eu">RealMedia dokumentua</comment>
+    <comment xml:lang="fi">RealMedia-asiakirja</comment>
+    <comment xml:lang="fr">document RealMedia</comment>
+    <comment xml:lang="ga">cáipéis RealMedia</comment>
+    <comment xml:lang="hu">RealMedia dokumentum</comment>
+    <comment xml:lang="id">Dokumen RealMedia</comment>
+    <comment xml:lang="it">Documento RealMedia</comment>
+    <comment xml:lang="ja">RealMedia ドキュメント</comment>
+    <comment xml:lang="ko">RealMedia 문서</comment>
+    <comment xml:lang="lt">RealMedia dokumentas</comment>
+    <comment xml:lang="lv">RealMedia dokuments</comment>
+    <comment xml:lang="nb">RealMedia-dokument</comment>
+    <comment xml:lang="nl">RealMedia-document</comment>
+    <comment xml:lang="nn">RealMedia-dokument</comment>
+    <comment xml:lang="pl">Dokument RealMedia</comment>
+    <comment xml:lang="pt_BR">Documento RealMedia</comment>
+    <comment xml:lang="ru">документ RealMedia</comment>
+    <comment xml:lang="sq">Dokument RealMedia</comment>
+    <comment xml:lang="sv">RealMedia-dokument</comment>
+    <comment xml:lang="uk">Документ RealMedia</comment>
+    <comment xml:lang="vi">Tài liệu RealMedia</comment>
+    <comment xml:lang="zh_CN">RealMedia 文档</comment>
+    <generic-icon name="video-x-generic"/>
+    <magic priority="50">
+      <match value=".RMF" type="string" offset="0"/>
+    </magic>
+    <glob pattern="*.rm"/>
+    <glob pattern="*.rmj"/>
+    <glob pattern="*.rmm"/>
+    <glob pattern="*.rms"/>
+    <glob pattern="*.rmx"/>
+    <glob pattern="*.rmvb"/>
+  </mime-type>
+  <mime-type type="video/x-flv">
+    <comment>Flash video</comment>
+    <comment xml:lang="be@latin">Videa Flash</comment>
+    <comment xml:lang="bg">Видео — Flash</comment>
+    <comment xml:lang="ca">vídeo de Flash</comment>
+    <comment xml:lang="cs">Video Flash</comment>
+    <comment xml:lang="da">Flashvideo</comment>
+    <comment xml:lang="de">Flash-Video</comment>
+    <comment xml:lang="en_GB">Flash video</comment>
+    <comment xml:lang="es">vídeo Flash</comment>
+    <comment xml:lang="eu">Flash bideoa</comment>
+    <comment xml:lang="fi">Flash-video</comment>
+    <comment xml:lang="fr">vidéo Flash</comment>
+    <comment xml:lang="ga">físeán Flash</comment>
+    <comment xml:lang="hu">Flash videó</comment>
+    <comment xml:lang="id">Video Flash</comment>
+    <comment xml:lang="it">Video Flash</comment>
+    <comment xml:lang="ja">Flash 動画</comment>
+    <comment xml:lang="ko">Flash 비디오</comment>
+    <comment xml:lang="lt">Flash vaizdas</comment>
+    <comment xml:lang="lv">Flash video</comment>
+    <comment xml:lang="nb">Flash-film</comment>
+    <comment xml:lang="nl">Flash-video</comment>
+    <comment xml:lang="nn">Flash-video</comment>
+    <comment xml:lang="pl">Plik wideo Flash</comment>
+    <comment xml:lang="pt_BR">Vídeo Flash</comment>
+    <comment xml:lang="ru">видео Flash</comment>
+    <comment xml:lang="sq">Video Flash</comment>
+    <comment xml:lang="sv">Flash-video</comment>
+    <comment xml:lang="uk">Відео-кліп Flash</comment>
+    <comment xml:lang="vi">Ảnh động Flash</comment>
+    <comment xml:lang="zh_CN">Flash 影片</comment>
+    <generic-icon name="video-x-generic"/>
+    <magic priority="50">
+      <match value="FLV" type="string" offset="0"/>
+    </magic>
+    <glob pattern="*.flv"/>
+    <alias type="application/x-flash-video"/>
+    <alias type="flv-application/octet-stream"/>
+    <alias type="video/flv"/>
+  </mime-type>
+  <mime-type type="audio/x-musepack">
+    <comment>Musepack audio</comment>
+    <comment xml:lang="be@latin">Aŭdyjo Musepack</comment>
+    <comment xml:lang="bg">Аудио — Musepack</comment>
+    <comment xml:lang="ca">àudio Musepack</comment>
+    <comment xml:lang="cs">Zvuk Musepack</comment>
+    <comment xml:lang="da">Musepacklyd</comment>
+    <comment xml:lang="de">Musepack-Audio</comment>
+    <comment xml:lang="es">audio Musepack</comment>
+    <comment xml:lang="eu">Musepack audioa</comment>
+    <comment xml:lang="fi">Musepack-ääni</comment>
+    <comment xml:lang="fr">audio Musepack</comment>
+    <comment xml:lang="ga">fuaim Musepack</comment>
+    <comment xml:lang="hu">Musepack hang</comment>
+    <comment xml:lang="id">Audio Musepack</comment>
+    <comment xml:lang="it">Audio Musepack</comment>
+    <comment xml:lang="ja">Musepack オーディオ</comment>
+    <comment xml:lang="ko">Musepack 오디오</comment>
+    <comment xml:lang="lt">Musepack garsas</comment>
+    <comment xml:lang="lv">Musepack audio</comment>
+    <comment xml:lang="nb">Musepack-lyd</comment>
+    <comment xml:lang="nl">Musepack-audio</comment>
+    <comment xml:lang="nn">Musepack-lyd</comment>
+    <comment xml:lang="pl">Plik dźwiękowy Musepack</comment>
+    <comment xml:lang="pt_BR">Áudio Musepack</comment>
+    <comment xml:lang="ru">аудио Musepack</comment>
+    <comment xml:lang="sq">Audio Musepack</comment>
+    <comment xml:lang="sv">Musepack-ljud</comment>
+    <comment xml:lang="uk">Звук Musepack</comment>
+    <comment xml:lang="vi">Âm thanh Musepack</comment>
+    <comment xml:lang="zh_CN">Musepack 音频</comment>
+    <magic priority="50">
+      <match value="MP+" type="string" offset="0"/>
+    </magic>
+    <glob pattern="*.mpc"/>
+    <glob pattern="*.mpp"/>
+    <glob pattern="*.mp+"/>
+  </mime-type>
+</mime-info>
+

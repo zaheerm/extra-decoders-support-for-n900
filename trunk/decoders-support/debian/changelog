@@ -1,0 +1,26 @@
+decoders-support (0.3) unstable; urgency=low
+
+  * Added MusePack support
+  * Fixed error in external package causing tracker segfault and re-indexing
+
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Mon,  4 Jan 2010 18:30:40 +0100
+
+decoders-support (0.2-1) unstable; urgency=low
+
+  * Added XSBC-Bugtracker field
+
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Sun,  3 Jan 2010 22:07:37 +0100
+
+decoders-support (0.2) unstable; urgency=low
+
+  * Added basic support for RealMedia formats (depends on my new gstreamer0.10-rm package)
+  * Depends on ogg-support, adding Vorbis OGG and FLAC support
+  * Added desktop file and mimetype xml file to play known formats from File Manager
+ 
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Sun,  3 Jan 2010 20:00:09 +0100
+
+decoders-support (0.1) unstable; urgency=low
+
+  * Initial release
+
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Sat, 28 Nov 2009 13:46:11 +0100
