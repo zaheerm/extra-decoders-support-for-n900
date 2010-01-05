@@ -5,7 +5,7 @@ decoders-support (0.3.1) unstable; urgency=low
 
   -- Tomasz Dominikowski <dominikowski@gmail.com>  Tue, 05 Jan 2010 02:09:39 +0100
 
-decoders-support (0.2-1) unstable; urgency=lowdecoders-support (0.3) unstable; urgency=low
+decoders-support (0.3) unstable; urgency=low
 
   * Added MusePack support
   * Fixed error in external package causing tracker segfault and re-indexing
