@@ -1,0 +1,68 @@
+From 04d6f13b4c7f975ea71733da8253b3f70074d7c4 Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Ren=C3=A9=20Stadler?= <rene.stadler@nokia.com>
+Date: Wed, 20 May 2009 15:48:05 +0300
+Subject: [PATCH] baseparse: fix strict aliasing build warning (aacparse, amrparse, flacparse)
+
+---
+ gst/aacparse/gstbaseparse.c  |    6 ++++--
+ gst/amrparse/gstbaseparse.c  |    6 ++++--
+ gst/flacparse/gstbaseparse.c |    6 ++++--
+ 3 files changed, 12 insertions(+), 6 deletions(-)
+
+diff --git a/gst/aacparse/gstbaseparse.c b/gst/aacparse/gstbaseparse.c
+index 026b134..3d6f543 100644
+--- a/gst/aacparse/gstbaseparse.c
++++ b/gst/aacparse/gstbaseparse.c
+@@ -318,10 +318,12 @@ gst_base_parse_finalize (GObject * object)
+   g_object_unref (parse->adapter);
+ 
+   if (parse->pending_segment) {
+-    gst_event_replace (&parse->pending_segment, NULL);
++    GstEvent **event_p = &parse->pending_segment;
++    gst_event_replace (event_p, NULL);
+   }
+   if (parse->close_segment) {
+-    gst_event_replace (&parse->close_segment, NULL);
++    GstEvent **event_p = &parse->close_segment;
++    gst_event_replace (event_p, NULL);
+   }
+ 
+   if (parse->priv->cache) {
+diff --git a/gst/amrparse/gstbaseparse.c b/gst/amrparse/gstbaseparse.c
+index ad96378..aade5b5 100644
+--- a/gst/amrparse/gstbaseparse.c
++++ b/gst/amrparse/gstbaseparse.c
+@@ -318,10 +318,12 @@ gst_base_parse_finalize (GObject * object)
+   g_object_unref (parse->adapter);
+ 
+   if (parse->pending_segment) {
+-    gst_event_replace (&parse->pending_segment, NULL);
++    GstEvent **event_p = &parse->pending_segment;
++    gst_event_replace (event_p, NULL);
+   }
+   if (parse->close_segment) {
+-    gst_event_replace (&parse->close_segment, NULL);
++    GstEvent **event_p = &parse->close_segment;
++    gst_event_replace (event_p, NULL);
+   }
+ 
+   if (parse->priv->cache) {
+diff --git a/gst/flacparse/gstbaseparse.c b/gst/flacparse/gstbaseparse.c
+index 85fb8d7..67cf1dc 100644
+--- a/gst/flacparse/gstbaseparse.c
++++ b/gst/flacparse/gstbaseparse.c
+@@ -335,10 +335,12 @@ gst_base_parse_finalize (GObject * object)
+   g_object_unref (parse->priv->adapter);
+ 
+   if (parse->pending_segment) {
+-    gst_event_replace (&parse->pending_segment, NULL);
++    GstEvent **event_p = &parse->pending_segment;
++    gst_event_replace (event_p, NULL);
+   }
+   if (parse->close_segment) {
+-    gst_event_replace (&parse->close_segment, NULL);
++    GstEvent **event_p = &parse->close_segment;
++    gst_event_replace (event_p, NULL);
+   }
+ 
+   if (parse->priv->cache) {
