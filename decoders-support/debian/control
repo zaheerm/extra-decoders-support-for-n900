@@ -4,28 +4,42 @@ Priority: optional
 Maintainer: Tomasz Dominikowski <dominikowski@gmail.com>
 Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.6.1
-XB-Maemo-Display-Name: Extra Decoders Support
-XB-Maemo-Display-Name-pl_PL: Obsługa dodatkowych dekoderów
-XB-Maemo-Upgrade-Description: Added RealMedia, Vorbis OGG, FLAC, MusePack support and File Manager playback
-XSBC-Bugtracker: dominikowski@gmail.com
+
 
 Package: decoders-support
 Section: user/multimedia
 Architecture: any
 Depends: gstreamer0.10-ffmpeg, gstreamer0.10-flv, gstreamer0.10-musepack, gstreamer0.10-rm (>= 0.10.10.2-1maemo2-5), gstreamer0.10-plugins-good-extra, gstreamer0.10-plugins-bad, tracker-distutils, ogg-support
 Replaces: ac3-support
-Description: Support for additional video and audio decoders
+XB-Description: Support for additional video and audio decoders
  .
  Uses GStreamer decoders and tracker mimetype registering tool
  * AC-3 audio in video files support
  * Vorbis OGG and FLAC support (via ogg-support)
  * Musepack support
- * FLV video support
+ * Flash video support
  * RealMedia formats support
  * Matroska container support (most video formats used for Matroska unsupported!)
  * MPEG2 Transport Stream support
  .
- Video resolution over 848x480 is still unsupported!
+ Video resolution over 848x480 pixels is still unsupported!
+XB-Description-pl_PL: Obsługa dodatkowych dekoderów dźwięku i wideo
+ .
+ Używa dekoderów GStreamer i narzędzia rejestrującego typy mime tracker
+ * Obsługa dźwięu AC-3 w nagraniach wideo
+ * Obsługa formatów Vorbis OGG and FLAC (poprzez ogg-support)
+ * Obsługa formatu Musepack
+ * Obsługa formatu Flash Video
+ * Obsługa formatów RealMedia
+ * Obsługa kontenera Matroska (większość formatów używanych z Matroska nieobsługiwane!)
+ * Obsługa formatu MPEG2 Transport Stream
+ .
+ Obsługa rodzielczości powyżej 848x480 pikseli jest nadal nieobsługiwana!
+XB-Maemo-Display-Name: Extra Decoders Support
+XB-Maemo-Display-Name-pl_PL: Obsługa dodatkowych dekoderów
+XB-Maemo-Upgrade-Description: Added RealMedia, Vorbis OGG, FLAC, MusePack support and File Manager playback
+XB-Maemo-Upgrade-Description-pl_PL: Dodana obsługa formatów RealMedia, Vorbis OGG, FLAC, MusePack
+XSBC-Bugtracker: http://code.google.com/p/extra-decoders-support-for-n900/issues/entry
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAABGdBTUEAALGP
  C/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUw
