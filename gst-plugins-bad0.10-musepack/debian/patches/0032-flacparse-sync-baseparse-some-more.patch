@@ -1,0 +1,26 @@
+From 733fce70fcbd48c875d9fe10b33cc839b56a235a Mon Sep 17 00:00:00 2001
+From: Mark Nauwelaerts <mark.nauwelaerts@collabora.co.uk>
+Date: Fri, 7 Aug 2009 13:04:18 +0200
+Subject: [PATCH] flacparse: sync baseparse (some more)
+
+---
+ gst/flacparse/gstbaseparse.c |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
+
+diff --git a/gst/flacparse/gstbaseparse.c b/gst/flacparse/gstbaseparse.c
+index 67cf1dc..2ce1a11 100644
+--- a/gst/flacparse/gstbaseparse.c
++++ b/gst/flacparse/gstbaseparse.c
+@@ -1028,6 +1028,12 @@ gst_base_parse_chain (GstPad * pad, GstBuffer * buffer)
+ 
+       skip = -1;
+       if (bclass->check_valid_frame (parse, tmpbuf, &fsize, &skip)) {
++        if (gst_adapter_available (parse->adapter) < fsize) {
++          GST_DEBUG_OBJECT (parse,
++              "found valid frame but not enough data available (only %d bytes)",
++              gst_adapter_available (parse->adapter));
++          goto done;
++        }
+         break;
+       }
+       if (skip > 0) {

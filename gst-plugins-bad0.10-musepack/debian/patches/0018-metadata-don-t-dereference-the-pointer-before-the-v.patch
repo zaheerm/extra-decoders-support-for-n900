@@ -1,0 +1,28 @@
+From 5fdb9508879a86f043f8f0e05e3b2750af3e0dda Mon Sep 17 00:00:00 2001
+From: Stefan Kost <ensonic@users.sf.net>
+Date: Mon, 20 Jul 2009 16:19:40 +0300
+Subject: [PATCH] metadata: don't dereference the pointer before the validity check
+
+---
+ ext/metadata/metadataexif.c |    4 +++-
+ 1 files changed, 3 insertions(+), 1 deletions(-)
+
+diff --git a/ext/metadata/metadataexif.c b/ext/metadata/metadataexif.c
+index 0769dab..e864801 100644
+--- a/ext/metadata/metadataexif.c
++++ b/ext/metadata/metadataexif.c
+@@ -556,11 +556,13 @@ metadataparse_exif_content_foreach_entry_func (ExifEntry * entry,
+   MEUserData *meudata = (MEUserData *) user_data;
+   GType type = G_TYPE_NONE;
+   ExifByteOrder byte_order;
+-  const gchar *tag = metadataparse_exif_get_tag_from_exif (entry->tag, &type);
++  const gchar *tag;
+ 
+   /* We need the byte order */
+   if (!entry || !entry->parent || !entry->parent->parent)
+     return;
++
++  tag = metadataparse_exif_get_tag_from_exif (entry->tag, &type);
+   byte_order = exif_data_get_byte_order (entry->parent->parent);
+ 
+   if (metadataparse_handle_unit_tags (entry, meudata, byte_order))
