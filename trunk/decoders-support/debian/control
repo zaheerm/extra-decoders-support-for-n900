@@ -11,7 +11,7 @@ Section: user/multimedia
 Architecture: any
 Depends: gstreamer0.10-ffmpeg, gstreamer0.10-flv, gstreamer0.10-musepack, gstreamer0.10-rm (>= 0.10.10.2-1maemo2-5), gstreamer0.10-plugins-good-extra, gstreamer0.10-plugins-bad, tracker-distutils, ogg-support
 Replaces: ac3-support
-XB-Description: Support for additional video and audio decoders
+XB-Description: Support for additional video and audio decoders in the Media Player
  .
  Uses GStreamer decoders and tracker mimetype registering tool
  * AC-3 audio in video files support
@@ -23,7 +23,7 @@ XB-Description: Support for additional video and audio decoders
  * MPEG2 Transport Stream support
  .
  Video resolution over 848x480 pixels is still unsupported!
-XB-Description-pl_PL: Obsługa dodatkowych dekoderów dźwięku i wideo
+XB-Description-pl_PL: Obsługa dodatkowych dekoderów dźwięku i wideo dla wbudowanego Odtwarzacza
  .
  Używa dekoderów GStreamer i narzędzia rejestrującego typy mime tracker
  * Obsługa dźwięu AC-3 w nagraniach wideo
