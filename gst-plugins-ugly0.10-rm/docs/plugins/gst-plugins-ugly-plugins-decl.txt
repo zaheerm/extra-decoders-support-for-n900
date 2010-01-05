@@ -1,0 +1,1188 @@
+<MACRO>
+<NAME>GST_TYPE_A52DEC</NAME>
+#define GST_TYPE_A52DEC \
+  (gst_a52dec_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_A52DEC</NAME>
+#define GST_A52DEC(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_A52DEC,GstA52Dec))
+</MACRO>
+<MACRO>
+<NAME>GST_A52DEC_CLASS</NAME>
+#define GST_A52DEC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_A52DEC,GstA52DecClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_A52DEC</NAME>
+#define GST_IS_A52DEC(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_A52DEC))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_A52DEC_CLASS</NAME>
+#define GST_IS_A52DEC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_A52DEC))
+</MACRO>
+<STRUCT>
+<NAME>GstA52Dec</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstA52DecClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstA52Dec</NAME>
+struct _GstA52Dec {
+  GstElement     element;
+
+  /* pads */
+  GstPad        *sinkpad,
+                *srcpad;
+  GstSegment     segment;
+
+  gboolean       dvdmode;
+  gboolean       sent_segment;
+  gboolean       discont;
+
+  gboolean       flag_update;
+  int            prev_flags;
+
+  int            bit_rate;
+  int            sample_rate;
+  int            stream_channels;
+  int            request_channels;
+  int            using_channels;
+
+  sample_t       level;
+  sample_t       bias;
+  gboolean       dynamic_range_compression;
+  sample_t      *samples;
+  a52_state_t   *state;
+
+  GstBuffer     *cache;
+  GstClockTime   time;
+
+  /* reverse */
+  GList         *queued;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstA52DecClass</NAME>
+struct _GstA52DecClass {
+  GstElementClass parent_class;
+
+  guint32 a52_cpuflags;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_a52dec_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>A52_MONO</NAME>
+#define A52_MONO 1
+</MACRO>
+<MACRO>
+<NAME>A52_STEREO</NAME>
+#define A52_STEREO 2
+</MACRO>
+<MACRO>
+<NAME>A52_3F</NAME>
+#define A52_3F 3
+</MACRO>
+<MACRO>
+<NAME>A52_2F1R</NAME>
+#define A52_2F1R 4
+</MACRO>
+<MACRO>
+<NAME>A52_3F1R</NAME>
+#define A52_3F1R 5
+</MACRO>
+<MACRO>
+<NAME>A52_2F2R</NAME>
+#define A52_2F2R 6
+</MACRO>
+<MACRO>
+<NAME>A52_3F2R</NAME>
+#define A52_3F2R 7
+</MACRO>
+<MACRO>
+<NAME>A52_DOLBY</NAME>
+#define A52_DOLBY 10
+</MACRO>
+<MACRO>
+<NAME>GST_TYPE_AMRNBDEC</NAME>
+#define GST_TYPE_AMRNBDEC \
+  (gst_amrnbdec_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_AMRNBDEC</NAME>
+#define GST_AMRNBDEC(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), GST_TYPE_AMRNBDEC, GstAmrnbDec))
+</MACRO>
+<MACRO>
+<NAME>GST_AMRNBDEC_CLASS</NAME>
+#define GST_AMRNBDEC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass), GST_TYPE_AMRNBDEC, GstAmrnbDecClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_AMRNBDEC</NAME>
+#define GST_IS_AMRNBDEC(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), GST_TYPE_AMRNBDEC))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_AMRNBDEC_CLASS</NAME>
+#define GST_IS_AMRNBDEC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass), GST_TYPE_AMRNBDEC))
+</MACRO>
+<STRUCT>
+<NAME>GstAmrnbDec</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstAmrnbDecClass</NAME>
+</STRUCT>
+<ENUM>
+<NAME>GstAmrnbVariant</NAME>
+typedef enum
+{
+  GST_AMRNB_VARIANT_IF1,
+  GST_AMRNB_VARIANT_IF2
+} GstAmrnbVariant;
+</ENUM>
+<STRUCT>
+<NAME>GstAmrnbDec</NAME>
+struct _GstAmrnbDec {
+  GstElement element;
+
+  /* pads */
+  GstPad *sinkpad, *srcpad;
+  guint64 ts;
+
+  GstAmrnbVariant variant;
+
+  GstAdapter *adapter;
+
+  /* library handle */
+  void *handle;
+
+  /* output settings */
+  gint channels, rate;
+  gint duration;
+
+  GstSegment        segment;
+  gboolean          discont;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstAmrnbDecClass</NAME>
+struct _GstAmrnbDecClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_amrnbdec_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_AMRNBENC</NAME>
+#define GST_TYPE_AMRNBENC \
+  (gst_amrnbenc_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_AMRNBENC</NAME>
+#define GST_AMRNBENC(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), GST_TYPE_AMRNBENC, GstAmrnbEnc))
+</MACRO>
+<MACRO>
+<NAME>GST_AMRNBENC_CLASS</NAME>
+#define GST_AMRNBENC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass), GST_TYPE_AMRNBENC, GstAmrnbEncClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_AMRNBENC</NAME>
+#define GST_IS_AMRNBENC(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), GST_TYPE_AMRNBENC))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_AMRNBENC_CLASS</NAME>
+#define GST_IS_AMRNBENC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass), GST_TYPE_AMRNBENC))
+</MACRO>
+<STRUCT>
+<NAME>GstAmrnbEnc</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstAmrnbEncClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstAmrnbEnc</NAME>
+struct _GstAmrnbEnc {
+  GstElement element;
+
+  /* pads */
+  GstPad *sinkpad, *srcpad;
+  guint64 ts;
+  gboolean discont;
+
+  GstAdapter *adapter;
+
+  /* library handle */
+  void *handle;
+
+  /* input settings */
+  enum Mode bandmode;
+  gint channels, rate;
+  gint duration;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstAmrnbEncClass</NAME>
+struct _GstAmrnbEncClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_amrnbenc_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_AMRNBPARSE</NAME>
+#define GST_TYPE_AMRNBPARSE \
+  (gst_amrnbparse_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_AMRNBPARSE</NAME>
+#define GST_AMRNBPARSE(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj), GST_TYPE_AMRNBPARSE, GstAmrnbParse))
+</MACRO>
+<MACRO>
+<NAME>GST_AMRNBPARSE_CLASS</NAME>
+#define GST_AMRNBPARSE_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass), GST_TYPE_AMRNBPARSE, GstAmrnbParseClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_AMRNBPARSE</NAME>
+#define GST_IS_AMRNBPARSE(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), GST_TYPE_AMRNBPARSE))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_AMRNBPARSE_CLASS</NAME>
+#define GST_IS_AMRNBPARSE_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass), GST_TYPE_AMRNBPARSE))
+</MACRO>
+<STRUCT>
+<NAME>GstAmrnbParse</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstAmrnbParseClass</NAME>
+</STRUCT>
+<USER_FUNCTION>
+<NAME>GstAmrnbSeekHandler</NAME>
+<RETURNS>gboolean </RETURNS>
+GstAmrnbParse * amrnbparse, GstPad * pad,
+		    GstEvent * event
+</USER_FUNCTION>
+<STRUCT>
+<NAME>GstAmrnbParse</NAME>
+struct _GstAmrnbParse {
+  GstElement element;
+
+  /* pads */
+  GstPad *sinkpad, *srcpad;
+
+  GstAdapter *adapter;
+
+  gboolean seekable;
+  gboolean need_header;
+  gint64 offset;
+  gint block;
+
+  GstAmrnbSeekHandler seek_handler;
+
+  guint64 ts;
+
+  /* for seeking etc */
+  GstSegment segment;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstAmrnbParseClass</NAME>
+struct _GstAmrnbParseClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_amrnbparse_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_CDIO_CDDA_SRC</NAME>
+#define GST_TYPE_CDIO_CDDA_SRC            (gst_cdio_cdda_src_get_type ())
+</MACRO>
+<MACRO>
+<NAME>GST_CDIO_CDDA_SRC</NAME>
+#define GST_CDIO_CDDA_SRC(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), GST_TYPE_CDIO_CDDA_SRC, GstCdioCddaSrc))
+</MACRO>
+<MACRO>
+<NAME>GST_CDIO_CDDA_SRC_CLASS</NAME>
+#define GST_CDIO_CDDA_SRC_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  GST_TYPE_CDIO_CDDA_SRC, GstCdioCddaSrcClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_CDIO_CDDA_SRC</NAME>
+#define GST_IS_CDIO_CDDA_SRC(obj)         (G_TYPE_CHECK_INSTANCE_TYPE((obj), GST_TYPE_CDIO_CDDA_SRC))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_CDIO_CDDA_SRC_CLASS</NAME>
+#define GST_IS_CDIO_CDDA_SRC_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GST_TYPE_CDIO_CDDA_SRC))
+</MACRO>
+<STRUCT>
+<NAME>GstCdioCddaSrc</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstCdioCddaSrcClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstCdioCddaSrc</NAME>
+struct _GstCdioCddaSrc
+{
+  GstCddaBaseSrc cddabasesrc;
+
+  gint           read_speed;    /* ATOMIC */
+
+  CdIo          *cdio;          /* NULL if not open */
+};
+</STRUCT>
+<STRUCT>
+<NAME>GstCdioCddaSrcClass</NAME>
+struct _GstCdioCddaSrcClass
+{
+  GstCddaBaseSrcClass  cddabasesrc_class;
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gst_cdio_cdda_src_get_type</NAME>
+<RETURNS>GType   </RETURNS>
+
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_LAME</NAME>
+#define GST_TYPE_LAME \
+  (gst_lame_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_LAME</NAME>
+#define GST_LAME(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_LAME,GstLame))
+</MACRO>
+<MACRO>
+<NAME>GST_LAME_CLASS</NAME>
+#define GST_LAME_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_LAME,GstLameClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_LAME</NAME>
+#define GST_IS_LAME(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_LAME))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_LAME_CLASS</NAME>
+#define GST_IS_LAME_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_LAME))
+</MACRO>
+<STRUCT>
+<NAME>GstLame</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstLameClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstLame</NAME>
+struct _GstLame {
+  GstElement element;
+
+  /*< private >*/
+  GstPad *srcpad, *sinkpad;
+
+  gint samplerate;
+  gint num_channels;
+  gboolean setup;
+
+  gint bitrate;
+  gfloat compression_ratio;
+  gint quality;
+  gint mode; /* actual mode in use now */
+  gint requested_mode; /* requested mode by user/app */
+  gboolean force_ms;
+  gboolean free_format;
+  gboolean copyright;
+  gboolean original;
+  gboolean error_protection;
+  gboolean extension;
+  gboolean strict_iso;
+  gboolean disable_reservoir;
+  gint vbr;
+  gint vbr_quality;
+  gint vbr_mean_bitrate;
+  gint vbr_min_bitrate;
+  gint vbr_max_bitrate;
+  gint vbr_hard_min;
+  gint lowpass_freq;
+  gint lowpass_width;
+  gint highpass_freq;
+  gint highpass_width;
+  gboolean ath_only;
+  gboolean ath_short;
+  gboolean no_ath;
+  gint ath_type;
+  gint ath_lower;
+  gboolean allow_diff_short;
+  gboolean no_short_blocks;
+  gboolean emphasis;
+  gint preset;
+
+  /* track this so we don't send a last buffer in eos handler after error */
+  GstFlowReturn  last_flow;
+
+  lame_global_flags *lgf;
+
+  /* time tracker */
+  guint64 last_ts, last_offs, last_duration, eos_ts;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstLameClass</NAME>
+struct _GstLameClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_lame_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_MAD</NAME>
+#define GST_TYPE_MAD \
+  (gst_mad_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_MAD</NAME>
+#define GST_MAD(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_MAD,GstMad))
+</MACRO>
+<MACRO>
+<NAME>GST_MAD_CLASS</NAME>
+#define GST_MAD_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_MAD,GstMadClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_MAD</NAME>
+#define GST_IS_MAD(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_MAD))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_MAD_CLASS</NAME>
+#define GST_IS_MAD_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_MAD))
+</MACRO>
+<STRUCT>
+<NAME>GstMad</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstMadClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstMad</NAME>
+struct _GstMad
+{
+  GstElement element;
+
+  /* pads */
+  GstPad *sinkpad, *srcpad;
+
+  /* state */
+  struct mad_stream stream;
+  struct mad_frame frame;
+  struct mad_synth synth;
+  guchar *tempbuffer;           /* temporary buffer to serve to mad */
+  glong tempsize;               /* running count of temp buffer size */
+  GstClockTime last_ts;
+  guint64 base_byte_offset;
+  guint64 bytes_consumed;       /* since the base_byte_offset */
+  guint64 total_samples;        /* the number of samples since the sync point */
+
+  gboolean in_error;            /* set when mad's in an error state */
+  gboolean restart;
+  gboolean discont;
+  guint64 segment_start;
+  GstSegment segment;
+  gboolean need_newsegment;
+
+  /* info */
+  struct mad_header header;
+  gboolean new_header;
+  guint framecount;
+  gint vbr_average;             /* average bitrate */
+  guint64 vbr_rate;             /* average * framecount */
+
+  gboolean half;
+  gboolean ignore_crc;
+
+  GstTagList *tags;
+
+  /* negotiated format */
+  gint rate, pending_rate;
+  gint channels, pending_channels;
+  gint times_pending;
+
+  gboolean caps_set;            /* used to keep track of whether to change/update caps */
+#ifndef GST_DISABLE_INDEX
+  GstIndex *index;
+  gint index_id;
+#endif
+
+  gboolean check_for_xing;
+  gboolean xing_found;
+
+  gboolean framed;              /* whether there is a demuxer in front of us */
+
+  GList *pending_events;
+};
+</STRUCT>
+<STRUCT>
+<NAME>GstMadClass</NAME>
+struct _GstMadClass
+{
+  GstElementClass parent_class;
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gst_mad_get_type</NAME>
+<RETURNS>GType                   </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gst_id3_tag_get_type</NAME>
+<RETURNS>GType                   </RETURNS>
+guint type
+</FUNCTION>
+<FUNCTION>
+<NAME>gst_mad_id3_to_tag_list</NAME>
+<RETURNS>GstTagList*</RETURNS>
+const struct id3_tag * tag
+</FUNCTION>
+<FUNCTION>
+<NAME>gst_mad_tag_list_to_id3_tag</NAME>
+<RETURNS>struct id3_tag *</RETURNS>
+GstTagList *           list
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_SIDDEC</NAME>
+#define GST_TYPE_SIDDEC \
+  (gst_siddec_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_SIDDEC</NAME>
+#define GST_SIDDEC(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_SIDDEC,GstSidDec))
+</MACRO>
+<MACRO>
+<NAME>GST_SIDDEC_CLASS</NAME>
+#define GST_SIDDEC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_SIDDEC,GstSidDecClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_SIDDEC</NAME>
+#define GST_IS_SIDDEC(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_SIDDEC))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_SIDDEC_CLASS</NAME>
+#define GST_IS_SIDDEC_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_SIDDEC))
+</MACRO>
+<STRUCT>
+<NAME>GstSidDec</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstSidDecClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstSidDec</NAME>
+struct _GstSidDec {
+  GstElement     element;
+
+  /* pads */
+  GstPad        *sinkpad, 
+                *srcpad;
+
+  guchar        *tune_buffer;
+  gint           tune_len;
+  gint           tune_number;
+  guint64        total_bytes;
+
+  emuEngine     *engine;
+  sidTune       *tune;
+  emuConfig     *config;
+
+  gulong         blocksize;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstSidDecClass</NAME>
+struct _GstSidDecClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_siddec_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_TWO_LAME</NAME>
+#define GST_TYPE_TWO_LAME \
+  (gst_two_lame_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_TWO_LAME</NAME>
+#define GST_TWO_LAME(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_TWO_LAME,GstTwoLame))
+</MACRO>
+<MACRO>
+<NAME>GST_TWO_LAME_CLASS</NAME>
+#define GST_TWO_LAME_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_TWO_LAME,GstTwoLameClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_TWO_LAME</NAME>
+#define GST_IS_TWO_LAME(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_TWO_LAME))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_TWO_LAME_CLASS</NAME>
+#define GST_IS_TWO_LAME_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_TWO_LAME))
+</MACRO>
+<STRUCT>
+<NAME>GstTwoLame</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstTwoLameClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstTwoLame</NAME>
+struct _GstTwoLame {
+  GstElement element;
+
+  /*< private >*/
+  GstPad *srcpad, *sinkpad;
+
+  gint samplerate;
+  gint num_channels;
+  gboolean float_input;
+  gboolean setup;
+
+  gint mode;
+  gint psymodel;
+  gint bitrate;
+  gint padding;
+  gboolean energy_level_extension;
+  gint emphasis;
+  gboolean error_protection;
+  gboolean copyright;
+  gboolean original;
+  gboolean vbr;
+  gfloat vbr_level;
+  gfloat ath_level;
+  gint vbr_max_bitrate;
+  gboolean quick_mode;
+  gint quick_mode_count;
+
+  /* track this so we don't send a last buffer in eos handler after error */
+  GstFlowReturn  last_flow;
+
+  twolame_options *glopts;
+
+  /* time tracker */
+  guint64 last_ts, last_offs, last_duration, eos_ts;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstTwoLameClass</NAME>
+struct _GstTwoLameClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_two_lame_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_RTSP_WMS</NAME>
+#define GST_TYPE_RTSP_WMS  		(gst_rtsp_wms_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_IS_RTSP_WMS</NAME>
+#define GST_IS_RTSP_WMS(obj)  		(G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_RTSP_WMS))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_RTSP_WMS_CLASS</NAME>
+#define GST_IS_RTSP_WMS_CLASS(klass) 	(G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_RTSP_WMS))
+</MACRO>
+<MACRO>
+<NAME>GST_RTSP_WMS</NAME>
+#define GST_RTSP_WMS(obj)  		(G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_RTSP_WMS, GstRTSPWMS))
+</MACRO>
+<MACRO>
+<NAME>GST_RTSP_WMS_CLASS</NAME>
+#define GST_RTSP_WMS_CLASS(klass)  	(G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_RTSP_WMS, GstRTSPWMSClass))
+</MACRO>
+<STRUCT>
+<NAME>GstRTSPWMS</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPWMSClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPWMS</NAME>
+struct _GstRTSPWMS {
+  GstElement  element;
+
+  gboolean active;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPWMSClass</NAME>
+struct _GstRTSPWMSClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_rtsp_wms_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_XING_MUX</NAME>
+#define GST_TYPE_XING_MUX \
+  (gst_xing_mux_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_XING_MUX</NAME>
+#define GST_XING_MUX(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_XING_MUX,GstXingMux))
+</MACRO>
+<MACRO>
+<NAME>GST_XING_MUX_CLASS</NAME>
+#define GST_XING_MUX_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_XING_MUX,GstXingMuxClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_XING_MUX</NAME>
+#define GST_IS_XING_MUX(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_XING_MUX))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_XING_MUX_CLASS</NAME>
+#define GST_IS_XING_MUX_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_XING_MUX))
+</MACRO>
+<STRUCT>
+<NAME>GstXingMux</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstXingMuxClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstXingMux</NAME>
+struct _GstXingMux {
+  GstElement element;
+
+  GstPad *sinkpad, *srcpad;
+
+  /* < private > */
+
+  GstAdapter *adapter;
+  GstClockTime duration;
+  guint64 byte_count;
+  guint64 frame_count;
+  GList *seek_table;
+  gboolean sent_xing;
+
+  /* Copy of the first frame header */
+  guint32 first_header;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstXingMuxClass</NAME>
+struct _GstXingMuxClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_xing_mux_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_REAL_AUDIO_DEMUX</NAME>
+#define GST_TYPE_REAL_AUDIO_DEMUX \
+  (gst_real_audio_demux_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_REAL_AUDIO_DEMUX</NAME>
+#define GST_REAL_AUDIO_DEMUX(obj) \
+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_REAL_AUDIO_DEMUX,GstRealAudioDemux))
+</MACRO>
+<MACRO>
+<NAME>GST_REAL_AUDIO_DEMUX_CLASS</NAME>
+#define GST_REAL_AUDIO_DEMUX_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_REAL_AUDIO_DEMUX,GstRealAudioDemuxClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_REAL_AUDIO_DEMUX</NAME>
+#define GST_IS_REAL_AUDIO_DEMUX(obj) \
+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_REAL_AUDIO_DEMUX))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_REAL_AUDIO_DEMUX_CLASS</NAME>
+#define GST_IS_REAL_AUDIO_DEMUX_CLASS(klass) \
+  (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_REAL_AUDIO_DEMUX))
+</MACRO>
+<ENUM>
+<NAME>GstRealAudioDemuxState</NAME>
+typedef enum
+{
+  REAL_AUDIO_DEMUX_STATE_MARKER,
+  REAL_AUDIO_DEMUX_STATE_HEADER,
+  REAL_AUDIO_DEMUX_STATE_DATA
+} GstRealAudioDemuxState;
+</ENUM>
+<STRUCT>
+<NAME>GstRealAudioDemux</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRealAudioDemuxClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRealAudioDemux</NAME>
+struct _GstRealAudioDemux {
+  GstElement               element;
+
+  GstPad                  *sinkpad;
+  GstPad                  *srcpad;
+
+  GstAdapter              *adapter;
+  GstRealAudioDemuxState   state;
+
+  guint                    ra_version;
+  guint                    data_offset;
+
+  guint                    packet_size;
+  guint                    leaf_size;
+  guint                    height;
+  guint                    flavour;
+
+  guint                    sample_rate;
+  guint                    sample_width;
+  guint                    channels;
+  guint32                  fourcc;
+
+  gboolean                 segment_running;
+
+  gboolean                 need_newsegment;
+  GstTagList              *pending_tags;
+
+  guint                    byterate_num;    /* bytes per second */
+  guint                    byterate_denom;
+
+  gint64                   duration;
+  gint64                   upstream_size;
+
+  guint64                  offset;          /* current read byte offset for
+                                             * pull_range-based mode */
+
+  /* playback start/stop positions */
+  GstSegment               segment;
+
+  gboolean                 seekable;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstRealAudioDemuxClass</NAME>
+struct _GstRealAudioDemuxClass {
+  GstElementClass  element_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_real_audio_demux_get_type</NAME>
+<RETURNS>GType  </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gst_rademux_plugin_init</NAME>
+<RETURNS>gboolean </RETURNS>
+GstPlugin * plugin
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_RDT_MANAGER</NAME>
+#define GST_TYPE_RDT_MANAGER  		(gst_rdt_manager_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_IS_RDT_MANAGER</NAME>
+#define GST_IS_RDT_MANAGER(obj)  	(G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_RDT_MANAGER))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_RDT_MANAGER_CLASS</NAME>
+#define GST_IS_RDT_MANAGER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_RDT_MANAGER))
+</MACRO>
+<MACRO>
+<NAME>GST_RDT_MANAGER</NAME>
+#define GST_RDT_MANAGER(obj)  		(G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_RDT_MANAGER, GstRDTManager))
+</MACRO>
+<MACRO>
+<NAME>GST_RDT_MANAGER_CLASS</NAME>
+#define GST_RDT_MANAGER_CLASS(klass)  	(G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_RDT_MANAGER, GstRDTManagerClass))
+</MACRO>
+<STRUCT>
+<NAME>GstRDTManager</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRDTManagerClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRDTManagerSession</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRDTManager</NAME>
+struct _GstRDTManager {
+  GstElement  element;
+
+  guint       latency;
+  GSList     *sessions;
+  GstClock   *provided_clock;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstRDTManagerClass</NAME>
+struct _GstRDTManagerClass {
+  GstElementClass parent_class;
+
+  /* get the caps for pt */
+  GstCaps* (*request_pt_map)    (GstRDTManager *rtpdec, guint session, guint pt);
+
+  void     (*clear_pt_map)      (GstRDTManager *rtpdec);
+
+  void     (*on_new_ssrc)       (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+  void     (*on_ssrc_collision) (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+  void     (*on_ssrc_validated) (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+  void     (*on_ssrc_active)    (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+  void     (*on_ssrc_sdes)      (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+  void     (*on_bye_ssrc)       (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+  void     (*on_bye_timeout)    (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+  void     (*on_timeout)        (GstRDTManager *rtpdec, guint session, guint32 ssrc);
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_rdt_manager_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gst_rdt_manager_plugin_init</NAME>
+<RETURNS>gboolean </RETURNS>
+GstPlugin * plugin
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_RTSP_REAL</NAME>
+#define GST_TYPE_RTSP_REAL  		(gst_rtsp_real_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_IS_RTSP_REAL</NAME>
+#define GST_IS_RTSP_REAL(obj)  		(G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_RTSP_REAL))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_RTSP_REAL_CLASS</NAME>
+#define GST_IS_RTSP_REAL_CLASS(klass) 	(G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_RTSP_REAL))
+</MACRO>
+<MACRO>
+<NAME>GST_RTSP_REAL</NAME>
+#define GST_RTSP_REAL(obj)  		(G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_RTSP_REAL, GstRTSPReal))
+</MACRO>
+<MACRO>
+<NAME>GST_RTSP_REAL_CLASS</NAME>
+#define GST_RTSP_REAL_CLASS(klass)  	(G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_RTSP_REAL, GstRTSPRealClass))
+</MACRO>
+<STRUCT>
+<NAME>GstRTSPReal</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPRealClass</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPRealStream</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPRealStream</NAME>
+struct _GstRTSPRealStream {
+  guint  id;
+  guint  max_bit_rate;
+  guint  avg_bit_rate;
+  guint  max_packet_size;
+  guint  avg_packet_size;
+  guint  start_time;
+  guint  preroll;
+  guint  duration;
+  gchar *stream_name;
+  guint  stream_name_len;
+  gchar *mime_type;
+  guint  mime_type_len;
+
+  GstASMRuleBook *rulebook;
+
+  gchar *type_specific_data;
+  guint  type_specific_data_len;
+
+  guint16 num_rules, j, sel, codec;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPReal</NAME>
+struct _GstRTSPReal {
+  GstElement  element;
+
+  gchar checksum[34];
+  gchar challenge2[64];
+  gboolean isreal;
+
+  guint   n_streams;
+  GList  *streams;
+
+  guint  max_bit_rate;
+  guint  avg_bit_rate;
+  guint  max_packet_size;
+  guint  avg_packet_size;
+  guint  duration;
+
+  gchar *rules;
+};
+
+</STRUCT>
+<STRUCT>
+<NAME>GstRTSPRealClass</NAME>
+struct _GstRTSPRealClass {
+  GstElementClass parent_class;
+};
+
+</STRUCT>
+<FUNCTION>
+<NAME>gst_rtsp_real_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
+<FUNCTION>
+<NAME>gst_rtsp_real_plugin_init</NAME>
+<RETURNS>gboolean </RETURNS>
+GstPlugin * plugin
+</FUNCTION>
+<MACRO>
+<NAME>GST_TYPE_SYNAESTHESIA</NAME>
+#define GST_TYPE_SYNAESTHESIA            (gst_synaesthesia_get_type())
+</MACRO>
+<MACRO>
+<NAME>GST_SYNAESTHESIA</NAME>
+#define GST_SYNAESTHESIA(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_SYNAESTHESIA,GstSynaesthesia))
+</MACRO>
+<MACRO>
+<NAME>GST_SYNAESTHESIA_CLASS</NAME>
+#define GST_SYNAESTHESIA_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),GST_TYPE_SYNAESTHESIA,GstSynaesthesiaClass))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_SYNAESTHESIA</NAME>
+#define GST_IS_SYNAESTHESIA(obj)         (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_SYNAESTHESIA))
+</MACRO>
+<MACRO>
+<NAME>GST_IS_SYNAESTHESIA_CLASS</NAME>
+#define GST_IS_SYNAESTHESIA_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),GST_TYPE_SYNAESTHESIA))
+</MACRO>
+<STRUCT>
+<NAME>GstSynaesthesia</NAME>
+</STRUCT>
+<STRUCT>
+<NAME>GstSynaesthesiaClass</NAME>
+</STRUCT>
+<MACRO>
+<NAME>GST_CAT_DEFAULT</NAME>
+#define GST_CAT_DEFAULT (synaesthesia_debug)
+</MACRO>
+<STRUCT>
+<NAME>GstSynaesthesia</NAME>
+struct _GstSynaesthesia
+{
+  GstElement element;
+
+  /* pads */
+  GstPad *sinkpad, *srcpad;
+  GstAdapter *adapter;
+
+  guint64 next_ts;              /* the timestamp of the next frame */
+  guint64 frame_duration;
+  guint bps;                    /* bytes per sample        */
+  guint spf;                    /* samples per video frame */
+
+  gint16 datain[2][FFT_BUFFER_SIZE];
+
+  /* video state */
+  gint fps_n, fps_d;
+  gint width;
+  gint height;
+  gint channels;
+
+  /* Audio state */
+  gint sample_rate;
+  gint rate;
+
+  /* Synaesthesia instance */
+  syn_instance *si;
+};
+</STRUCT>
+<STRUCT>
+<NAME>GstSynaesthesiaClass</NAME>
+struct _GstSynaesthesiaClass
+{
+  GstElementClass parent_class;
+};
+</STRUCT>
+<FUNCTION>
+<NAME>gst_synaesthesia_get_type</NAME>
+<RETURNS>GType </RETURNS>
+void
+</FUNCTION>
