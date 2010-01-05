@@ -1,0 +1,14 @@
+debian/tmp/usr/lib/libgstphotography-@GST_ABI@.so*
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstaacparse.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstamrparse.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstautoconvert.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstcamerabin.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstdtmf.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstmetadata.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstmpegdemux.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstmpegvideoparse.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstrtpmanager.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstrtpmux.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstselector.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgsth264parse.so
+debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstvalve.so

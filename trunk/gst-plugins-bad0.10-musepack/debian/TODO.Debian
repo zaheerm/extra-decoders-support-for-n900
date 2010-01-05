@@ -1,0 +1,14 @@
+
+WIP:
+- document adding a plugin (depends: in control, var in debian/rules...)
+  thoroughly
+  
+- add neon and directfb plugin when the required versions are in unstable
+
+- sort out things of gstreamer0.10-plugins-bad
+
+- fix Depends in gstreamer0.10-plugins with non-linux Depends (alsa...)?
+
+- add *.la to -dev packages
+
+- install changelog and symlinks

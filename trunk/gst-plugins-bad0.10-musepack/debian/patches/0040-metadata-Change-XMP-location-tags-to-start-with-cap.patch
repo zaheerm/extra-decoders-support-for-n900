@@ -1,0 +1,24 @@
+From 88fcbaee95d333dcb62b8b1d7e80170914f8bb5f Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Tommi=20My=C3=B6h=C3=A4nen?= <ext-tommi.1.myohanen@nokia.com>
+Date: Wed, 2 Sep 2009 15:26:15 +0300
+Subject: [PATCH] metadata: Change XMP location tags to start with capitals
+
+---
+ ext/metadata/metadataxmp.c |    4 ++--
+ 1 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ext/metadata/metadataxmp.c b/ext/metadata/metadataxmp.c
+index 5d5bdef..147b96e 100644
+--- a/ext/metadata/metadataxmp.c
++++ b/ext/metadata/metadataxmp.c
+@@ -168,8 +168,8 @@ static const SchemaTagMap schema_map_dublin_tags_map[] = {
+ };
+ 
+ static const SchemaTagMap schema_map_photoshop_tags_map[] = {
+-  {"country",     GST_TAG_XMP_GEO_LOCATION_COUNTRY },
+-  {"city",        GST_TAG_XMP_GEO_LOCATION_CITY   },
++  {"Country",     GST_TAG_XMP_GEO_LOCATION_COUNTRY },
++  {"City",        GST_TAG_XMP_GEO_LOCATION_CITY   },
+   {NULL, NULL}
+ };
+ 

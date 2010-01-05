@@ -1,0 +1,26 @@
+From a6fda1929c618fe3766d7c1ee974c1542341f842 Mon Sep 17 00:00:00 2001
+From: Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>
+Date: Fri, 27 Feb 2009 11:49:39 +0200
+Subject: [PATCH] camerabin: use v4l2camsrc as default video src element (Maemo-specific)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+Camerabin needs to support autovideosrc, then this can be dropped. --René
+---
+ gst/camerabin/gstcamerabin.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/gst/camerabin/gstcamerabin.c b/gst/camerabin/gstcamerabin.c
+index 9d8a14c..09355fd 100644
+--- a/gst/camerabin/gstcamerabin.c
++++ b/gst/camerabin/gstcamerabin.c
+@@ -229,7 +229,7 @@ static guint camerabin_signals[LAST_SIGNAL];
+ /* internal element names */
+ 
+ /* FIXME: Make sure this can work with autovideosrc and use that. */
+-#define DEFAULT_SRC_VID_SRC "v4l2src"
++#define DEFAULT_SRC_VID_SRC "v4l2camsrc"
+ #define DEFAULT_VIEW_SINK "autovideosink"
+ 
+ /* message names */
