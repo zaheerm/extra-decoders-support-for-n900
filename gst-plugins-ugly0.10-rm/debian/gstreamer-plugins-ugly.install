@@ -1,5 +1,0 @@
-debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstasf.so
-debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstmpeg2dec.so
-debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstmpegstream.so
-debian/tmp/usr/lib/gstreamer-@GST_ABI@/libgstrmdemux.so
-debian/tmp/usr/share/locale
