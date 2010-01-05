@@ -1,5 +1,0 @@
-gstreamer:Version=0.10
-gstreamer:Elements=pnmsrc, rademux, rdtdepay, rdtmanager, rmdemux, rtspreal
-gstreamer:URISources=pnm
-gstreamer:Decoders=application/vnd.rn-realmedia; application/x-pn-realaudio; application/x-rdt, media=(string)application, encoding-name=(string)X-REAL-RDT
-shlibs:Depends=libc6 (>= 2.5.0-1), libgcc1 (>= 1:4.2.1), libglib2.0-0 (>= 2.20.0), libgstreamer-plugins-base0.10-0 (>= 0.10.23), libgstreamer0.10-0 (>= 0.10.23)
