@@ -27,14 +27,14 @@ XB-Description-pl_PL: Obsługa dodatkowych dekoderów dźwięku i wideo dla wbud
  .
  Używa dekoderów GStreamer i narzędzia rejestrującego typy mime tracker
  * Obsługa dźwięu AC-3 w nagraniach wideo
- * Obsługa formatów Vorbis OGG and FLAC (poprzez ogg-support)
+ * Obsługa formatów Vorbis OGG i FLAC (poprzez ogg-support)
  * Obsługa formatu Musepack
  * Obsługa formatu Flash Video
  * Obsługa formatów RealMedia
  * Obsługa kontenera Matroska (większość formatów używanych z Matroska nieobsługiwane!)
  * Obsługa formatu MPEG2 Transport Stream
  .
- Obsługa rodzielczości powyżej 848x480 pikseli jest nadal nieobsługiwana!
+ Rodzielczość powyżej 848x480 pikseli jest nadal nieobsługiwana!
 XB-Maemo-Display-Name: Extra Decoders Support
 XB-Maemo-Display-Name-pl_PL: Obsługa dodatkowych dekoderów
 XB-Maemo-Upgrade-Description: Added RealMedia, Vorbis OGG, FLAC, MusePack support and File Manager playback
