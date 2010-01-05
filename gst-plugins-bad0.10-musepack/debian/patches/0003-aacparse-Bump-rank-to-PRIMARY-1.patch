@@ -1,0 +1,22 @@
+From fb5c1270a3b1f9248f78cc46acbdd5cf04e4854a Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Ren=C3=A9=20Stadler?= <rene.stadler@nokia.com>
+Date: Tue, 24 Feb 2009 02:26:30 +0200
+Subject: [PATCH] aacparse: Bump rank to PRIMARY+1.
+
+---
+ gst/aacparse/gstaacparse.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/gst/aacparse/gstaacparse.c b/gst/aacparse/gstaacparse.c
+index 6db4b61..23b4877 100644
+--- a/gst/aacparse/gstaacparse.c
++++ b/gst/aacparse/gstaacparse.c
+@@ -866,7 +866,7 @@ static gboolean
+ plugin_init (GstPlugin * plugin)
+ {
+   return gst_element_register (plugin, "aacparse",
+-      GST_RANK_NONE, GST_TYPE_AACPARSE);
++      GST_RANK_PRIMARY + 1, GST_TYPE_AACPARSE);
+ }
+ 
+ 

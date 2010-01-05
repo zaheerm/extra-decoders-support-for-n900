@@ -1,0 +1,29 @@
+From 93cf563bc0890cbe8f136230728971d36aeb4d50 Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Tommi=20My=C3=B6h=C3=A4nen?= <ext-tommi.1.myohanen@nokia.com>
+Date: Thu, 10 Sep 2009 15:16:23 +0300
+Subject: [PATCH] camerabin: fix image queue parameter setting
+
+Camerabin incorrectly used G_GUINT64_CONSTANT macro for setting
+"max-size-buffers" and "max-size-bytes" properties in image queue,
+even when they aren't 64bit integers.
+---
+ gst/camerabin/gstcamerabin.c |    6 ++----
+ 1 files changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/gst/camerabin/gstcamerabin.c b/gst/camerabin/gstcamerabin.c
+index f0a47d2..bf75d15 100644
+--- a/gst/camerabin/gstcamerabin.c
++++ b/gst/camerabin/gstcamerabin.c
+@@ -735,10 +735,8 @@ camerabin_create_elements (GstCameraBin * camera)
+   /* To avoid deadlock, we won't restrict the image queue size */
+   /* FIXME: actually we would like to have some kind of restriction here (size),
+      but deadlocks must be handled somehow... */
+-  g_object_set (G_OBJECT (camera->img_queue),
+-      "max-size-time", G_GUINT64_CONSTANT (0),
+-      "max-size-bytes", G_GUINT64_CONSTANT (0),
+-      "max-size-buffers", G_GUINT64_CONSTANT (0), NULL);
++  g_object_set (G_OBJECT (camera->img_queue), "max-size-buffers", 0,
++      "max-size-bytes", 0, "max-size-time", G_GUINT64_CONSTANT (0), NULL);
+ 
+   camera->pad_src_queue = gst_element_get_static_pad (camera->img_queue, "src");
+ 

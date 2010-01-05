@@ -1,0 +1,5 @@
+patching file Makefile.am
+patching file configure.ac
+patching file pkgconfig/Makefile.am
+patching file pkgconfig/gstreamer-plugins-bad-uninstalled.pc.in
+patching file pkgconfig/gstreamer-plugins-bad.pc.in

@@ -1,0 +1,864 @@
+gst-plugins-bad0.10-musepack (0.10.13-git209-0maemo16+0m5) unstable; urgency=low
+
+  * Initial release, all plugins disabled, apart from musepack
+
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Mon,  4 Jan 2010 16:25:05 +0100
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo16+0m5) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    Suffix +0m5 added to package revision
+
+ -- Harri Mahonen <ext-harri.mahonen@nokia.com>  Tue, 22 Sep 2009 13:09:29 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo16) unstable; urgency=low
+
+  * camerabin: Fix image queue parameter setting.
+  * Fixes: NB#138321 - camerabin sets non-64bit parameters with
+    G_GUINT64_CONSTANT (0) macro
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Fri, 18 Sep 2009 14:59:12 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo15) unstable; urgency=low
+
+  * rtpmanager: Fix locking for clock_rate variable, preventing a crash.
+  * Fixes: NB#136430 - Telepathy stream engine crash after starting the
+    device and initiating gtalk VoIP call
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 07 Sep 2009 17:26:07 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo14) unstable; urgency=low
+
+  * Fixes: NB#131371 - User cannot change geotags
+
+ -- Tommi Myöhänen <ext-tommi.1.myohanen@nokia.com>  Wed, 02 Sep 2009 15:56:18 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo13) unstable; urgency=low
+
+  * Fixes: NB#126125 - Image in viewfinder is applied with previously set
+    white balance value if Camera is closed and opened in a certain scenario
+  * Partially fixes bug 135318
+  * Fixes: NB#108662 - When selecting the camera modes, it takes too long to 
+    switch
+  * Fixes: NB#112456 - Live feeding of images stopped in pre-recording view
+  * Fix that helps with deadlock in NB#135135
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Thu, 27 Aug 2009 15:24:51 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo12) unstable; urgency=low
+
+  * Partial fixes for: NB#125539 - Fuzzy test files cause GStreamer crashes
+  * aacparse, amrparse: Prevent endless loop with broken files, fix memory
+    leak.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Fri, 21 Aug 2009 17:31:59 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo11) unstable; urgency=low
+
+  * camerabin: Fixes for setting parameters in the NULL state.
+  * Fixes: NB#116677 - Error when setting the configuration to the
+    camerabin while in NULL state
+  * Fixes: NB#133642 - Setting capture resolution to camerabin while in
+    NULL state is not working
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Fri, 21 Aug 2009 17:14:41 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo10) unstable; urgency=low
+
+  * camerabin: don't use queue in videobin
+  * camerabin: set viewfinder queue in videobin to leaky=1
+  * camerabin: fix a g_object_get warning
+  * Fixes: NB#126989 - Performance is not good enough with viewfinder
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 18 Aug 2009 21:12:48 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo9) unstable; urgency=low
+
+  * camerabin: Fix memory leak of preview image buffer.
+  * All these changes are partial fixes to NB#121600:
+  * outputselector: forward pad_alloc to correct output pad
+  * camerabin: re-set active-pad in outputselector after READY state
+  * camerabin: use READY state instead of PAUSED for acquiring supported
+    resolutions from video source element.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 03 Aug 2009 16:50:52 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo8) unstable; urgency=low
+
+  * camerabin: Revert memory leak fix to make integration happen. Camera
+    UI currently relies on this to leak. Fixes preview image distortion
+    seen in UI.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 03 Aug 2009 15:00:17 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo7) unstable; urgency=low
+
+  * Use -O2 optimization flag in release mode. Fixes: NB#129635
+
+ -- Harri Mahonen <ext-harri.mahonen@nokia.com>  Thu, 30 Jul 2009 10:56:57 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo6) unstable; urgency=low
+
+  * camerabin: don't go thru READY wehn starting recording to avoid dark
+    frames
+  * camerabin: improve probe handling
+  * camerabin: relax photo iface dependency on camera state 
+  * Fixes: NB#112467 - viewfinder of recording view is dark for ~2 sec
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 28 Jul 2009 16:55:30 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo5) unstable; urgency=low
+
+  * camerabin: disable audio conversion in videorecording path
+  * Fixes: NB#110033 - wrong audio format used in camera recordings (32bit
+    float)
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 23 Jul 2009 11:42:48 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo4) unstable; urgency=low
+
+  * camerabin: speed-up zoom operation
+  * coverity warning fixes
+  * Fixes: NB#122209 - zoom preview should not left-crop an odd number of
+    pixels
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 21 Jul 2009 18:11:57 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo3) unstable; urgency=low
+
+  * metadatamux: reset state to write new metadata to new images
+  * camerabin: handle reseting snapshot-caps
+  * Fixes: NB#122728 - MakerNote's content is not correct
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Fri, 17 Jul 2009 16:06:17 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo2) unstable; urgency=low
+
+  * camerabin: leave image/video bin to ready when changing mode
+  * camerabin: use nonbuffered io to save memcopies
+  * Fixes: NB#108662 - "When selecting the camera modes, it takes too long to
+    switch
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 16 Jul 2009 10:55:20 +0300
+
+gst-plugins-bad0.10 (0.10.13-git209-0maemo1) unstable; urgency=low
+
+  * Update to v0.10.13-209-g8085696.
+  * camerabin: Fix memory leaks.
+  * rtpmanager: Many improvements.
+  * aacparse: Forward stream properties to speed up fast tagreading.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Fri, 03 Jul 2009 18:45:51 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo10) unstable; urgency=low
+
+  * camerabin: don't reset capsfilters or zoom if error occurs
+  * Partially fixes: NB#125435 - Camera application receives no error if
+    camera driver doesn't dequeue frame
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Mon, 29 Jun 2009 15:47:53 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo9) unstable; urgency=low
+
+  * metadata: map more tags and fix reading of XMP tags
+  * Fixes: NB#120459 - Geotag details are not being written into the image
+    file
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 24 Jun 2009 13:40:41 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo8) unstable; urgency=low
+
+  * camerabin: buffer-alloc support fixes to image and video bin handling
+  * camerabin: fix setting mute when video bin elements haven't been created
+  * Fixes: NB#97036 - not able to set audio as "Mute" while recording video
+  * Reverted camerabin hacks for view finder sink resolution and video encoder bitrate
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Tue, 23 Jun 2009 14:35:17 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo7) unstable; urgency=low
+
+  * camerabin: set image bin to PAUSED when starting capture
+  * camerabin: fix filename race condition for repeated image capture
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 17 Jun 2009 14:54:53 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo6) unstable; urgency=low
+
+  * metadatamux: Fix GPS coordinate conversion.
+  * Fixes: NB#119235 - Camera saves EXIF GPS coordinate minutes as seconds
+  * camerabin, outputselector: Various fixes, improves unit test results.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 15 Jun 2009 15:26:31 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo5) unstable; urgency=low
+
+  * camerabin: preview image sending optimization
+  * output-selector: serialize setting and actual changing of new active pad
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Wed, 27 May 2009 11:53:54 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo4) unstable; urgency=low
+
+  [ Lasse Laukkanen ]
+  * camerabin: don't lose post processing element in first reset
+  * camerabin: change default image encoder
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 20 May 2009 15:50:54 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo3) unstable; urgency=low
+
+  * camerabin: add debug including dot graph writing
+  * camerabin: unblock if error occurs during capture
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Tue, 12 May 2009 13:34:43 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo2) unstable; urgency=low
+
+  * output-selector: unref latest buffer also when resending has been disabled
+  * camerabin: ignore night mode handling if already in night mode
+  * camerabin: stop ongoing capture if changing resolution
+  * Fixes: NB#112914 - Camera hangs on pre capture view after returning
+    from post capture view when captured image in Night mode
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Mon, 04 May 2009 14:57:58 +0300
+
+gst-plugins-bad0.10 (0.10.11-git188-0maemo1) unstable; urgency=low
+
+  * Update to v0.10.11-188-g1ae5272.
+  * fpsdisplaysink: Fix performance hit when not using text overlay.
+  * Memory leak fixes in RTP muxer.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Thu, 30 Apr 2009 17:27:16 +0300
+
+gst-plugins-bad0.10 (0.10.11-git172-0maemo1) unstable; urgency=low
+
+  * Update to v0.10.11-172-gcc51f90.
+  * Bugfixes for RTP elements.
+  * Fixes: NB#111468 - S-E crashes in active call while interacting with camera
+  * Improve fpsdisplaysink.
+  * input-selector: Don't hold back segement events for the active pad.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 27 Apr 2009 15:37:50 +0300
+
+gst-plugins-bad0.10 (0.10.11-git137-0maemo2) unstable; urgency=low
+
+  * Ship new fpsdisplaysink plugin in -extra.
+  * camerabin: Drop older frames queued to the viewfinder to make it even
+    more smooth. Drop some unused code and honor CAMERABIN_USE_JPEGENC env
+    variable for debugging purposes.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Fri, 24 Apr 2009 14:45:49 +0300
+
+gst-plugins-bad0.10 (0.10.11-git137-0maemo1) unstable; urgency=low
+
+  * Update to git master v0.10.11-137-g51fdc78.
+  * Fixes: NB#109658 - Unable to play one AAC file
+  * Drop deinterlace2 plugin from -extra package.
+  * Small fix for RTP components.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 22 Apr 2009 14:14:35 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo14) unstable; urgency=low
+
+  [ Lasse Laukkanen ]
+  * photography: add functions to set/get all settings with one call
+  * camerabin: allow configuring photography settings when in NULL state
+  * camerabin: leave v4l2camsrc "capture-mode" as video mode when pausing
+
+  [ Rene Stadler ]
+  * Turn off GObject cast checks and GStreamer logging (unless debug build
+    option is given).
+  * camerabin: Revert back to omx_jpegenc default image encoder.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 21 Apr 2009 16:12:50 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo13) unstable; urgency=low
+
+  * camerabin: introduce resolution limit for frames shown in view
+    finder in order to save memory.
+  * Fixes: NB#110708 - still image capturing is not possible
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Fri, 17 Apr 2009 17:03:08 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo12) unstable; urgency=low
+
+  * camerabin: temporarily switch from omx_jpegenc to jpegenc
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Fri, 17 Apr 2009 10:17:54 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo11) unstable; urgency=low
+
+  * output-selector: keep ref to buffer for resending only if explicitly requested
+
+ -- Lasse Laukkanen <ext-lasse.2.laukkanen@nokia.com>  Thu, 16 Apr 2009 18:02:59 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo10) unstable; urgency=low
+
+  * Add Replaces: control field to supersede older farsight plugins
+    package.
+  * Add quilt to build dependencies.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 08 Apr 2009 15:38:37 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo9) unstable; urgency=low
+
+  * Ship farsight plugins (moved from gst-plugins-farsight).
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 07 Apr 2009 22:01:07 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo8) unstable; urgency=low
+
+  * aacparse, amrparse: Fix push mode seeking (streaming).
+  * Fixes: NB#100842 - seeking in aac over http fails
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 06 Apr 2009 15:20:14 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo7) unstable; urgency=low
+
+  [ Lasse Laukkanen ]
+  * camerabin: update new clock when stopping video recording.
+  * Fixes: NB#108120 - After recording a video, precapture viewfinder
+    doesn't show live
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 31 Mar 2009 14:50:56 +0300
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo6) unstable; urgency=low
+
+  * camerabin: Set video encoder bitrate to 3Mbps. The default value is
+    way too low, causing the DSP to drop many frames for encoding high
+    resolution videos.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 25 Mar 2009 16:10:07 +0200
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo5) unstable; urgency=low
+
+  * camerabin: Change default JPEG encoder to omx_jpegenc, which is
+    hardware accelerated. This greatly speeds up still image capture.
+  * camerabin: Remove redundant colorspace converter to improve
+    performance.
+  * output-selector: Unref held buffer on PAUSED to READY state
+    change. Fixes iommu errors reported by the camera driver.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 25 Mar 2009 14:02:16 +0200
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo4) unstable; urgency=low
+
+  * Fix metadatamux being too picky about presence of some JPEG header
+    fields.
+  * Fixes: NB#95000 - [metadatamux] Encoding with omx_jpegenc results in 0
+    length file sometimes
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Fri, 20 Mar 2009 14:27:53 +0200
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo3) unstable; urgency=low
+
+  * Fix aacparse new-segment handling.
+  * Fixes: NB#102839 - AAC clip playback starts from beginning once paused
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 17 Mar 2009 20:50:48 +0200
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo2) unstable; urgency=low
+
+  * camerabin: change default yuv format from I420 to UYVY
+  * Fixes: NB#104759 - Video recording using "omx_mpeg4enc" and/or
+    "omx_h264enc" encoder never resume
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Thu, 12 Mar 2009 15:32:28 +0200
+
+gst-plugins-bad0.10 (0.10.10.2-0maemo1) unstable; urgency=low
+
+  * New upstream pre-release.
+  * Add Maemo-specific patch for camerabin to use v4l2camsrc as default.
+  * Fixes: NB#104525 - Capturing a video using camerabin default video
+    source (camerabin "videosrc" property)  fails
+  * Add Lasse's camerabin changes.
+  * Fixes: NB#104717 - Taking two (2) still images in succession using 5MP
+    camera fails with "Failed to activate pad"
+  * Add patch to fix AAC parser. Fixes possible deadlock/busyloop on seek
+    in .aac files.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 10 Mar 2009 14:50:54 +0200
+
+gst-plugins-bad0.10 (0.10.10-git440-maemo1) unstable; urgency=low
+
+  * Update to upstream master RELEASE-0_10_10-440-gbde8707.
+  * Drop upstream tarball reference; tracking HEAD now.
+  * New plugins: aacparse, amrparse, camerabin (moved to upstream from Maemo repositories).
+  * Dropped -extra plugins: filter, speexresample (became audioresample), modplug
+  * Add photography interface library (moved to upstream from Maemo repository).
+  * Add -dev package with photo interface headers and gstreamer-plugins-bad.pc file.
+  * camerabin: Fix aspect ratio. Fixes: NB#99795.
+  * metadata: Fix various tag muxing issues.
+  * mpegdemux: New Fluendo MPEG PS/TS elements, replacing old mpegtsparse.
+  * mpegvideoparse: Fix loop in reverse mode.
+  * rtpmanager: Many bugfixes.
+  * selector: Bugfixes.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 24 Feb 2009 02:32:12 +0200
+
+gst-plugins-bad0.10 (0.10.8-2maemo6) unstable; urgency=low
+
+  * Add metadatamux EXIF byte order patch from master. Fixes: NB#99023
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 14 Jan 2009 12:55:47 +0200
+
+gst-plugins-bad0.10 (0.10.8-2maemo5) unstable; urgency=low
+
+  * Remove localization generation and files.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 14 Jan 2009 12:55:47 +0200
+
+gst-plugins-bad0.10 (0.10.8-2maemo4) unstable; urgency=low
+
+  * Fixed conflicting locale install.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Tue, 18 Nov 2008 12:36:51 +0200
+
+gst-plugins-bad0.10 (0.10.8-2maemo3) unstable; urgency=low
+
+  * Moved h264parse from -extra package to the base.
+  * Change maintainer to Maemo Multimedia.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 12 Nov 2008 14:27:50 +0200
+
+gst-plugins-bad0.10 (0.10.8-2maemo2) unstable; urgency=low
+
+  * debian/patches:
+    + add: Use core gsp tags
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Thu, 02 Oct 2008 17:15:12 +0300
+
+gst-plugins-bad0.10 (0.10.8-2maemo1) unstable; urgency=low
+
+  * Maemo update.
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Thu, 21 Aug 2008 16:42:47 +0300
+
+gst-plugins-bad0.10 (0.10.8-2) experimental; urgency=low
+
+  * debian/rules,
+    debian/control.in:
+    + Use the new automatic plugin installation infrastructure.
+  * debian/control.in:
+    + Wrap control fields.
+    + Depend on gstreamer0.10-plugins-base as some plugins need it.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 15 Aug 2008 18:43:04 +0200
+
+gst-plugins-bad0.10 (0.10.8-1) experimental; urgency=low
+
+  * New upstream release, 'Vapour Trails'.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 01 Aug 2008 11:33:33 +0200
+
+gst-plugins-bad0.10 (0.10.7.3-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/patches/03_resindvd-configure.patch,
+      debian/patches/04_ladspa-linking.patch,
+      debian/patches/05_resindvd-missing-header.patch:
+      - Dropped, merged upstream.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 26 Jul 2008 12:35:24 +0200
+
+gst-plugins-bad0.10 (0.10.7.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/gstreamer-plugins-bad.install:
+      - Remove replaygain and interleave plugins.
+      - Add deinterlace2 plugin.
+    + debian/gstreamer-plugins-bad.install,
+      debian/build-deps.in:
+      - Add resindvd plugin.
+    + debian/rules,
+      debian/build-deps.in:
+      - Update gstreamer and gst-plugins-base build dependency.
+    + debian/patches/02_wildmidi-config.patch,
+      debian/patches/03_rtspsession_rtcp_bye.patch,
+      debian/patches/04_mpeg4videoparse.patch:
+      - Dropped, merged upstream.
+    + Ported to the new libmpcdec API (Closes: #476380).
+    + Fixes playback of certain mms streams (Closes: #467268).
+  * debian/patches/03_resindvd-configure.patch:
+    + Fix configure check for the resindvd plugin.
+  * debian/patches/04_ladspa-linking.patch:
+    + Link ladspa with -ldl to prevent unresolved symbols.
+  * debian/patches/05_resindvd-missing-header.patch:
+    + Add missing header file.
+  * debian/control.in:
+    + Update Standards-Version to 3.8.0, no additional changes needed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 20 Jul 2008 12:07:37 +0200
+
+gst-plugins-bad0.10 (0.10.7-2) unstable; urgency=low
+
+  * debian/patches/03_rtspsession_rtcp_bye.patch
+    + Added. Send RTCP BYE on EOS (From upstream CVS)
+  * debian/control: Add myself to uploaders
+  * debian/patches/04_mpeg4videoparse.patch
+    + Added. mpeg4videoparse update from CVS
+  * debian/rules: Append extra_plugins entries to debian/control instead of
+    truncating it (Patch from Mike Massonnet) (Closes: #481034)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 01 Jun 2008 16:08:37 +0200
+
+gst-plugins-bad0.10 (0.10.7-1) unstable; urgency=low
+
+  * New upstream release, 'House of Cards'.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 24 Apr 2008 07:42:15 +0200
+
+gst-plugins-bad0.10 (0.10.6.4-1) experimental; urgency=low
+
+  * New upstream pre-release.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 22 Apr 2008 10:29:25 +0200
+
+gst-plugins-bad0.10 (0.10.6.3-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/patches/01_timidity-missing-header.patch:
+      - Dropped, merged upstream.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 18 Apr 2008 10:36:44 +0200
+
+gst-plugins-bad0.10 (0.10.6.2-2) experimental; urgency=low
+
+  * debian/patches/02_no-Werror.patch:
+    + Don't build with -Werror to fix FTBFS on some architectures.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 15 Apr 2008 05:29:54 +0200
+
+gst-plugins-bad0.10 (0.10.6.2-1) experimental; urgency=low
+
+  * New upstream pre-release:
+    + debian/build-deps.in,
+      debian/rules:
+      - Update build dependencies.
+    + debian/rules,
+      debian/gstreamer-plugins-bad.install:
+      - Ship new dc1394, ofa, oss4audio, subenc plugins.
+      - Drop souphttpsrc plugin which moved to gst-plugins-good.
+    + debian/patches/01_wildmidi-build.patch,
+      debian/patches/03_soup-icecast.patch,
+      debian/patches/04_soup-primary-rank.patch,
+      debian/patches/05_soup-no-dav.patch,
+      debian/patches/06_neon-28.patch,
+      debian/patches/10_fix-faad-header-check.patch
+      debian/patches/75_build_docs_without_python_xml.patch,
+      debian/patches/80_unit-tests.patch:
+      - Dropped, merged upstream.
+    + debian/patches/02_wildmidi-config.patch:
+      - Updated for the new version.
+    + debian/patches/01_timidity-missing-header.patch:
+      - Add missing timidity header file.
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 14 Apr 2008 12:10:32 +0200
+
+gst-plugins-bad0.10 (0.10.6-7) unstable; urgency=low
+
+  * debian/patches/06_neon-28.patch:
+    + Fix build with neon 0.28.
+  * debian/build-deps.in:
+    + Use neon-gnutls instead of plain neon.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 01 Apr 2008 13:19:03 +0200
+
+gst-plugins-bad0.10 (0.10.6-6) unstable; urgency=low
+
+  * debian/patches/03_soup-icecast.patch:
+    + Set correct caps on the srcpad if we have an icecast server. Fixes
+      glitches/crackling (Closes: #472135).
+  * debian/patches/04_soup-primary-rank.patch:
+    + Give souphttpsrc RANK_PRIMARY so it's used always as HTTP source if
+      available.
+  * debian/patches/05_soup-no-dav.patch:
+    + Don't use soup for dav/davs. This is better handled by GIO and GnomeVFS
+      as they provide authentication.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 22 Mar 2008 19:30:07 +0100
+
+gst-plugins-bad0.10 (0.10.6-5) unstable; urgency=low
+
+  * debian/build-deps.in,
+    debian/gstreamer-plugins-bad.install:
+    + Include the soup HTTP plugin.
+  * debian/build-deps.in:
+    + Drop python-xml build dependency for real now.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 11 Mar 2008 05:31:11 +0100
+
+gst-plugins-bad0.10 (0.10.6-4) unstable; urgency=low
+
+  * debian/patches/75_build_docs_without_python_xml.patch:
+    + Added. Build documentation using xml.dom.minidom instead of pyxml. Patch
+      by Sebastian Dröge.
+  * debian/control: Drop build-depend on python-xml
+  * debian/patches/10_fix-faad-header-check.patch:
+    + Added. Fix faad header check to match the check faad2 does. Fixes
+      playback of various streams.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 08 Mar 2008 19:59:00 +0100
+
+gst-plugins-bad0.10 (0.10.6-3) unstable; urgency=low
+
+  * debian/extra,
+    debian/gstreamer-amrwb.install,
+    debian/gstreamer-mpeg2enc.install,
+    debian/README.Debian:
+    + Patch by Fabian Greffrath to add support for an amrwb and mpeg2enc
+      package and making the use of MPEG more conform (Closes: #467439).
+  * debian/build-deps.in,
+    debian/gstreamer-plugins-bad.install:
+    + Add the gmyth plugin.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 26 Feb 2008 08:35:54 +0100
+
+gst-plugins-bad0.10 (0.10.6-2) unstable; urgency=low
+
+  * debian/extra:
+    + Update for new xvid package names in Debian Multimedia and Debian
+      Unofficial Thanks to Fabian Greffrath (Closes: #466861).
+      Also add support for x264 and do some small cleanup.
+  * debian/rules:
+    + SPC is only available on Linux-i386, enable it as such. Fixes
+      FTBFS on kfreebsd-i386.
+  * debian/build-deps.in,
+    debian/patches/01_wildmidi-build.patch,
+    debian/patches/02_wildmidi-config.patch,
+    debian/gstreamer-plugins-bad.install:
+    + Enable the wildmidi plugin and change the config file path to our
+      default (Closes: #346455).
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon, 25 Feb 2008 07:03:11 +0100
+
+gst-plugins-bad0.10 (0.10.6-1) unstable; urgency=low
+
+  * New upstream release, "A Big Deep Breath":
+    + debian/patches/01_linking-fixes.patch:
+      - Dropped, merged upstream.
+  * debian/rules,
+    debian/build-deps.in,
+    debian/gstreamer-plugins-bad.install:
+    + Enable the alsaspdif, libcdaudio, dvb, fbdev and vcd plugins
+      only on Linux architectures to try to fix FTBFS on kfreebsd.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 21 Feb 2008 13:34:46 +0100
+
+gst-plugins-bad0.10 (0.10.5.4-1) experimental; urgency=low
+
+  * New upstream pre-release.
+  * debian/control.in:
+    + Add Replaces for gstreamer0.10-plugins-bad-multiverse (<< 0.10.5-2) to
+      keep the Ubuntu delta lower and don't break Debian installation with
+      some Ubuntu packages.
+  * debian/patches/99_ltmain_as-needed.patch,
+    debian/rules:
+    + Add -Wl,-z,defs -Wl,-O1 -Wl,--as-needed to LDFLAGS to remove some
+      unnecessary dependencies on various packages.
+  * debian/patches/01_linking-fixes.patch:
+    + Link the tta plugin with libm.
+
+ -- Sebastian Dröge <slomo@debian.org>  Tue, 19 Feb 2008 06:55:50 +0100
+
+gst-plugins-bad0.10 (0.10.5.3-1) experimental; urgency=low
+
+  * New upstream pre-release.
+  * debian/build-deps.in:
+    + Build depend on gstreamer0.10-plugins-base for the unit tests.
+  * debian/patches/80_unit-tests.patch:
+    + Disable some elements for the generic/states unit test.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 14 Feb 2008 13:18:33 +0100
+
+gst-plugins-bad0.10 (0.10.5.2-1) experimental; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/rules:
+    - Decide the package name and url depending on the distribution.
+  * debian/build-deps.in:
+    - Build-Depend on lsb-release.
+
+  [ Sebastian Dröge ]
+  * New upstream pre-release:
+    + Fixes FTBFS if built twice in a row (Closes: #424399).
+    + Adds support for VCD playback (Closes: #454599).
+    + Fixes conflict between Fluendo mpeg demuxer and
+      DTS decoder (Closes: #448411).
+    + debian/build-deps.in,
+      debian/control.in:
+      - Update liboil and gstreamer build dependencies.
+      - Add and update a few build dependencies.
+    + debian/gstreamer-plugins-bad.install:
+      - Add dvdspu, festival, flv, mpegtsparse, mpeg4videoparse, rawparse,
+        sdp, selector, speexresample, stereo, fbdev, metadata, vcd plugins. 
+      - Remove equalizer, multifile, spectrum, switch, videoparse, xingheader
+        plugins. These have moved to other places now.
+      - Sort everything alphabetically.
+    + debian/control.in,
+      debian/build-deps.in,
+      debian/rules:
+      - Drop the OpenGL plugin. This will go to a new source package named
+        gst-plugins-gl once we have mesa >= 7.1 somewhere.
+  * debian/rules:
+    + Run the unit test suite but don't fail the build on failures.
+  * debian/control.in:
+    + Update Standards-Version to 3.7.3, no additional changes needed.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 09 Feb 2008 14:04:01 +0100
+
+gst-plugins-bad0.10 (0.10.5-5) unstable; urgency=low
+
+  * debian/rules:
+    + Fix GST_REGISTRY envirnment variable setting (Closes: #452568).
+
+ -- Sebastian Dröge <slomo@debian.org>  Sat, 24 Nov 2007 20:02:13 +0100
+
+gst-plugins-bad0.10 (0.10.5-4) unstable; urgency=low
+
+  * debian/rules:
+      + Set GST_REGISTRY before the dh_gstscancodecs call to save the registry
+        somewhere on buildds without writable home and speed things up a bit.
+  * debian/build-deps.in:
+      + Remove check from build dependencies. This is only an indirect build
+        dependency that is already satisfied by libgstreamer0.10-dev. configure
+        only checks for libgstcheck, not check.
+   * debian/build-deps.in,
+     debian/gstreamer-plugins-bad.install:
+     + Enable the DirectFB video sink plugin.
+
+ -- Sebastian Dröge <slomo@debian.org>  Wed, 19 Sep 2007 15:44:46 +0200
+
+gst-plugins-bad0.10 (0.10.5-3) unstable; urgency=low
+
+  * debian/control.in,
+    debian/rules,
+    debian/gstreamer-plugins-bad.install:
+    + Move docs, SDL and GL to a separate package.
+    + Create a package with debug symbols.
+  * debian/rules:
+    + Call dh_gstscancodecs.
+  * debian/control:
+    + Replace Source-Version with binary:Version to make lintian happy.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 30 Aug 2007 20:22:35 +0200
+
+gst-plugins-bad0.10 (0.10.5-2) unstable; urgency=low
+
+  * debian/build-deps.in:
+    + Drop swfdec build dependency. The plugin doesn't work with 0.5.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 30 Aug 2007 10:10:49 +0200
+
+gst-plugins-bad0.10 (0.10.5-1) unstable; urgency=medium
+
+  * Change Maintainer to pkg-gstreamer, add myself to Uploaders and use
+    "standard" GStreamer packaging, used for all the other plugin packages too.
+  * New upstream version (Closes: #429727):
+    + Fixes remaining use of deprecated function (Closes: #436353).
+    + Somewhat fixes FTBFS caused by deprecation warnings by not compiling
+      with -Werror (Closes: #424559).
+  * debian/build-deps.in:
+    + Build depend on new enough GStreamer (Closes: #433495).
+  * debian/gstreamer-plugins-bad.install,
+    debian/build-deps.in:
+    + Ship the GSM plugin (Closes: #429594).
+    + Ship the dtsdec plugins (Closes: #428742).
+    + Ship the ladspa plugin (Closes: #429527).
+  * debian/rules,
+    debian/gstreamer-plugins-bad.install,
+    debian/build-deps.in:
+    + Ship the SPC plugin on i386 (Closes: #430045).
+  * debian/control.in:
+    + Fix typo in package description (Closes: #436664).
+  * debian/gstreamer-plugins-bad.install:
+    + Don't ship the libgstapp library as it still randomly changes
+      API and ABI until it is moved to gst-plugins-good at some point.
+    + Don't ship completely unneeded .a files for the plugins.
+  * debian/changelog:
+    + Urgency medium because of RC bugfixes.
+
+ -- Sebastian Dröge <slomo@debian.org>  Sun, 19 Aug 2007 14:41:31 +0200
+
+gst-plugins-bad0.10 (0.10.4+cvs2007.04.30) unstable; urgency=low
+
+  * Get a CVS version which contains the relevant FAAD patches.
+  * Enable FAAD support. (Closes: #399438, #399042, #327163, #403093)
+
+ -- Joe Wreschnig <piman@debian.org>  Mon, 30 Apr 2007 21:42:39 -0700
+
+gst-plugins-bad0.10 (0.10.4-2) unstable; urgency=low
+
+  * Disable spcdec for now, as it's i386-only. (Closes: #420444)
+
+ -- Joe Wreschnig <piman@debian.org>  Sun, 22 Apr 2007 11:58:24 -0700
+
+gst-plugins-bad0.10 (0.10.4-1) unstable; urgency=low
+
+  * New upstream version. (Closes: #419904)
+  * Remove patch added in 0.10.3-3.1, as it was merged upstream.
+    Thanks to Loic Minier for the fast response and NMU. (Closes: #408213)
+  * debian/control: Explain why the modules are "bad". (Closes: #387970)
+  * Enable sdlvideosink/sdlaudiosink. (Closes: #404493)
+  * Enable jacksink. (Closes: #407679)
+  * Enable dvbsrc. (Closes: #418381)
+  * Enable spcdec.
+
+ -- Joe Wreschnig <piman@debian.org>  Sat, 21 Apr 2007 17:11:17 -0700
+
+gst-plugins-bad0.10 (0.10.3-3.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * SECURITY: buffer overflow.
+  * Fix potential buffer overflow in gst/modplug/libmodplug/sndfile.cpp;
+    CVE-2006-4192; GNOME #385788; from upstream CVS / next upstream release;
+    closes: #407956.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 22 Jan 2007 16:05:35 +0100
+
+gst-plugins-bad0.10 (0.10.3-3) unstable; urgency=low
+
+  * debian/rules:
+    * Enable v4l2src. (Closes: #379867)
+    * Force disabling of MusicBrainz.
+    * Allow FAAD=enable environment variable to override build options.
+  * README.Debian: Explain how to get FAAD support.
+
+ -- Joe Wreschnig <piman@debian.org>  Mon, 31 Jul 2006 16:38:12 -0500
+
+gst-plugins-bad0.10 (0.10.3-2) unstable; urgency=low
+
+  * Build-Depend on zlib1g-dev. (Closes: #379752)
+
+ -- Joe Wreschnig <piman@debian.org>  Tue, 25 Jul 2006 11:46:05 -0500
+
+gst-plugins-bad0.10 (0.10.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules: Disable experimental and libneon modules.
+  * debian/control: Build-Dep on liboil3-dev.
+  * debian/copyright: Add copyrights for new modules.
+
+ -- Joe Wreschnig <piman@debian.org>  Thu, 22 Jun 2006 18:46:04 -0500
+
+gst-plugins-bad0.10 (0.10.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Build-Depend on python for building docs.
+
+ -- Joe Wreschnig <piman@debian.org>  Tue, 21 Feb 2006 16:04:33 -0600
+
+gst-plugins-bad0.10 (0.10.0+cvs20060214-2) unstable; urgency=low
+
+  * Update debian/copyright.
+  * Explicitly disable more modules.
+  * Build and include documentation.
+
+ -- Joe Wreschnig <piman@debian.org>  Wed, 15 Feb 2006 12:24:20 -0600
+
+gst-plugins-bad0.10 (0.10.0+cvs20060214-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Joe Wreschnig <piman@debian.org>  Tue, 14 Feb 2006 13:22:33 -0600
+
