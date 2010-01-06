@@ -36,9 +36,13 @@ XB-Description-pl_PL: Obsługa dodatkowych dekoderów dźwięku i wideo dla wbud
  .
  Rodzielczość powyżej 848x480 pikseli jest nadal nieobsługiwana!
 XB-Description-de_DE: Unterstützung zusätzlicher Video- und Audioformate im Media Player.
+XB-Description-fr_FR: Support pour décoder davantage de formats audios et vidéos dans le lecteur de médias.
+XB-Description-fr_CA: Support pour décoder davantage de formats audios et vidéos dans le lecteur de médias.
 XB-Maemo-Display-Name: Extra Decoders Support
 XB-Maemo-Display-Name-pl_PL: Obsługa dodatkowych dekoderów
 XB-Maemo-Display-Name-de_DE: Erweiterte A/V Formatunterstützung
+XB-Maemo-Display-Name-fr_FR: Décodeurs A/V supplémentaires
+XB-Maemo-Display-Name-fr-CA: Décodeurs A/V supplémentaires
 XB-Maemo-Upgrade-Description: Added RealMedia, Vorbis OGG, FLAC, MusePack support and File Manager playback
 XSBC-Bugtracker: http://code.google.com/p/extra-decoders-support-for-n900/issues/entry
 XB-Maemo-Icon-26:
