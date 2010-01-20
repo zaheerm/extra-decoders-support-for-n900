@@ -1,3 +1,12 @@
+decoders-support (0.3.2) unstable; urgency=low
+
+  * Added Spanish translaiton of name and description
+  * Added Italian translation of name and description
+  * Added Slovak translation of name and description
+  * Added Spanish translation of name and description
+
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Wed, 20 Jan 2010 15:15:29 +0100
+
 decoders-support (0.3.1) unstable; urgency=low
 
   * Minor changes in debian/control

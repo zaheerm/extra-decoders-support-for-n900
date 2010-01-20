@@ -38,12 +38,20 @@ XB-Description-pl_PL: Obsługa dodatkowych dekoderów dźwięku i wideo dla wbud
 XB-Description-de_DE: Unterstützung zusätzlicher Video- und Audioformate im Media Player.
 XB-Description-fr_FR: Support pour décoder davantage de formats audios et vidéos dans le lecteur de médias.
 XB-Description-fr_CA: Support pour décoder davantage de formats audios et vidéos dans le lecteur de médias.
+XB-Description-ru_RU: Поддержка дополнительных аудио и видео кодеков для Медиа Плеера.
+XB-Description-sk_SK: Podpora prídavných audio a video dekóderov pre vstavaný Media Player.
+XB-Description-it_IT: Supporto per decoder audio e video aggiuntivi per il lettore multimediale.
+XB-Description-es_ES: Reproduccion de mas formatos de video y audio.
 XB-Maemo-Display-Name: Extra Decoders Support
 XB-Maemo-Display-Name-pl_PL: Obsługa dodatkowych dekoderów
 XB-Maemo-Display-Name-de_DE: Erweiterte A/V Formatunterstützung
 XB-Maemo-Display-Name-fr_FR: Décodeurs A/V supplémentaires
-XB-Maemo-Display-Name-fr-CA: Décodeurs A/V supplémentaires
-XB-Maemo-Upgrade-Description: Added RealMedia, Vorbis OGG, FLAC, MusePack support and File Manager playback
+XB-Maemo-Display-Name-fr_CA: Décodeurs A/V supplémentaires
+XB-Maemo-Display-Name-ru_RU: Поддержка дополнительных кодеков
+XB-Maemo-Display-Name-sk_SK: Podpora pridavných dekóderov
+XB-Maemo-Display-Name-it_IT: Supporto per decoder supplementari
+XB-Maemo-Display-Name-es_ES: Soporta mas decodificadores
+XB-Maemo-Upgrade-Description: Added German, French, Russian, Slovak, Italian, Spanish descriptions.
 XSBC-Bugtracker: http://code.google.com/p/extra-decoders-support-for-n900/issues/entry
 XB-Maemo-Icon-26:
  iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c
