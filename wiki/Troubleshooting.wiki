@@ -11,7 +11,7 @@ You can try this if Tracker times out during installation (you'll notice this wh
 
 First, install the rootsh package from the Application Manager.
 
-Then, open the X Terminal and execute these four commands:
+Then, open the X Terminal and execute these commands:
 
 sudo gainroot
 
@@ -26,6 +26,10 @@ When asked, choose "Y" (yes) and hit Enter. We have removed a long list of addit
 apt-get clean
 
 You can stop here if you want a pristine device, without any multimedia add-ons.
+
+apt-get update
+
+This updates the list of available packages to make sure we're getting the latest ones.
 
 apt-get install decoders-support
 
