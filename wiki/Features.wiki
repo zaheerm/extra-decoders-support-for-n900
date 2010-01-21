@@ -11,7 +11,7 @@ Currently supported formats (0.3.4-1):
 
  * AC-3 audio in video files (indexed)
  * Vorbis OGG (indexed)
- * FLAC (not indexed, waiting for ogg-support 1.0.6)
+ * FLAC (not indexed, waiting for ogg-support 1.0.6, *seeking unsupported*)
  * Theora (presumably indexed)
  * Musepack (indexed, *seeking unsupported*)
  * Flash Video (indexed)
