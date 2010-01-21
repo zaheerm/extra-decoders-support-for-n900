@@ -1,7 +1,7 @@
-#summary Troubleshooting the installation
+#summary Troubleshooting
 #labels Featured
 
-= Troubleshooting =
+= Troubleshooting The Installation =
 
 Installation may take a while. Be patient. If Media Player goes empty after installation you may need to restart your device. Then you have to wait a while for indexing, but if all this fails, then you may have to reset Tracker by issuing the "tracker-processes -r" command in X Terminal as a normal user (NOT as root, without the quotation marks). Remember that re-indexing your media from scratch may take a very long time, depending on how large your collection is. Be patient. You can check the status of Tracker in X Terminal by issuing the "tracker-status" command as a normal user (NOT as root, without the quotation marks). "Indexing" means you have to wait, "Paused" means that indexing is done. If it's "Stopped" or any other status, then you may need to restart your device.
 
@@ -34,3 +34,28 @@ This updates the list of available packages to make sure we're getting the lates
 apt-get install decoders-support
 
 This will install Extra Decoders Support once more. You can track the progress in the X Terminal. Once it's done you can close the X Terminal. 
+
+= My Video Doesn't Work =
+
+* Are you sure it's supported in the first place?
+
+Remember that H.264 Main and High profiles (mainly used in .MKV and .MP4 containers) are not supported. If this sounds like black magic to you, don't worry, all you need to know is that the file extension (.AVI, .MP4, .MKV, etc.) does not indicate the codec used in that file. These extensions indicate the "container" format. This means that one .MP4 can be perfectly playable, while another .MP4 will refuse to play.
+
+* Are you sure the file is not in High Definition resolution?
+
+The N900 does not support video resolution over 848x480 pixels. Possibly a few pixels more here and there, but not much more than that. High Definition video is 1280x720 and up (up to 1920x1080). These resolutions are not supported, even if the file is detected by the Media Player.
+
+= Video Playback Is Slow =
+
+None of the added formats are hardware-accelerated. This means that they need a lot of processing power from the CPU. Even though the CPU in the N900 is powerful, there are limits. Use formats that are supported by default if you want a good experience. 
+
+= Video Playback Eats My Battery =
+
+None of the added formats are hardware-accelerated. This means that they need a lot of processing power from the CPU. Even though the CPU in the N900 is powerful, there are limits. Use formats that are supported by default if you want a good experience. 
+
+= Other = 
+
+* Can I switch between different video/audio/subtitle tracks in MKV files?
+
+No. Media Player is currently closed-source, so we can't do anything about it.
+
