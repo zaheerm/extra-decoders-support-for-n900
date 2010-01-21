@@ -39,7 +39,7 @@ This will install Extra Decoders Support once more. You can track the progress i
 
 * Are you sure it's supported in the first place?
 
-Remember that H.264 Main and High profiles (mainly used in .MKV and .MP4 containers) are not supported. If this sounds like black magic to you, don't worry, all you need to know is that the file extension (.AVI, .MP4, .MKV, etc.) does not indicate the codec used in that file. These extensions indicate the "container" format. This means that one .MP4 can be perfectly playable, while another .MP4 will refuse to play.
+Remember that H.264 Main and High profiles (mainly used in .MKV and .MP4 containers) are not supported. If this sounds like black magic to you, don't worry, all you need to know is that the file extension (.AVI, .MP4, .MKV, etc.) does not indicate the codec used in that file. These extensions indicate the "container" format. This means that one .MP4 can be perfectly playable, while another .MP4 will refuse to play. [http://wiki.maemo.org/N900_Media_Support A table of supported formats] is available and [http://wiki.maemo.org/Video_encoding some more information].
 
 * Are you sure the file is not in High Definition resolution?
 
@@ -56,10 +56,11 @@ None of the added formats are hardware-accelerated. This means that they need a 
 
 = Which Formats Should I Use =
 
-Ideally you should use the H.264 Baseline format for video and AAC format for audio. The preferred container format is MP4. The resolution must not exceed 848x480.
+Ideally you should use H.264 Baseline 3.0 for video and AAC for audio. The preferred container format is MP4. The resolution must not exceed 848x480.
 
 = How Do I Convert (Transcode) My Video Files = 
 
+Download both HandBrake profiles from this [http://wiki.maemo.org/Video_Encoding_Basic_Guide wiki page]. Get [http://handbrake.fr HandBrake]. Import the profiles to HandBrake and use them for encoding video files for the N900. 
 
 = Other = 
 
