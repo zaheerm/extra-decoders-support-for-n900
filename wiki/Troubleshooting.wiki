@@ -19,7 +19,7 @@ We now have admin rights. Be careful.
 
 This is one long command:
 
-apt-get purge gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-bad-extra ogg-support
+apt-get purge decoders-support ogg-support gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-bad-extra 
 
 When asked, choose "Y" (yes) and hit Enter. We have removed a long list of additional decoders and meta-packages.
 
