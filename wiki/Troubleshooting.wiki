@@ -51,11 +51,18 @@ None of the added formats are hardware-accelerated. This means that they need a 
 
 = Video Playback Eats My Battery =
 
-None of the added formats are hardware-accelerated. This means that they need a lot of processing power from the CPU. Even though the CPU in the N900 is powerful, there are limits. Use formats that are supported by default if you want a good experience. 
+None of the added formats are hardware-accelerated. This means that they need a lot of processing power from the CPU. This consumes the battery rapidly. It's OK for audio files though.
+
+
+= Which Formats Should I Use =
+
+Ideally you should use the H.264 Baseline format for video and AAC format for audio. The preferred container format is MP4. The resolution must not exceed 848x480.
+
+= How Do I Convert (Transcode) My Video Files = 
+
 
 = Other = 
 
 * Can I switch between different video/audio/subtitle tracks in MKV files?
 
-No. Media Player is currently closed-source, so we can't do anything about it.
-
+No. The Media Player is currently closed-source, so we can't do anything about it.
