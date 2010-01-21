@@ -17,13 +17,9 @@ sudo gainroot
 
 We now have admin rights. Be careful.
 
-For Maemo 5 PR1.0 software (initial release, one long command):
+This is one long command:
 
-apt-get purge gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-bad-extra ogg-support gstreamer0.10-flac gstreamer0.10-theora gstreamer0.10-ogg
-
-For Maemo 5 PR1.1 software (version 2.2009.51-1, one long command):
-
-apt-get purge gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-mkv gstreamer0.10-plugins-bad-extra ogg-support gstreamer0.10-flac gstreamer0.10-theora gstreamer0.10-ogg
+apt-get purge gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-bad-extra ogg-support
 
 When asked, choose "Y" (yes) and hit Enter. We have removed a long list of additional decoders and meta-packages.
 
