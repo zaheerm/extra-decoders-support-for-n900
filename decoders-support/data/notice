@@ -1,0 +1,6 @@
+PLEASE READ THIS!
+Installation may take a while. Be patient. If you encounter problems after installation you may need to restart your device and reset Tracker by issuing the "tracker-processes -r" command in X Terminal as a normal user (NOT as root, without the quotation marks). Re-indexing your media may take a very long time, depending on how large your collection is. You can check the status of Tracker in X Terminal by issuing the "tracker-status" command as a normal user (NOT as root, without the quotation marks). If it's indexing, then wait for it to finish. If it's not running, then please restart your device. 
+
+This package is provided without any warranty, expressed or implied.
+
+
