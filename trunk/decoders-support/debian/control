@@ -8,7 +8,7 @@ Standards-Version: 3.6.1
 Package: decoders-support
 Section: user/multimedia
 Architecture: any
-Depends: gstreamer0.10-ffmpeg, gstreamer0.10-flv (>= 0.10.15-0maemo3+0m5.tk3), gstreamer0.10-musepack, gstreamer0.10-mkv, gstreamer0.10-rm (>= 0.10.10.2-1maemo2-5), gstreamer0.10-plugins-good-extra, gstreamer0.10-plugins-bad (>= 0.10.14-git265-0maemo6+0m5), gstreamer0.10-plugins-bad-extra (>= 0.10.14-git265-0maemo6+0m5), tracker-distutils, ogg-support (>= 1.0.6~rc1)
+Depends: gstreamer0.10-ffmpeg, gstreamer0.10-flv (>= 0.10.15-0maemo3+0m5.tk3), gstreamer0.10-musepack, gstreamer0.10-rm (>= 0.10.10.2-1maemo2-5), gstreamer0.10-plugins-good-extra (= 0.10.15-git180-0maemo8+0m5) | gstreamer0.10-mkv (>= 0.10.16-0maemo3), gstreamer0.10-plugins-bad, gstreamer0.10-plugins-bad-extra, tracker-distutils, ogg-support (>= 1.0.6~rc1)
 Replaces: ac3-support
 XB-Description: Support for additional video and audio decoders in the Media Player
  .

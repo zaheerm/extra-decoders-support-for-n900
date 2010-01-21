@@ -1,3 +1,10 @@
+decoders-support (0.3.4) unstable; urgency=low
+
+  * More dependency adjustments to work on both PR1.0 and PR1.1 
+  * Revert to registering Matroska for compatibility reasons
+
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Thu, 21 Jan 2010 11:38:52 +0100
+
 decoders-support (0.3.3) unstable; urgency=low
 
   * Dependency adjustments for PR1.1
