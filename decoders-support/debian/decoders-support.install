@@ -1,2 +1,3 @@
 debian/tmp/usr/share/applications/hildon/*desktop
 debian/tmp/usr/share/mime/packages/*xml
+debian/tmp/usr/share/decoders-support/notice
