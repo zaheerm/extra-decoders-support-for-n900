@@ -1,4 +1,5 @@
 #summary Troubleshooting the installation
+#labels Featured
 
 = Troubleshooting =
 
@@ -18,7 +19,7 @@ We now have admin rights. Be careful.
 
 For Maemo 5 PR1.0 software (initial release, one long command):
 
-apt-get purge gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-good-extra gstreamer0.10-plugins-bad-extra ogg-support gstreamer0.10-flac gstreamer0.10-theora gstreamer0.10-ogg
+apt-get purge gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-bad-extra ogg-support gstreamer0.10-flac gstreamer0.10-theora gstreamer0.10-ogg
 
 For Maemo 5 PR1.1 software (version 2.2009.51-1, one long command):
 
