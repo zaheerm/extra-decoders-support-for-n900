@@ -13,25 +13,25 @@ First, install the rootsh package from the Application Manager.
 
 Then, open the X Terminal and execute these commands:
 
-sudo gainroot
+`sudo gainroot`
 
 We now have admin rights. Be careful.
 
 This is one long command:
 
-apt-get purge decoders-support ogg-support gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-bad-extra 
+`apt-get purge decoders-support ogg-support gstreamer0.10-ffmpeg gstreamer0.10-flv gstreamer0.10-musepack gstreamer0.10-rm gstreamer0.10-plugins-bad-extra`
 
 When asked, choose "Y" (yes) and hit Enter. We have removed a long list of additional decoders and meta-packages.
 
-apt-get clean
+`apt-get clean`
 
 You can stop here if you want a pristine device, without any multimedia add-ons.
 
-apt-get update
+`apt-get update`
 
 This updates the list of available packages to make sure we're getting the latest ones.
 
-apt-get install decoders-support
+`apt-get install decoders-support`
 
 This will install Extra Decoders Support once more. You can track the progress in the X Terminal. Once it's done you can close the X Terminal. 
 
