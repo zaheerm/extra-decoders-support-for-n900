@@ -80,6 +80,10 @@ Download both HandBrake profiles from this [http://wiki.maemo.org/Video_Encoding
 
 No. The Media Player is currently closed-source, so we can't do anything about it. The Maemo community has already asked Nokia to open the code, you can [https://bugs.maemo.org/show_bug.cgi?id=1235 vote] for it.
 
+* How can I support the project?
+
+You can support the project by donating [http://stateless.jogger.pl/files/decoders_donate.html via PayPal]. Your help is very appreciated! 
+
 * What's the answer to life the universe and everything?
 
 [http://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#Answer_to_the_Ultimate_Question_of_Life.2C_the_Universe.2C_and_Everything_.2842.29 42].
