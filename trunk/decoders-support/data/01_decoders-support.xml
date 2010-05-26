@@ -385,5 +385,9 @@
     <glob pattern="*.mpp"/>
     <glob pattern="*.mp+"/>
   </mime-type>
+  <mime-type type="video/x-webm">
+    <comment>WebM</comment>
+    <glob pattern="*.webm"/>
+  </mime-type>
 </mime-info>
 
