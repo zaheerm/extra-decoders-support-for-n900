@@ -388,6 +388,9 @@
   <mime-type type="video/x-webm">
     <comment>WebM</comment>
     <glob pattern="*.webm"/>
+  <mime-type type="video/webm">
+    <comment>WebM</comment>
+    <glob pattern="*.webm"/>
   </mime-type>
 </mime-info>
 
