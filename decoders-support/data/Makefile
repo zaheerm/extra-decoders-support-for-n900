@@ -44,16 +44,17 @@ mkinstalldirs = $(mkdir_p)
 CONFIG_CLEAN_FILES =
 SOURCES =
 DIST_SOURCES =
-am__installdirs = "$(DESTDIR)$(desktopappsdir)" "$(DESTDIR)$(mimedir)"
+am__installdirs = "$(DESTDIR)$(desktopappsdir)" "$(DESTDIR)$(mimedir)" "$(DESTDIR)$(noticedir)"
 desktopappsDATA_INSTALL = $(INSTALL_DATA)
 mimeDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(desktopapps_DATA) $(mime_DATA)
+noticeDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(desktopapps_DATA) $(mime_DATA) $(notice_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/tom/decoders-support-0.3/missing --run aclocal-1.8
-AMTAR = ${SHELL} /home/tom/decoders-support-0.3/missing --run tar
-AUTOCONF = ${SHELL} /home/tom/decoders-support-0.3/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/tom/decoders-support-0.3/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/tom/decoders-support-0.3/missing --run automake-1.8
+ACLOCAL = ${SHELL} /home/laptop/decoders-support-0.4/missing --run aclocal-1.8
+AMTAR = ${SHELL} /home/laptop/decoders-support-0.4/missing --run tar
+AUTOCONF = ${SHELL} /home/laptop/decoders-support-0.4/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/laptop/decoders-support-0.4/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/laptop/decoders-support-0.4/missing --run automake-1.8
 AWK = gawk
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"decoders-support\" -DPACKAGE_TARNAME=\"decoders-support\" -DPACKAGE_VERSION=\"0.2\" -DPACKAGE_STRING=\"decoders-support\ 0.2\" -DPACKAGE_BUGREPORT=\"dominikowski@gmail.com\" -DPACKAGE=\"decoders-support\" -DVERSION=\"0.2\" -DPACKAGE_DATA_DIR=\"/usr/share/decoders-support\" -DPACKAGE_LOCALE_DIR=\"/usr/share/locale\"
@@ -67,7 +68,7 @@ INSTALL_STRIP_PROGRAM = ${SHELL} $(install_sh) -c -s
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/tom/decoders-support-0.3/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/laptop/decoders-support-0.4/missing --run makeinfo
 PACKAGE = decoders-support
 PACKAGE_BUGREPORT = dominikowski@gmail.com
 PACKAGE_NAME = decoders-support
@@ -81,7 +82,7 @@ STRIP =
 VERSION = 0.2
 am__leading_dot = .
 bindir = ${exec_prefix}/bin
-build_alias = arm-linux-gnueabi
+build_alias = i486-linux-gnu
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
@@ -91,7 +92,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${prefix}/share/info
-install_sh = /home/tom/decoders-support-0.3/install-sh
+install_sh = /home/laptop/decoders-support-0.4/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${prefix}/lib/decoders-support
 localedir = ${datarootdir}/locale
@@ -111,9 +112,12 @@ desktopappsdir = $(datadir)/applications/hildon
 desktopapps_DATA = share/applications/hildon/mediaplayer-decoders.desktop
 mimedir = $(datadir)/mime/packages
 mime_DATA = 01_decoders-support.xml
+noticedir = $(datadir)/decoders-support
+notice_DATA = notice
 EXTRA_DIST = \
              $(mime_DATA) \
-             $(dekstopapps_DATA)
+             $(dekstopapps_DATA) \
+             $(notice_DATA)
 
 all: all-am
 
@@ -182,6 +186,23 @@ uninstall-mimeDATA:
 	  echo " rm -f '$(DESTDIR)$(mimedir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(mimedir)/$$f"; \
 	done
+install-noticeDATA: $(notice_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(noticedir)" || $(mkdir_p) "$(DESTDIR)$(noticedir)"
+	@list='$(notice_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " $(noticeDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(noticedir)/$$f'"; \
+	  $(noticeDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(noticedir)/$$f"; \
+	done
+
+uninstall-noticeDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(notice_DATA)'; for p in $$list; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f '$(DESTDIR)$(noticedir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(noticedir)/$$f"; \
+	done
 tags: TAGS
 TAGS:
 
@@ -220,7 +241,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(desktopappsdir)" "$(DESTDIR)$(mimedir)"; do \
+	for dir in "$(DESTDIR)$(desktopappsdir)" "$(DESTDIR)$(mimedir)" "$(DESTDIR)$(noticedir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -265,7 +286,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-desktopappsDATA install-mimeDATA
+install-data-am: install-desktopappsDATA install-mimeDATA \
+	install-noticeDATA
 
 install-exec-am:
 
@@ -292,17 +314,18 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-desktopappsDATA uninstall-info-am \
-	uninstall-mimeDATA
+	uninstall-mimeDATA uninstall-noticeDATA
 
 .PHONY: all all-am check check-am clean clean-generic distclean \
 	distclean-generic distdir dvi dvi-am html html-am info info-am \
 	install install-am install-data install-data-am \
 	install-desktopappsDATA install-exec install-exec-am \
 	install-info install-info-am install-man install-mimeDATA \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-desktopappsDATA uninstall-info-am uninstall-mimeDATA
+	install-noticeDATA install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-generic \
+	mostlyclean mostlyclean-generic pdf pdf-am ps ps-am uninstall \
+	uninstall-am uninstall-desktopappsDATA uninstall-info-am \
+	uninstall-mimeDATA uninstall-noticeDATA
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
