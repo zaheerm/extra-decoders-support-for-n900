@@ -5,6 +5,8 @@ if [ -f /etc/osso-af-init/af-defines.sh ]; then
   source /etc/osso-af-init/af-defines.sh
 fi
 
+maemo-confirm-text Notice /usr/share/decoders-support/notice
+
 dbus-send --type=method_call --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.SystemNoteInfoprint string:"Updating icons, mime, and desktop file caches"
 
 # Update mime data base with new xml
@@ -20,7 +22,8 @@ fi
 dbus-send --type=method_call --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.SystemNoteInfoprint string:"Restarting media daemons"
 
 if [ -x /usr/bin/tracker-register-mimetype ]; then
-	/usr/bin/tracker-register-mimetype -c Videos -a video/mpegts -a video/mp2t -a video/x-matroska 
+	/usr/bin/tracker-register-mimetype -c Videos -a video/mpegts -a video/mp2t -a video/x-matroska -a video/webm -a video/x-webm -a application/vnd.rn-realmedia -a video/vnd.rn-realvideo -a video/x-real-video -a video/x-flv
+	/usr/bin/tracker-register-mimetype -c Music -a application/x-pn-realaudio -a audio/vnd.rn-realaudio -a audio/x-pn-realaudio -a audio/x-musepack
 fi
 
 if [ -x  /usr/bin/mafw.sh ]; then

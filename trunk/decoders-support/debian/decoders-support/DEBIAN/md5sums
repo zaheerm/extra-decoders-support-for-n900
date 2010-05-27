@@ -1,3 +1,6 @@
-a720591b407746e5a83254fa26f37c59  usr/share/mime/packages/01_decoders-support.xml
-cf237125275b0af5412f15f86518e857  usr/share/applications/hildon/mediaplayer-decoders.desktop
-2f01c0dde58906189d7785da31070604  usr/share/doc/decoders-support/changelog.gz
+1fa5259d7bc15e64c0c62842ca403719  usr/share/doc/decoders-support/NEWS.gz
+18886d25eb8a3114b44dca789601b09d  usr/share/doc/decoders-support/AUTHORS
+676c8e9a85f63e5edf71bb0326dec285  usr/share/doc/decoders-support/changelog.gz
+eb8a8704812e6ce4fff736069fa25918  usr/share/mime/packages/01_decoders-support.xml
+37639b736cefdd0c5f0d48b2cd8a46c2  usr/share/decoders-support/notice
+ecf20b0c8515b48bfcb9c1478530b8aa  usr/share/applications/hildon/mediaplayer-decoders.desktop

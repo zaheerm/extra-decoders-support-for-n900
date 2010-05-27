@@ -20,7 +20,8 @@ fi
 dbus-send --type=method_call --dest=org.freedesktop.Notifications /org/freedesktop/Notifications org.freedesktop.Notifications.SystemNoteInfoprint string:"Restarting media daemons"
 
 if [ -x /usr/bin/tracker-register-mimetype ]; then
-	/usr/bin/tracker-register-mimetype -c Videos -d video/mpegts -d video/mp2t -d video/x-matroska
+	/usr/bin/tracker-register-mimetype -c Videos -d video/mpegts -d video/mp2t -d video/x-matroska -d video/webm -d video/x-webm -d application/vnd.rn-realmedia -d video/vnd.rn-realvideo -d video/x-real-video -d video/x-flv
+	/usr/bin/tracker-register-mimetype -c Music -d application/x-pn-realaudio -d audio/vnd.rn-realaudio -d audio/x-pn-realaudio -d audio/x-musepack
 fi
 
 if [ -x  /usr/bin/mafw.sh ]; then
