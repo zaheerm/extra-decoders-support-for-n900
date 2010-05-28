@@ -1,11 +1,12 @@
 decoders-support (0.4) unstable; urgency=low
 
   * Added WebM support
-  * Updated dependencies (new versions of plugins)
+  * Added vp8 dependency
   * Updated icon
   * Centralized mimetype registering
+  * Dropped PR1.0 support
 
- -- Tomasz Dominikowski <dominikowski@gmail.com>  Wed, 26 May 2010 20:33:20 +0100
+ -- Tomasz Dominikowski <dominikowski@gmail.com>  Fri, 28 May 2010 11:02:40 +0200
 
 decoders-support (0.3.4-1) unstable; urgency=low
 
