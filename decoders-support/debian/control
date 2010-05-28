@@ -8,7 +8,7 @@ Standards-Version: 3.6.1
 Package: decoders-support
 Section: user/multimedia
 Architecture: any
-Depends: gstreamer0.10-ffmpeg, gstreamer0.10-flv (>= 0.10.15-0maemo3+0m5.tk3), gstreamer0.10-musepack, gstreamer0.10-rm (>= 0.10.10.2-1maemo2-5), gstreamer0.10-plugins-good-extra (= 0.10.15-git180-0maemo8+0m5) | gstreamer0.10-mkv (>= 0.10.16-0maemo5), gstreamer0.10-plugins-bad, gstreamer0.10-plugins-bad-extra, tracker-distutils, ogg-support (>= 1.0.5), gstreamer0.10-vp8
+Depends: gstreamer0.10-ffmpeg, gstreamer0.10-flv (>= 0.10.15-0maemo3+0m5.tk3), gstreamer0.10-musepack, gstreamer0.10-rm (>= 0.10.10.2-1maemo2-5), gstreamer0.10-mkv (>= 0.10.16-0maemo5), gstreamer0.10-plugins-bad, gstreamer0.10-plugins-bad-extra, tracker-distutils, ogg-support (>= 1.0.5), gstreamer0.10-vp8
 Replaces: ac3-support
 XB-Description: Support for additional video and audio decoders in the Media Player
  .
@@ -41,7 +41,7 @@ XB-Description-fr_FR: Support pour décoder davantage de formats audios et vidé
 XB-Description-es_ES: Reproduccion de mas formatos de video y audio.
 XB-Description-sk_SK: Podpora prídavných audio a video dekóderov pre vstavaný Media Player.
 XB-Description-it_IT: Supporto per decoder audio e video aggiuntivi per il lettore multimediale.
-XB-Maemo-Upgrade-Description: WebM support, updated plugins for PR1.2, updated icon, centralized mimetype registering.
+XB-Maemo-Upgrade-Description: WebM support, centralized mimetype registering, updated plugins, updated icon.
 XSBC-Bugtracker: http://code.google.com/p/extra-decoders-support-for-n900/issues/entry
 XB-Maemo-Display-Name: Extra Decoders Support
 XB-Maemo-Display-Name-pl_PL: Obsługa dodatkowych dekoderów
