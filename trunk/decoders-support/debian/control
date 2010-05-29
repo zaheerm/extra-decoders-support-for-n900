@@ -11,30 +11,30 @@ Architecture: any
 Depends: gstreamer0.10-ffmpeg, gstreamer0.10-flv (>= 0.10.15-0maemo3+0m5.tk3), gstreamer0.10-musepack, gstreamer0.10-rm (>= 0.10.10.2-1maemo2-5), gstreamer0.10-mkv (>= 0.10.16-0maemo5), gstreamer0.10-plugins-bad, gstreamer0.10-plugins-bad-extra, tracker-distutils, ogg-support (>= 1.0.5), gstreamer0.10-vp8
 Replaces: ac3-support
 XB-Description: Support for additional video and audio decoders in the Media Player
- .
+ 
  Uses GStreamer decoders and tracker mimetype registering tool
  * AC-3 audio in video files support
  * Vorbis OGG and FLAC support (via ogg-support)
  * Musepack support
- * Flash video support
  * RealMedia formats support
  * Matroska container support (most video formats used for Matroska unsupported!)
+ * Flash Video container support
  * MPEG2 Transport Stream support
  * WebM support
- .
+ 
  Video resolution over 848x480 pixels is still unsupported!
 XB-Description-pl_PL: Obsługa dodatkowych dekoderów dźwięku i wideo dla wbudowanego Odtwarzacza
- .
+ 
  Używa dekoderów GStreamer i narzędzia rejestrującego typy mime tracker
  * Obsługa dźwięu AC-3 w nagraniach wideo
  * Obsługa formatów Vorbis OGG i FLAC (poprzez ogg-support)
  * Obsługa formatu Musepack
- * Obsługa formatu Flash Video
  * Obsługa formatów RealMedia
  * Obsługa kontenera Matroska (większość formatów używanych z Matroska nieobsługiwane!)
+ * Obsługa kontenera Flash Video
  * Obsługa formatu MPEG2 Transport Stream
  * Obsługa formatu WebM
- .
+ 
  Rodzielczość powyżej 848x480 pikseli jest nadal nieobsługiwana!
 XB-Description-de_DE: Unterstützung zusätzlicher Video- und Audioformate im Media Player.
 XB-Description-fr_FR: Support pour décoder davantage de formats audios et vidéos dans le lecteur de médias.
