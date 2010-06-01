@@ -30,13 +30,6 @@
 GST_DEBUG_CATEGORY_STATIC (rdtdepay_debug);
 #define GST_CAT_DEFAULT rdtdepay_debug
 
-/* elementfactory information */
-static const GstElementDetails gst_rdtdepay_details =
-GST_ELEMENT_DETAILS ("RDT packet parser",
-    "Codec/Depayloader/Network",
-    "Extracts RealMedia from RDT packets",
-    "Lutz Mueller <lutz at topfrose dot de>, " "Wim Taymans <wim@fluendo.com>");
-
 /* RDTDepay signals and args */
 enum
 {
@@ -75,11 +68,6 @@ GST_BOILERPLATE (GstRDTDepay, gst_rdt_depay, GstElement, GST_TYPE_ELEMENT);
 
 static void gst_rdt_depay_finalize (GObject * object);
 
-static void gst_rdt_depay_set_property (GObject * object, guint prop_id,
-    const GValue * value, GParamSpec * pspec);
-static void gst_rdt_depay_get_property (GObject * object, guint prop_id,
-    GValue * value, GParamSpec * pspec);
-
 static GstStateChangeReturn gst_rdt_depay_change_state (GstElement *
     element, GstStateChange transition);
 
@@ -97,7 +85,11 @@ gst_rdt_depay_base_init (gpointer klass)
   gst_element_class_add_pad_template (element_class,
       gst_static_pad_template_get (&gst_rdt_depay_sink_template));
 
-  gst_element_class_set_details (element_class, &gst_rdtdepay_details);
+  gst_element_class_set_details_simple (element_class, "RDT packet parser",
+      "Codec/Depayloader/Network",
+      "Extracts RealMedia from RDT packets",
+      "Lutz Mueller <lutz at topfrose dot de>, "
+      "Wim Taymans <wim@fluendo.com>");
 
   GST_DEBUG_CATEGORY_INIT (rdtdepay_debug, "rdtdepay",
       0, "Depayloader for RDT RealMedia packets");
@@ -113,9 +105,6 @@ gst_rdt_depay_class_init (GstRDTDepayClass * klass)
   gstelement_class = (GstElementClass *) klass;
 
   parent_class = g_type_class_peek_parent (klass);
-
-  gobject_class->set_property = gst_rdt_depay_set_property;
-  gobject_class->get_property = gst_rdt_depay_get_property;
 
   gobject_class->finalize = gst_rdt_depay_finalize;
 
@@ -428,7 +417,7 @@ gst_rdt_depay_chain (GstPad * pad, GstBuffer * buf)
     rdtdepay->header = NULL;
 
     /* push header data first */
-    ret = gst_rdt_depay_push (rdtdepay, out);
+    gst_rdt_depay_push (rdtdepay, out);
   }
 
   /* save timestamp */
@@ -463,37 +452,9 @@ gst_rdt_depay_chain (GstPad * pad, GstBuffer * buf)
     more = gst_rdt_packet_move_to_next (&packet);
   }
 
+  gst_buffer_unref (buf);
+
   return ret;
-}
-
-static void
-gst_rdt_depay_set_property (GObject * object, guint prop_id,
-    const GValue * value, GParamSpec * pspec)
-{
-  GstRDTDepay *rdtdepay;
-
-  rdtdepay = GST_RDT_DEPAY (object);
-
-  switch (prop_id) {
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
-}
-
-static void
-gst_rdt_depay_get_property (GObject * object, guint prop_id,
-    GValue * value, GParamSpec * pspec)
-{
-  GstRDTDepay *rdtdepay;
-
-  rdtdepay = GST_RDT_DEPAY (object);
-
-  switch (prop_id) {
-    default:
-      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-      break;
-  }
 }
 
 static GstStateChangeReturn

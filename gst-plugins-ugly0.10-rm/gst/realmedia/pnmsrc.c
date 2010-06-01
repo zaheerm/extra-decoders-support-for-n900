@@ -28,13 +28,6 @@
 GST_DEBUG_CATEGORY_STATIC (pnmsrc_debug);
 #define GST_CAT_DEFAULT pnmsrc_debug
 
-/* elementfactory information */
-static const GstElementDetails gst_pnm_src_details =
-GST_ELEMENT_DETAILS ("PNM packet receiver",
-    "Source/Network",
-    "Receive data over the network via PNM",
-    "Wim Taymans <wim.taymans@gmail.com>");
-
 /* PNMSrc signals and args */
 enum
 {
@@ -86,8 +79,6 @@ static void gst_pnm_src_set_property (GObject * object, guint prop_id,
 static void gst_pnm_src_get_property (GObject * object, guint prop_id,
     GValue * value, GParamSpec * pspec);
 
-static GstStateChangeReturn gst_pnm_src_change_state (GstElement *
-    element, GstStateChange transition);
 
 static void
 gst_pnm_src_base_init (gpointer klass)
@@ -97,7 +88,10 @@ gst_pnm_src_base_init (gpointer klass)
   gst_element_class_add_pad_template (element_class,
       gst_static_pad_template_get (&gst_pnm_src_template));
 
-  gst_element_class_set_details (element_class, &gst_pnm_src_details);
+  gst_element_class_set_details_simple (element_class, "PNM packet receiver",
+      "Source/Network",
+      "Receive data over the network via PNM",
+      "Wim Taymans <wim.taymans@gmail.com>");
 
   GST_DEBUG_CATEGORY_INIT (pnmsrc_debug, "pnmsrc",
       0, "Source for the pnm:// uri");
@@ -107,11 +101,9 @@ static void
 gst_pnm_src_class_init (GstPNMSrcClass * klass)
 {
   GObjectClass *gobject_class;
-  GstElementClass *gstelement_class;
   GstPushSrcClass *gstpushsrc_class;
 
   gobject_class = (GObjectClass *) klass;
-  gstelement_class = (GstElementClass *) klass;
   gstpushsrc_class = (GstPushSrcClass *) klass;
 
   parent_class = g_type_class_peek_parent (klass);
@@ -125,8 +117,6 @@ gst_pnm_src_class_init (GstPNMSrcClass * klass)
       g_param_spec_string ("location", "PNM Location",
           "Location of the PNM url to read",
           DEFAULT_LOCATION, G_PARAM_READWRITE));
-
-  gstelement_class->change_state = gst_pnm_src_change_state;
 
   gstpushsrc_class->create = gst_pnm_src_create;
 }
@@ -193,36 +183,6 @@ gst_pnm_src_get_property (GObject * object, guint prop_id,
   }
 }
 
-static GstStateChangeReturn
-gst_pnm_src_change_state (GstElement * element, GstStateChange transition)
-{
-  GstPNMSrc *src;
-  GstStateChangeReturn ret;
-
-  src = GST_PNM_SRC (element);
-
-  switch (transition) {
-    case GST_STATE_CHANGE_NULL_TO_READY:
-      break;
-    case GST_STATE_CHANGE_READY_TO_PAUSED:
-      break;
-    default:
-      break;
-  }
-
-  ret = GST_ELEMENT_CLASS (parent_class)->change_state (element, transition);
-
-  switch (transition) {
-    case GST_STATE_CHANGE_PAUSED_TO_READY:
-      break;
-    case GST_STATE_CHANGE_READY_TO_NULL:
-      break;
-    default:
-      break;
-  }
-  return ret;
-}
-
 static GstFlowReturn
 gst_pnm_src_create (GstPushSrc * psrc, GstBuffer ** buf)
 {
@@ -258,7 +218,7 @@ gst_pnm_src_uri_get_type (void)
 static gchar **
 gst_pnm_src_uri_get_protocols (void)
 {
-  static gchar *protocols[] = { "pnm", NULL };
+  static gchar *protocols[] = { (gchar *) "pnm", NULL };
 
   return protocols;
 }

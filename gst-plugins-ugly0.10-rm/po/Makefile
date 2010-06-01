@@ -12,7 +12,7 @@
 GETTEXT_MACRO_VERSION = 0.17
 
 PACKAGE = gst-plugins-ugly
-VERSION = 0.10.10.2
+VERSION = 0.10.14.2
 PACKAGE_BUGREPORT = http://bugzilla.gnome.org/enter_bug.cgi?product=GStreamer
 
 # thomas: add GETTEXT_PACKAGE substitution as used in Makevars
@@ -38,12 +38,12 @@ INSTALL_DATA = ${INSTALL} -m 644
 # We use $(mkdir_p).
 # In automake <= 1.9.x, $(mkdir_p) is defined either as "mkdir -p --" or as
 # "$(mkinstalldirs)" or as "$(install_sh) -d". For these automake versions,
-# $(SHELL) /home/tom/gst-plugins-ugly0.10-rm-0.10.10.2/install-sh does not start with $(SHELL), so we add it.
+# $(SHELL) /home/zaheer/gst-plugins-ugly0.10-rm-0.10.10.2-1maemo2/install-sh does not start with $(SHELL), so we add it.
 # In automake >= 1.10, /scratchbox/tools/bin/mkdir -p is derived from ${MKDIR_P}, which is defined
 # either as "/path/to/mkdir -p" or ".../install-sh -c -d". For these automake
 # versions, $(mkinstalldirs) and $(install_sh) are unused.
-mkinstalldirs = $(SHELL) $(SHELL) /home/tom/gst-plugins-ugly0.10-rm-0.10.10.2/install-sh -d
-install_sh = $(SHELL) $(SHELL) /home/tom/gst-plugins-ugly0.10-rm-0.10.10.2/install-sh
+mkinstalldirs = $(SHELL) $(SHELL) /home/zaheer/gst-plugins-ugly0.10-rm-0.10.10.2-1maemo2/install-sh -d
+install_sh = $(SHELL) $(SHELL) /home/zaheer/gst-plugins-ugly0.10-rm-0.10.10.2-1maemo2/install-sh
 MKDIR_P = /scratchbox/tools/bin/mkdir -p
 mkdir_p = /scratchbox/tools/bin/mkdir -p
 
@@ -212,7 +212,7 @@ $(DOMAIN).pot-update: $(POTFILES) $(srcdir)/POTFILES.in remove-potcdate.sed
 	      --files-from=$(srcdir)/POTFILES.in \
 	      --copyright-holder='$(COPYRIGHT_HOLDER)' \
 	      --package-name="$${package_gnu}gst-plugins-ugly" \
-	      --package-version='0.10.10.2' \
+	      --package-version='0.10.14.2' \
 	      --msgid-bugs-address="$$msgid_bugs_address" \
 	    ;; \
 	esac

@@ -42,6 +42,8 @@
 
 #define MAX_FRAGS 256
 
+static const guint8 sipr_subpk_size[4] = { 29, 19, 37, 20 };
+
 typedef struct _GstRMDemuxIndex GstRMDemuxIndex;
 
 struct _GstRMDemuxStream
@@ -99,13 +101,6 @@ struct _GstRMDemuxIndex
 {
   guint32 offset;
   GstClockTime timestamp;
-};
-
-static GstElementDetails gst_rmdemux_details = {
-  "RealMedia Demuxer",
-  "Codec/Demuxer",
-  "Demultiplex a RealMedia file into audio and video streams",
-  "David Schleef <ds@schleef.org>"
 };
 
 static GstStaticPadTemplate gst_rmdemux_sink_template =
@@ -206,7 +201,10 @@ gst_rmdemux_base_init (GstRMDemuxClass * klass)
       gst_static_pad_template_get (&gst_rmdemux_videosrc_template));
   gst_element_class_add_pad_template (element_class,
       gst_static_pad_template_get (&gst_rmdemux_audiosrc_template));
-  gst_element_class_set_details (element_class, &gst_rmdemux_details);
+  gst_element_class_set_details_simple (element_class, "RealMedia Demuxer",
+      "Codec/Demuxer",
+      "Demultiplex a RealMedia file into audio and video streams",
+      "David Schleef <ds@schleef.org>");
 }
 
 static void
@@ -263,6 +261,8 @@ gst_rmdemux_init (GstRMDemux * rmdemux)
   rmdemux->first_ts = GST_CLOCK_TIME_NONE;
   rmdemux->base_ts = GST_CLOCK_TIME_NONE;
   rmdemux->need_newsegment = TRUE;
+
+  gst_rm_utils_run_tests ();
 }
 
 static gboolean
@@ -470,7 +470,7 @@ gst_rmdemux_perform_seek (GstRMDemux * rmdemux, GstEvent * event)
 {
   gboolean validated;
   gboolean ret = TRUE;
-  gboolean flush, accurate;
+  gboolean flush;
   GstFormat format;
   gdouble rate;
   GstSeekFlags flags;
@@ -505,7 +505,6 @@ gst_rmdemux_perform_seek (GstRMDemux * rmdemux, GstEvent * event)
   GST_DEBUG_OBJECT (rmdemux, "seek, rate %g", rate);
 
   flush = flags & GST_SEEK_FLAG_FLUSH;
-  accurate = flags & GST_SEEK_FLAG_ACCURATE;
 
   /* first step is to unlock the streaming thread if it is
    * blocked in a chain call, we do this by starting the flush. */
@@ -608,7 +607,7 @@ done:
   /* streaming can continue now */
   GST_PAD_STREAM_UNLOCK (rmdemux->sinkpad);
 
-  return TRUE;
+  return ret;
 
 error:
   {
@@ -1392,6 +1391,9 @@ gst_rmdemux_add_stream (GstRMDemux * rmdemux, GstRMDemuxStream * stream)
       case GST_RM_AUD_ATRC:
         codec_name = "Sony ATRAC3";
         stream_caps = gst_caps_new_simple ("audio/x-vnd.sony.atrac3", NULL);
+        stream->needs_descrambling = TRUE;
+        stream->subpackets_needed = stream->height;
+        stream->subpackets = NULL;
         break;
 
         /* RealAudio G2 audio */
@@ -1405,15 +1407,28 @@ gst_rmdemux_add_stream (GstRMDemux * rmdemux, GstRMDemuxStream * stream)
 
         /* RALF is lossless */
       case GST_RM_AUD_RALF:
-        /* FIXME: codec_name = */
+        codec_name = "Real Audio Lossless (RALF)";
         GST_DEBUG_OBJECT (rmdemux, "RALF");
         stream_caps = gst_caps_new_simple ("audio/x-ralf-mpeg4-generic", NULL);
         break;
 
-        /* Sipro/ACELP.NET Voice Codec (MIME unknown) */
       case GST_RM_AUD_SIPR:
-        /* FIXME: codec_name = */
+
+        if (stream->flavor > 3) {
+          GST_WARNING_OBJECT (rmdemux, "bad SIPR flavor %d, freeing it",
+              stream->flavor);
+          g_free (stream);
+          goto beach;
+        }
+
+        codec_name = "Sipro/ACELP.NET Voice";
+        GST_DEBUG_OBJECT (rmdemux, "SIPR");
         stream_caps = gst_caps_new_simple ("audio/x-sipro", NULL);
+        stream->needs_descrambling = TRUE;
+        stream->subpackets_needed = stream->height;
+        stream->subpackets = NULL;
+        stream->leaf_size = sipr_subpk_size[stream->flavor];
+
         break;
 
       default:
@@ -1493,7 +1508,8 @@ gst_rmdemux_add_stream (GstRMDemux * rmdemux, GstRMDemuxStream * stream)
 
     /* save for later, we must send the tags after the newsegment event */
     if (codec_name != NULL && codec_tag != NULL) {
-      stream->pending_tags = gst_tag_list_new ();
+      if (stream->pending_tags == NULL)
+        stream->pending_tags = gst_tag_list_new ();
       gst_tag_list_add (stream->pending_tags, GST_TAG_MERGE_KEEP,
           codec_tag, codec_name, NULL);
     }
@@ -1557,6 +1573,8 @@ gst_rmdemux_parse_mdpr (GstRMDemux * rmdemux, const guint8 * data, int length)
   guint str_len = 0;
   int stream_type;
   int offset;
+  guint32 max_bitrate;
+  guint32 avg_bitrate;
 
   stream = g_new0 (GstRMDemuxStream, 1);
 
@@ -1570,8 +1588,25 @@ gst_rmdemux_parse_mdpr (GstRMDemux * rmdemux, const guint8 * data, int length)
   stream->adapter = gst_adapter_new ();
   GST_LOG_OBJECT (rmdemux, "stream_number=%d", stream->id);
 
+  /* parse the bitrates */
+  max_bitrate = RMDEMUX_GUINT32_GET (data + 2);
+  avg_bitrate = RMDEMUX_GUINT32_GET (data + 6);
+  GST_LOG_OBJECT (rmdemux, "Stream max bitrate=%u", max_bitrate);
+  GST_LOG_OBJECT (rmdemux, "Stream avg bitrate=%u", avg_bitrate);
+  if (max_bitrate != 0) {
+    if (stream->pending_tags == NULL)
+      stream->pending_tags = gst_tag_list_new ();
+    gst_tag_list_add (stream->pending_tags, GST_TAG_MERGE_REPLACE,
+        GST_TAG_MAXIMUM_BITRATE, max_bitrate, NULL);
+  }
+  if (avg_bitrate != 0) {
+    if (stream->pending_tags == NULL)
+      stream->pending_tags = gst_tag_list_new ();
+    gst_tag_list_add (stream->pending_tags, GST_TAG_MERGE_REPLACE,
+        GST_TAG_BITRATE, avg_bitrate, NULL);
+  }
+
   offset = 30;
-  stream_type = GST_RMDEMUX_STREAM_UNKNOWN;
   stream1_type_string = gst_rm_utils_read_string8 (data + offset,
       length - offset, &str_len);
   offset += str_len;
@@ -1715,7 +1750,6 @@ gst_rmdemux_parse_mdpr (GstRMDemux * rmdemux, const guint8 * data, int length)
           break;
         }
       }
-
       /*  14_4, 28_8, cook, dnet, sipr, raac, racp, ralf, atrc */
       GST_DEBUG_OBJECT (rmdemux,
           "Audio stream with rate=%d sample_width=%d n_channels=%d",
@@ -1890,8 +1924,7 @@ gst_rmdemux_stream_clear_cached_subpackets (GstRMDemux * rmdemux,
 }
 
 static GstFlowReturn
-gst_rmdemux_descramble_cook_audio (GstRMDemux * rmdemux,
-    GstRMDemuxStream * stream)
+gst_rmdemux_descramble_audio (GstRMDemux * rmdemux, GstRMDemuxStream * stream)
 {
   GstFlowReturn ret;
   GstBuffer *outbuf;
@@ -1985,7 +2018,6 @@ gst_rmdemux_descramble_mp4a_audio (GstRMDemux * rmdemux,
   GstBuffer *buf, *outbuf;
   guint frames, index, i;
   guint8 *data;
-  guint size;
   GstClockTime timestamp;
 
   res = GST_FLOW_OK;
@@ -1995,7 +2027,6 @@ gst_rmdemux_descramble_mp4a_audio (GstRMDemux * rmdemux,
   g_ptr_array_set_size (stream->subpackets, 0);
 
   data = GST_BUFFER_DATA (buf);
-  size = GST_BUFFER_SIZE (buf);
   timestamp = GST_BUFFER_TIMESTAMP (buf);
 
   frames = (data[1] & 0xf0) >> 4;
@@ -2021,6 +2052,59 @@ gst_rmdemux_descramble_mp4a_audio (GstRMDemux * rmdemux,
   }
   gst_buffer_unref (buf);
   return res;
+}
+
+static GstFlowReturn
+gst_rmdemux_descramble_sipr_audio (GstRMDemux * rmdemux,
+    GstRMDemuxStream * stream)
+{
+  GstFlowReturn ret;
+  GstBuffer *outbuf;
+  guint packet_size = stream->packet_size;
+  guint height = stream->subpackets->len;
+  guint leaf_size = stream->leaf_size;
+  guint p;
+
+  g_assert (stream->height == height);
+
+  GST_LOG ("packet_size = %u, leaf_size = %u, height= %u", packet_size,
+      leaf_size, height);
+
+  ret = gst_pad_alloc_buffer_and_set_caps (stream->pad,
+      GST_BUFFER_OFFSET_NONE, height * packet_size,
+      GST_PAD_CAPS (stream->pad), &outbuf);
+
+  if (ret != GST_FLOW_OK)
+    goto done;
+
+  for (p = 0; p < height; ++p) {
+    GstBuffer *b = g_ptr_array_index (stream->subpackets, p);
+    guint8 *b_data = GST_BUFFER_DATA (b);
+
+    if (p == 0)
+      GST_BUFFER_TIMESTAMP (outbuf) = GST_BUFFER_TIMESTAMP (b);
+
+    memcpy (GST_BUFFER_DATA (outbuf) + packet_size * p, b_data, packet_size);
+  }
+
+  GST_LOG_OBJECT (rmdemux, "pushing buffer timestamp %" GST_TIME_FORMAT,
+      GST_TIME_ARGS (GST_BUFFER_TIMESTAMP (outbuf)));
+
+  if (stream->discont) {
+    GST_BUFFER_FLAG_SET (outbuf, GST_BUFFER_FLAG_DISCONT);
+    stream->discont = FALSE;
+  }
+
+  outbuf = gst_rm_utils_descramble_sipr_buffer (outbuf);
+
+  gst_buffer_set_caps (outbuf, GST_PAD_CAPS (stream->pad));
+  ret = gst_pad_push (stream->pad, outbuf);
+
+done:
+
+  gst_rmdemux_stream_clear_cached_subpackets (rmdemux, stream);
+
+  return ret;
 }
 
 static GstFlowReturn
@@ -2051,11 +2135,15 @@ gst_rmdemux_handle_scrambled_packet (GstRMDemux * rmdemux,
       ret = gst_rmdemux_descramble_dnet_audio (rmdemux, stream);
       break;
     case GST_RM_AUD_COOK:
-      ret = gst_rmdemux_descramble_cook_audio (rmdemux, stream);
+    case GST_RM_AUD_ATRC:
+      ret = gst_rmdemux_descramble_audio (rmdemux, stream);
       break;
     case GST_RM_AUD_RAAC:
     case GST_RM_AUD_RACP:
       ret = gst_rmdemux_descramble_mp4a_audio (rmdemux, stream);
+      break;
+    case GST_RM_AUD_SIPR:
+      ret = gst_rmdemux_descramble_sipr_audio (rmdemux, stream);
       break;
     default:
       g_assert_not_reached ();
@@ -2465,12 +2553,16 @@ gst_rmdemux_parse_audio_packet (GstRMDemux * rmdemux, GstRMDemuxStream * stream,
     }
     ret = gst_pad_push (stream->pad, buffer);
   }
+
+  gst_buffer_unref (in);
+
   return ret;
 
   /* ERRORS */
 alloc_failed:
   {
     GST_DEBUG_OBJECT (rmdemux, "pad alloc returned %d", ret);
+    gst_buffer_unref (in);
     return cret;
   }
 }

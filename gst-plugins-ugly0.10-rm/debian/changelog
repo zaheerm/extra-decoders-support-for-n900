@@ -1,3 +1,9 @@
+gst-plugins-ugly0.10-rm (0.10.14.2-1maemo2-1) fremantle; urgency=low
+
+  * Update to 0.10.14.2 prerel version of plugins.
+  * Remove the registering of mimetypes.
+
+ -- Zaheer Abbas Merali <zaheermerali@gmail.com>  Tue, 1 Jun 2010 11:04:00 +0100
 gst-plugins-ugly0.10-rm (0.10.10.2-1maemo2-5) fremantle; urgency=low
 
   * Fixing a retarded error causing tracker to segfault...

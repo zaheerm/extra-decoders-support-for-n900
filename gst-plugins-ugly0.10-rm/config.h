@@ -65,7 +65,7 @@
 /* #undef HAVE_CPU_ALPHA */
 
 /* Define if the host CPU is an ARM */
-#define HAVE_CPU_ARM 1
+/* #undef HAVE_CPU_ARM */
 
 /* Define if the host CPU is a CRIS */
 /* #undef HAVE_CPU_CRIS */
@@ -77,7 +77,7 @@
 /* #undef HAVE_CPU_HPPA */
 
 /* Define if the host CPU is an x86 */
-/* #undef HAVE_CPU_I386 */
+#define HAVE_CPU_I386 1
 
 /* Define if the host CPU is a IA64 */
 /* #undef HAVE_CPU_IA64 */
@@ -196,7 +196,7 @@
 /* #undef HAVE_VALGRIND */
 
 /* the host CPU */
-#define HOST_CPU "arm"
+#define HOST_CPU "i486"
 
 /* gettext locale dir */
 #define LOCALEDIR "/usr/share/locale"
@@ -218,13 +218,13 @@
 #define PACKAGE_NAME "GStreamer Ugly Plug-ins"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "GStreamer Ugly Plug-ins 0.10.10.2"
+#define PACKAGE_STRING "GStreamer Ugly Plug-ins 0.10.14.2"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "gst-plugins-ugly"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.10.10.2"
+#define PACKAGE_VERSION "0.10.14.2"
 
 /* directory where plugins are located */
 #define PLUGINDIR "/usr/lib/gstreamer-0.10"
@@ -248,7 +248,7 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "0.10.10.2"
+#define VERSION "0.10.14.2"
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
    significant byte first (like Motorola and SPARC, unlike Intel). */
