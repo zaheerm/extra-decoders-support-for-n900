@@ -1,0 +1,801 @@
+gst-plugins-good0.10-flv (0.10.23-0maemo1) unstable; urgency=low
+
+  * Remove registration of mimetypes.
+  * Update to 0.10.23 code.
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Tue, 1 Jun 2010 11:54:00 +0100
+gst-plugins-good0.10-flv (0.10.15-0maemo3+0m5.tk3) unstable; urgency=low
+
+  * Unregister video/x-flv with tracker on postrm
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Mon, 4 Jan 2010 12:18:00 +0000
+
+gst-plugins-good0.10-flv (0.10.15-0maemo3+0m5.tk2) unstable; urgency=low
+
+  * Register video/x-flv with tracker
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Thu, 5 Nov 2009 17:41:00 +0000
+
+gst-plugins-good0.10-flv (0.10.15-0maemo3+0m5.tk1) unstable; urgency=low
+
+  * Added flv plugin, disabled all others from compiling
+  * Changed source package name.
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Thu, 5 Nov 2009 16:16:00 +0000
+
+gst-plugins-good0.10-ogg (0.10.15-0maemo3+0m5.tk1) unstable; urgency=low
+
+  * Added flac component, removed the rest.
+  * Changed source package name.
+
+ -- Tuomas Kulve <tuomas@kulve.fi>  Sat, 19 Sep 2009 16:51:34 +0300
+
+gst-plugins-good0.10 (0.10.15-0maemo3+0m5) unstable; urgency=low
+
+  * This entry has been added by BIFH queue processor
+    Suffix +0m5 added to package revision
+
+ -- Harri Mahonen <ext-harri.mahonen@nokia.com>  Wed, 10 Jun 2009 14:56:34 +0300
+
+gst-plugins-good0.10 (0.10.15-0maemo3) unstable; urgency=low
+
+  * rtspsrc: Decrease UDP receiving timeout from 5 to 2 seconds. Rtsp
+    streams that have their UDP traffic blocked by the local network need
+    to elapse this timeout before switching to TCP, and 5 seconds is quite
+    long.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 08 Jun 2009 15:43:39 +0300
+
+gst-plugins-good0.10 (0.10.15-0maemo2) unstable; urgency=low
+
+  * rtpmp4gdepay: Fix AAC caps to prevent AAC parser getting plugged.
+  * Fixes: NB#118886 - RTSP MP4 AAC streaming is not working
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 01 Jun 2009 14:49:10 +0300
+
+gst-plugins-good0.10 (0.10.15-0maemo1) unstable; urgency=low
+
+  * Drop fast tagreading implementations until they get updated to the new
+    version.
+  * Fix new pulsesink proplist patch.
+  * Cherry-pick patch for pulsesink over/underflow warnings.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 25 May 2009 13:14:11 +0300
+
+gst-plugins-good0.10 (0.10.14.3-0maemo1) unstable; urgency=low
+
+  * New upstream pre-release. Fixes avi seeking.
+  * Change pulsesink patch to expose the whole proplist instead of just
+    the event-id.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 19 May 2009 17:59:21 +0300
+
+gst-plugins-good0.10 (0.10.14.2-0maemo2) unstable; urgency=low
+
+  * Fix h263 depayloader passing on corrupted data.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 18 May 2009 14:33:36 +0300
+
+gst-plugins-good0.10 (0.10.14.2-0maemo1) unstable; urgency=low
+
+  * New upstream pre-release.
+  * pulsesink: Complete rewrite this time, getting rid of the internal
+    ringbuffer (saves memory copy and one processing thread).
+  * Fixes: NB#113660 - GStreamer audio inserts silence initially
+  * avidemux: Dropped index table copy patch for now, need to resync with
+    upstream.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Fri, 15 May 2009 15:40:31 +0300
+
+gst-plugins-good0.10 (0.10.14-0maemo10) unstable; urgency=low
+
+  * pulsesink: Fix double free of pa_proplist when the pulseaudio stream
+    state goes bad.
+  * Fixes: NB#111906 - pulsesink crashing on error
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Thu, 07 May 2009 18:07:50 +0300
+
+gst-plugins-good0.10 (0.10.14-0maemo9) unstable; urgency=low
+
+  * qtdemux: Fix classification tag byte order.
+  * Fixes: NB#114180 - MP4 classification tag incorrect due to byte order
+    problem
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Sat, 02 May 2009 00:17:54 +0300
+
+gst-plugins-good0.10 (0.10.14-0maemo8) unstable; urgency=low
+
+  * qtdemux: Fix location tags.
+  * jpegdec: Implement QoS.
+  * Fixes: NB#101758 - mjpeg+pcm encoded avi clip not playable over HTTP
+  * Disable GObject cast checks and GStreamer logging (unless debug build
+    option is given).
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 20 Apr 2009 14:19:44 +0300
+
+gst-plugins-good0.10 (0.10.14-0maemo7) unstable; urgency=low
+
+  * qtdemux: Add 3GPP metadata support (including classification).
+  * Fixes: NB#101580 - MAFW_METADATA_KEY_VIDEO_SOURCE metadata isn't found
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 08 Apr 2009 14:48:43 +0300
+
+gst-plugins-good0.10 (0.10.14-0maemo6) unstable; urgency=low
+
+  * Improve error message for unsupported RealMedia RTSP extensions.
+  * Fixes: NB#103615 - No error handling for RTSP streams with real media
+  * Update qtdemux element to v0.10.14-113-g3360f44. Improves streaming,
+    fixes memory leaks, seeking of unbalanced files.
+  * Fix AAC/mp4 rtp streaming: memory leaks, skip aacparse, fix codec_data
+  * Fixes: NB#102547 - Error in Decoding when streaming RTSP mp4 / 3gp
+    audio file
+  * Cherry-pick commits to fix Coverity warnings (udp, qtdemux, matroska).
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 31 Mar 2009 14:20:34 +0300
+
+gst-plugins-good0.10 (0.10.14-0maemo5) unstable; urgency=low
+
+  * Add XDG event name for pulsesink.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Mon, 23 Mar 2009 16:42:50 +0200
+
+gst-plugins-good0.10 (0.10.14-0maemo4) unstable; urgency=low
+
+  * Add workaround for pulsesink breaking for VOIP call UI use case.
+  * Pick pulsesink patch from upstream, improves clock skew.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Thu, 19 Mar 2009 22:12:30 +0200
+
+gst-plugins-good0.10 (0.10.14-0maemo3) unstable; urgency=low
+
+  * souphttpsrc: Expose the SoupSession 'timeout' property.
+  * Fixes: NB#102216 - Gstreamer doesn't stop when connectivity is lost
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Tue, 17 Mar 2009 21:07:49 +0200
+
+gst-plugins-good0.10 (0.10.14-0maemo2) unstable; urgency=low
+
+  * Ship quicktime plugin (libgstqtdemux.so) to get qtdemux, patched to
+    have rank PRIMARY+1 to supersede old closed-source demuxer.
+  * Fixes: NB#104423 - Cannot decode AAC audio from .mov files
+  * Fixes: NB#103195 - UPNP:m4a playback not happening
+  * Fixes: NB#91664 - Metadata decoding error with one .m4a file
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 16 Mar 2009 20:09:11 +0200
+
+gst-plugins-good0.10 (0.10.14-0maemo1) unstable; urgency=low
+
+  * Update to upstream release 0.10.14.
+  * pulsesrc, pulsesink: Rewrite of pulse plugin. This now corks the
+    streams in paused state, which fixes inducing a constant CPU load into
+    the pulse daemon. Also changes the volume property to control the
+    stream volume.
+  * Fixes: NB#105039 - [pulsesink] Need to cork pulseaudio stream when
+    paused
+  * Fixes: NB#100879 - [pulsesink] crashes gst-launch -v
+  * New elements: autovideosrc, autoaudiosrc, aspectratiocrop.
+  * avimux: Improved tags handling, fix possible crash.
+  * g729pay: Rewrite of G729 payloader.
+  * rtspsrc: Many bugfixes.
+  * v4l2src: Improve selection of default format.
+  * videocrop: Fix negotiation on property change.
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Thu, 05 Mar 2009 17:47:50 +0200
+
+gst-plugins-good0.10 (0.10.11-0maemo6) unstable; urgency=low
+
+  * Cherry-pick wavparse commits, fixing seekability query and seeking in
+    streaming mode.  Partial fix for NB#98629 (Seek bar is disabled for
+    wma,wav clips in upnp media server) and partial fix for MP3-in-WAV
+    seeking (NB#102220, "One MP3 file is not seekable").
+  * Fixes: NB#102419 (seeking wav clips over HTTP stops playback).
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Wed, 04 Mar 2009 17:05:45 +0200
+
+gst-plugins-good0.10 (0.10.11-0maemo5) unstable; urgency=low
+
+  * Pick pulse leak fixes (before the plugin rewrite).
+  * Fixes: NB#94421 (playbin2 leaks pulsesink), which was partially fixed in
+    -base.  This release actually fixes the non-playbin related leaks inside
+    pulsesink.
+  * Fixes: NB#102538 (Playbin2 mp3 playback does not free memory or remove
+    threads).
+
+ -- Rene Stadler <rene.stadler@nokia.com>  Mon, 02 Mar 2009 18:14:34 +0200
+
+gst-plugins-good0.10 (0.10.11-0maemo4) unstable; urgency=low
+
+  * Fixes: NB#91307
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Wed, 11 Feb 2009 12:48:59 +0200
+
+gst-plugins-good0.10 (0.10.11-0maemo3) unstable; urgency=low
+
+  * Reverted backported pulsesink/pulsesrc.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Tue, 03 Feb 2009 13:19:06 +0200
+
+gst-plugins-good0.10 (0.10.11-0maemo2) unstable; urgency=low
+
+  * Pulsesink backported from upstream Git.
+  * Extra package installation file fixed.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Fri, 30 Jan 2009 13:52:41 +0200
+
+gst-plugins-good0.10 (0.10.11-0maemo1) unstable; urgency=low
+
+  * Upgraded to a new upstream 0.10.11 with Maemo-specific patches.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Mon, 22 Dec 2008 09:41:09 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo21) unstable; urgency=low
+
+  * Remove GstImplementsInterface redirection in fast-tagreading. 
+
+ -- Stefan Kost <multimedia@maemo.org>  Thu, 11 Dec 2008 14:48:04 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo20) unstable; urgency=low
+
+  * Sync G.729 pay/depayloader with upstream.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Fri, 05 Dec 2008 08:30:22 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo19) unstable; urgency=low
+
+  * G.729 pay/depayloader patch from:
+    http://bugzilla.gnome.org/show_bug.cgi?id=532409
+  * Fixes: NB#92321
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Mon, 24 Nov 2008 15:52:40 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo18) unstable; urgency=low
+
+  * Removed gconfelements. 
+  * Fixes: NB#93303
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Mon, 24 Nov 2008 11:00:10 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo17) unstable; urgency=low
+
+  * Modified souphttpsrc.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Mon, 17 Nov 2008 11:59:48 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo16) unstable; urgency=low
+
+  * Added souphttpsrc to the base package.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Mon, 17 Nov 2008 11:59:48 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo15) unstable; urgency=low
+
+  * Enabled a lot of missing plugins in gst-plugins-good-extra.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Tue, 11 Nov 2008 14:46:42 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo14) unstable; urgency=low
+
+  * Enable gst-plugins-good-extra package to include multifile elements.
+
+ -- Maemo Multimedia <multimedia@maemo.org>  Mon, 10 Nov 2008 08:55:36 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo13) unstable; urgency=low
+
+  * Fixes: NB#91890
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Thu, 06 Nov 2008 14:56:43 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo12) unstable; urgency=low
+
+  * Included gstgdkpixbuf to the installation.
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Thu, 06 Nov 2008 10:46:20 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo11) unstable; urgency=low
+
+  * Reverted v4l2src back to original
+  * Implemented: NR#191164
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Wed, 29 Oct 2008 12:18:22 +0200
+
+gst-plugins-good0.10 (0.10.9-0maemo10) unstable; urgency=low
+
+  * Implemented: NR#185285
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Wed, 24 Sep 2008 17:21:49 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo9) unstable; urgency=low
+
+  * Implemented: NR#191937 
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Tue,  9 Sep 2008 10:22:37 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo8) unstable; urgency=low
+
+  * Include pulsesink/pulsesrc elements.
+  * Clean the control file a bit.
+  * Remove gst-plugins-good-extra.
+
+ -- Marc-Andre Lureau <marcandre.lureau@gmail.com>  Fri, 05 Sep 2008 17:57:33 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo7) unstable; urgency=low
+
+  * Implemented: NR#149814, NR#185296 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon,  1 Sep 2008 17:23:26 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo6) unstable; urgency=low
+
+  * Implemented: NR#189710, NR#189702, NR#189703, NR#191347
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Fri, 22 Aug 2008 09:15:58 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo5) unstable; urgency=low
+
+  * Yet another lintian fix
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 21 Aug 2008 16:50:07 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo4) unstable; urgency=low
+
+  * Fix lintian errors
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 21 Aug 2008 16:07:51 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo3) unstable; urgency=low
+
+  * Modified vv4l2src so that it works with OMAP3 camera
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 21 Aug 2008 15:02:41 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo2) unstable; urgency=low
+
+  * Added libesd dependency back to fix i386 build
+  * Fixed a couple of code merge problems
+  * Added support for BA10 encoding in v4l2src
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 19 Aug 2008 09:18:45 +0300
+
+gst-plugins-good0.10 (0.10.9-0maemo1) unstable; urgency=low
+
+  * New upstream release 0.10.9 with Maemo-specific modifications
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  6 Aug 2008 13:05:23 +0300
+
+gst-plugins-good0.10 (0.10.8-0maemo5) unstable; urgency=low
+
+  * Add effectv element installing for camerabin 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Fri, 30 May 2008 14:11:49 +0300
+
+gst-plugins-good0.10 (0.10.8-0maemo4) unstable; urgency=low
+
+  * Add videocrop element installing for camerabin
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 21 May 2008 18:25:41 +0300
+
+gst-plugins-good0.10 (0.10.8-0maemo3) unstable; urgency=low
+
+  * Updated wavparse and avidemux to use new TagReader API
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 20 May 2008 08:41:52 +0300
+
+gst-plugins-good0.10 (0.10.8-0maemo2) unstable; urgency=low
+
+  * Updated plugins-base dependency
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 24 Apr 2008 15:07:27 +0300
+
+gst-plugins-good0.10 (0.10.8-0maemo1) unstable; urgency=low
+
+  * Upgrade to version 0.10.8 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 24 Apr 2008 14:45:50 +0300
+
+gst-plugins-good0.10 (0.10.7-0maemo1) unstable; urgency=low
+
+  * Upgrade to version 0.10.7
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 12 Mar 2008 09:23:45 +0200
+
+gst-plugins-good0.10 (0.10.6-0osso26) unstable; urgency=low
+
+  * Bump version number 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon,  4 Feb 2008 11:39:39 +0200
+
+gst-plugins-good0.10 (0.10.6-0osso25) unstable; urgency=low
+
+  * Sync h263p depayloader with gst cvs
+  * Use atoll when parsing timebase to 64-bit integer, Fixes:NB#79234
+  * Disable annodex plugin building
+  * Check id3v2 comment language code for garbage
+  * Updated ESD development package name in dependency list
+  * Avi index list discont handling fix
+  * Memleak fixes
+  * Wavparse query fixes
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 28 Jan 2008 12:04:16 +0200
+
+gst-plugins-good0.10 (0.10.6-0osso24) unstable; urgency=low
+
+  * Fix avidemux index list handling when seeking to eof, Fixes: NB#74279
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 25 Oct 2007 17:33:31 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso23) unstable; urgency=low
+
+  * Disable seeking in rtspsrc. Fixes: NB#73192
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 18 Oct 2007 13:44:34 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso22) unstable; urgency=low
+
+  * Added replaces fields, Fixes: NB#72193 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon,  8 Oct 2007 12:12:14 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso21) unstable; urgency=low
+
+  * Revert wavparse eos handling fix 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon,  1 Oct 2007 19:14:01 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso20) unstable; urgency=low
+
+  * RTSP caches pending data when going to PAUSE mode. Fixes: NB#70265
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 25 Sep 2007 16:28:31 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso19) unstable; urgency=low
+
+  * Retrieved latest CVS version of law plugin. Fixes: NB#69682
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 18 Sep 2007 08:56:03 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso18) unstable; urgency=low
+
+  * Fix wavparse eos handling when streaming, Fixes: NB#64442, NB#68737
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 13 Sep 2007 14:27:24 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso17) unstable; urgency=low
+
+  * Added a hack to prevent error 455 from WMS servers. Fixes: NB#63841
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 13 Sep 2007 10:27:31 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso16) unstable; urgency=low
+
+  * Lower rank of alawdec/mulawdec and include by default. Fixes: NB#67722
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 12 Sep 2007 11:31:44 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso15) unstable; urgency=low
+
+  * Fix leak in avidemux. 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 10 Sep 2007 11:17:23 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso14) unstable; urgency=low
+
+  * Code cleanup in wavparse. Move calculations out of loops.
+  * Code cleanup in v4l2src (Use define instead of hardcoded value).
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed,  5 Sep 2007 11:22:08 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso13) unstable; urgency=low
+
+  * Included apetag in package. Fixes: NB#67724
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon,  3 Sep 2007 15:33:52 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso12) unstable; urgency=low
+
+  * Fix index entry reading, Fixes: NB#66867
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 29 Aug 2007 13:54:51 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso11) unstable; urgency=low
+
+  * Backported latest changes to RTSP element from CVS:
+      gstrtspsrc.c: Revision 1.104
+      gstrtspsrc.h: Revision 1.41
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 23 Aug 2007 13:18:44 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso10) unstable; urgency=low
+
+  * Backported RTSP element from GST CVS.
+  * Added dependency to latest core & plugins_base & rtpmanager
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 21 Aug 2007 11:54:48 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso9) unstable; urgency=low
+
+  * Applied a RTP patch from Youness Alaoui.
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 20 Aug 2007 14:42:59 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso8) unstable; urgency=low
+
+  * Wavparse doesn't try to estimate position or duration for
+    non-PCM clips (e.g. MP3 content). Fixes: NB#55233
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 15 Aug 2007 15:28:32 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso7) unstable; urgency=low
+
+  * Applied a patch from Olivier Crete yo ilbc(de)payloader.
+    Fixes: NB#65226
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu,  9 Aug 2007 11:50:24 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso6) unstable; urgency=low
+
+  * rtspsrc sends now ASYNC_START and ASYNC_DONE messages during
+    startup if only TCP protocol is chosen
+  * Removed GLIB CRITICAL warning
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 25 Jul 2007 16:58:58 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso5) unstable; urgency=low
+
+  * Apply avidemux no-index-array patch. 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon, 23 Jul 2007 15:34:10 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso4) unstable; urgency=low
+
+  * Fix camera (num_buffers=0)
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue, 17 Jul 2007 14:52:59 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso3) unstable; urgency=low
+
+  * Updated package depencencies. Fixes: NB#62608
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Mon,  9 Jul 2007 09:03:15 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso2) unstable; urgency=low
+
+  * Cast to proper type in rtspsrc caps to avoid rtsp crash
+  * Fix case in rtpilbcpay encoding-name field 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Tue,  3 Jul 2007 14:05:13 +0300
+
+gst-plugins-good0.10 (0.10.6-0osso1) unstable; urgency=low
+
+  * Upgrade to gst-plugins-good 0.10.6 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 21 Jun 2007 15:48:34 +0300
+
+gst-plugins-good0.10 (0.10.5-0osso7) unstable; urgency=low
+
+  * Added gst cvs head h264 depayloader, improves h264 streaming
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 13 Jun 2007 09:55:43 +0300
+
+gst-plugins-good0.10 (0.10.5-0osso6) unstable; urgency=low
+
+  * Modified MP4A RTP depayloader to work properly with AAC plugin
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu,  7 Jun 2007 12:04:32 +0300
+
+gst-plugins-good0.10 (0.10.5-0osso5) unstable; urgency=low
+
+  * Applied RTP G.711 depayloader patch
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 30 May 2007 08:29:59 +0300
+
+gst-plugins-good0.10 (0.10.5-0osso4) unstable; urgency=low
+
+  * Don't toggle sink states between null and ready, Fixes: NB#55130
+  * Add --disable-nls to the rules
+ 
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 24 May 2007 11:35:53 +0300
+
+gst-plugins-good0.10 (0.10.5-0osso3) unstable; urgency=low
+
+  * Increased AAC MP4A-LATM depayloader rank to allow autoplugging
+  * Reverted backward-compatibility workarounds after farsight updates 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 10 May 2007 13:32:32 +0300
+
+gst-plugins-good0.10 (0.10.5-0osso2) unstable; urgency=low
+
+  * Partial: NR#167499 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 26 Apr 2007 09:36:41 +0300
+
+gst-plugins-good0.10 (0.10.5-0osso1) unstable; urgency=low
+
+  * Updated to version 0.10.5 and patched osso modifications 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Wed, 28 Mar 2007 15:54:28 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2-10) unstable; urgency=low
+
+  * fix memory leak, Fixes: NB#47712 
+
+ -- Stefan Kost <stefan.kost@nokia.com>  Thu, 16 Nov 2006 16:48:29 +0200
+
+gst-plugins-good0.10 (0.10.4-osso2-9) unstable; urgency=low
+
+  * Extra package created Fixes: NB#44147
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Fri, 10 Nov 2006 11:01:58 +0200
+
+gst-plugins-good0.10 (0.10.4-osso2-8) unstable; urgency=low
+
+  * more avidemuxer fixes (faster index parsing), (partially) Fixes: #38355
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu,  2 Nov 2006 16:59:28 +0200
+
+gst-plugins-good0.10 (0.10.4-osso2-7) unstable; urgency=low
+
+  * more avidemuxer seeking and playback fixes, Fixes: NB#38355, NB#38920
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu, 26 Oct 2006 15:42:57 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2-6) unstable; urgency=low
+
+  * v4l2 updates from cvs head
+  * avidemuxer seeking fixes
+    Fixes: NB#38920
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Wed, 18 Oct 2006 19:11:59 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2-5) unstable; urgency=low
+
+  * v4l2 added 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu,  5 Oct 2006 18:28:21 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2-4) unstable; urgency=low
+
+  * Avidemux: More code reuse and better logging in _peek_chunk(). 
+    Reintroduce check for chunk sizes before reading them (avoid oom). 
+    Better handling for invalid chunksizes when streaming.
+  * Fixes: NB#30336, NB#30515 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu, 14 Sep 2006 13:49:42 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2-3) unstable; urgency=low
+
+  * Avi demuxer fixes for distorted video when streaming 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu,  7 Sep 2006 15:15:51 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2-2) unstable; urgency=low
+
+  * Applied ilbcpcmrtp patch. Fixes: NB#39537
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Tue,  5 Sep 2006 17:14:05 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2-1) unstable; urgency=low
+
+  * Fixed icydemux installation 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Mon, 21 Aug 2006 11:29:12 +0300
+
+gst-plugins-good0.10 (0.10.4-osso2) unstable; urgency=low
+
+  *  Added streaming support for avidemux
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Wed, 16 Aug 2006 14:15:21 +0300
+
+gst-plugins-good0.10 (0.10.4-osso1) unstable; urgency=low
+
+  * New upstream release 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Wed, 16 Aug 2006 12:07:51 +0300
+
+gst-plugins-good0.10 (0.10.2-osso16-1) unstable; urgency=low
+
+  * Fixes: NB#30515,NB#30336,NB#33631 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Wed, 16 Aug 2006 12:07:51 +0300
+
+gst-plugins-good0.10 (0.10.2-osso15-1) unstable; urgency=low
+
+  * Mem leak fix in wavparse (33028)
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Tue, 20 Jun 2006 14:09:48 +0300
+
+gst-plugins-good0.10 (0.10.2-osso14-1) unstable; urgency=low
+
+  * Mem leak fix for avidemux (31550)
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Fri,  2 Jun 2006 09:32:24 +0300
+
+gst-plugins-good0.10 (0.10.2-osso13-1) unstable; urgency=low
+
+  * Fix for bug 30275.
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Mon, 29 May 2006 13:31:29 +0300
+
+gst-plugins-good0.10 (0.10.2-osso12-1) unstable; urgency=low
+
+  * Fix for bug 29392.
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Mon, 15 May 2006 14:27:17 +0300
+
+gst-plugins-good0.10 (0.10.2-osso11-1) unstable; urgency=low
+
+  * Small mem fix for avi demuxer
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Fri, 12 May 2006 13:33:46 +0300
+
+gst-plugins-good0.10 (0.10.2-osso10-1) unstable; urgency=low
+
+  * Avi index mem optimisation
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Tue,  9 May 2006 12:06:27 +0300
+
+gst-plugins-good0.10 (0.10.2-osso9-1) unstable; urgency=low
+
+  * Fix for bug 25470 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Wed,  3 May 2006 14:19:17 +0300
+
+gst-plugins-good0.10 (0.10.2-osso8-2) unstable; urgency=low
+
+  * Build fix
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Wed, 24 Apr 2006 09:58:16 +0300
+
+gst-plugins-good0.10 (0.10.2-osso8-1) unstable; urgency=low
+
+  * Fixed a memory leak in wavparse 
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Wed, 19 Apr 2006 09:58:16 +0300
+
+gst-plugins-good0.10 (0.10.2-osso7-1) unstable; urgency=low
+
+  * gst/rtp/gstrtppcmapay.c:
+  * gst/rtp/gstrtppcmapay.h:
+  * gst/rtp/gstrtppcmupay.c:
+  * gst/rtp/gstrtppcmupay.h:
+    Ported mulaw and alaw payloaders to use new base class
+  * gst/rtp/Makefile.am:
+  * gst/rtp/gstrtp.c:
+  * gst/rtp/gstrtpilbcpay.c:
+  * gst/rtp/gstrtpilbcpay.h:
+  * gst/rtp/gstrtpilbcdepay.c:
+  * gst/rtp/gstrtpilbcdepay.h:
+    Added new iLBC payloader/depayloader. Payloader uses new audio payload
+    base class.
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Tue, 18 Apr 2006 17:28:47 +0300
+
+gst-plugins-good0.10 (0.10.2-osso6-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu,  6 Apr 2006 09:18:43 +0300
+
+gst-plugins-good0.10 (0.10.2-osso5-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu, 23 Mar 2006 17:11:53 +0200
+
+gst-plugins-good0.10 (0.10.2-osso4-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Fri, 17 Mar 2006 13:26:07 +0200
+
+gst-plugins-good0.10 (0.10.2-osso3-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Thu,  2 Mar 2006 15:28:02 +0200
+
+gst-plugins-good0.10 (0.10.2-osso2-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Makoto Sugano <makoto.sugano@nokia.com>  Fri, 24 Feb 2006 19:51:37 +0200
+
