@@ -28,5 +28,7 @@ mkv, rm, musepack, vp8, flv  - decoders-support
 
 =Transitional period= 
 1) Centralize mimetype registering for current set of decoders owned by decoders-support. (in progress, 0.4)
+
 2) Have ogg-support centralize its mimetype registering of owned decoders, then make decoders-support depend on that version of ogg-support (0.5?)
+
 3) Move on to centralize it further into decoders-support, therefore phasing out ogg-support. (1.0?)
