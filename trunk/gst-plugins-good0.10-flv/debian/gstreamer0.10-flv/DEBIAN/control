@@ -1,0 +1,11 @@
+Package: gstreamer0.10-flv
+Version: 0.10.23-0maemo1
+Section: libs
+Priority: optional
+Architecture: i386
+Depends: libc6 (>= 2.5.0-1), libglib2.0-0 (>= 2.20.0), libgstreamer0.10-0 (>= 0.10.25), libxml2 (>= 2.6.32), gstreamer0.10-plugins-good (>= 0.10.23-0maemo1)
+Installed-Size: 104
+Maintainer: Zaheer Abbas Merali <zaheermerali@gmail.com>
+Source: gst-plugins-good0.10-flv
+Description: FLV gst plugin from the good set
+ This package provides flv demuxer, parser and muxer elements.
