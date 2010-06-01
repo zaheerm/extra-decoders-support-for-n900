@@ -44,13 +44,6 @@
 GST_DEBUG_CATEGORY_STATIC (rtspreal_debug);
 #define GST_CAT_DEFAULT (rtspreal_debug)
 
-/* elementfactory information */
-static const GstElementDetails rtspreal_details =
-GST_ELEMENT_DETAILS ("RealMedia RTSP Extension",
-    "Network/Extension/Protocol",
-    "Extends RTSP so that it can handle RealMedia setup",
-    "Wim Taymans <wim.taymans@gmail.com>");
-
 #define SERVER_PREFIX "RealServer"
 #define DEFAULT_BANDWIDTH	"10485800"
 
@@ -118,15 +111,19 @@ rtsp_ext_real_before_send (GstRTSPExtension * ext, GstRTSPMessage * request)
     }
     case GST_RTSP_DESCRIBE:
     {
-      gst_rtsp_message_add_header (request, GST_RTSP_HDR_BANDWIDTH,
-          DEFAULT_BANDWIDTH);
-      gst_rtsp_message_add_header (request, GST_RTSP_HDR_GUID,
-          "00000000-0000-0000-0000-000000000000");
-      gst_rtsp_message_add_header (request, GST_RTSP_HDR_REGION_DATA, "0");
-      gst_rtsp_message_add_header (request, GST_RTSP_HDR_CLIENT_ID,
-          "Linux_2.4_6.0.9.1235_play32_RN01_EN_586");
-      gst_rtsp_message_add_header (request, GST_RTSP_HDR_MAX_ASM_WIDTH, "1");
-      gst_rtsp_message_add_header (request, GST_RTSP_HDR_LANGUAGE, "en-US");
+      if (ctx->isreal) {
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_BANDWIDTH,
+            DEFAULT_BANDWIDTH);
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_GUID,
+            "00000000-0000-0000-0000-000000000000");
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_REGION_DATA, "0");
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_CLIENT_ID,
+            "Linux_2.4_6.0.9.1235_play32_RN01_EN_586");
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_MAX_ASM_WIDTH, "1");
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_LANGUAGE, "en-US");
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_REQUIRE,
+            "com.real.retain-entity-for-setup");
+      }
       break;
     }
     case GST_RTSP_SETUP:
@@ -136,6 +133,7 @@ rtsp_ext_real_before_send (GstRTSPExtension * ext, GstRTSPMessage * request)
             g_strdup_printf ("%s, sd=%s", ctx->challenge2, ctx->checksum);
         gst_rtsp_message_add_header (request, GST_RTSP_HDR_REAL_CHALLENGE2,
             value);
+        gst_rtsp_message_add_header (request, GST_RTSP_HDR_IF_MATCH, ctx->etag);
         g_free (value);
       }
       break;
@@ -167,6 +165,22 @@ rtsp_ext_real_after_send (GstRTSPExtension * ext, GstRTSPMessage * req,
 
       gst_rtsp_ext_real_calc_response_and_checksum (ctx->challenge2,
           ctx->checksum, challenge1);
+
+      GST_DEBUG_OBJECT (ctx, "Found Real challenge tag");
+      ctx->isreal = TRUE;
+      break;
+    }
+    case GST_RTSP_DESCRIBE:
+    {
+      gchar *etag = NULL;
+      guint len;
+
+      gst_rtsp_message_get_header (resp, GST_RTSP_HDR_ETAG, &etag, 0);
+      if (etag) {
+        len = sizeof (ctx->etag);
+        strncpy (ctx->etag, etag, len);
+        ctx->etag[len - 1] = '\0';
+      }
       break;
     }
     default:
@@ -191,11 +205,16 @@ G_STMT_START {			       \
   }                                    \
 } G_STMT_END
 
+/* FIXME: remove once we depend on GLib >= 2.20 */
+#if GLIB_CHECK_VERSION (2, 20, 0)
+#define gst_rtsp_base64_decode_ip g_base64_decode_inplace
+#endif
+
 #define READ_BUFFER_GEN(src, func, name, dest, dest_len)    \
 G_STMT_START {			                            \
-  dest = (gchar *)func (src, name);                                  \
+  dest = (gchar *)func (src, name);                         \
   if (!dest) {                                              \
-    dest = "";                                              \
+    dest = (char *) "";                                     \
     dest_len = 0;                                           \
   }                                                         \
   else if (!strncmp (dest, "buffer;\"", 8)) {               \
@@ -229,11 +248,11 @@ G_STMT_START {			                          \
 G_STMT_START {			                              \
   const gchar *val = gst_sdp_media_get_attribute_val (media, name); \
   if (val && !strncmp (val, "string;\"", 8)) {                \
-    dest = (gchar *) val + 8;                                           \
+    dest = (gchar *) val + 8;                                 \
     dest_len = strlen (dest) - 1;                             \
     dest[dest_len] = '\0';                                    \
   } else {                                                    \
-    dest = "";                                                \
+    dest = (char *) "";                                       \
     dest_len = 0;                                             \
   }                                                           \
 } G_STMT_END
@@ -303,6 +322,7 @@ rtsp_ext_real_parse_sdp (GstRTSPExtension * ext, GstSDPMessage * sdp,
     ctx->duration = MAX (ctx->duration, intval);
   }
 
+  /* FIXME: use GstByteWriter to write the header */
   /* PROP */
   offset = 0;
   size = 50;
@@ -331,7 +351,7 @@ rtsp_ext_real_parse_sdp (GstRTSPExtension * ext, GstSDPMessage * sdp,
   READ_BUFFER (sdp, "Comment", comment, comment_len);
   READ_BUFFER (sdp, "Copyright", copyright, copyright_len);
 
-  size = 22 + title_len + author_len + comment_len + copyright_len;
+  size = 18 + title_len + author_len + comment_len + copyright_len;
   ENSURE_SIZE (offset + size);
   datap = data + offset;
 
@@ -348,7 +368,8 @@ rtsp_ext_real_parse_sdp (GstRTSPExtension * ext, GstSDPMessage * sdp,
   /* fix the hashtale for the rule parser */
   rules = g_string_new ("");
   vars = g_hash_table_new (g_str_hash, g_str_equal);
-  g_hash_table_insert (vars, "Bandwidth", DEFAULT_BANDWIDTH);
+  g_hash_table_insert (vars, (gchar *) "Bandwidth",
+      (gchar *) DEFAULT_BANDWIDTH);
 
   /* MDPR */
   for (i = 0; i < ctx->n_streams; i++) {
@@ -572,7 +593,9 @@ rtsp_ext_real_parse_sdp (GstRTSPExtension * ext, GstSDPMessage * sdp,
   GST_BUFFER_SIZE (buf) = offset;
 
   /* Set on caps */
+  GST_BUFFER_FLAG_SET (buf, GST_BUFFER_FLAG_IN_CAPS);
   gst_structure_set (props, "config", GST_TYPE_BUFFER, buf, NULL);
+  gst_buffer_unref (buf);
 
   /* Overwrite encoding and media fields */
   gst_structure_set (props, "encoding-name", G_TYPE_STRING, "X-REAL-RDT", NULL);
@@ -644,13 +667,9 @@ reset:
   }
 }
 
-static void gst_rtsp_real_finalize (GObject * object);
-
-static GstStateChangeReturn gst_rtsp_real_change_state (GstElement * element,
-    GstStateChange transition);
-
 static void gst_rtsp_real_extension_init (gpointer g_iface,
     gpointer iface_data);
+static void gst_rtsp_real_finalize (GObject * obj);
 
 static void
 _do_init (GType rtspreal_type)
@@ -673,24 +692,18 @@ gst_rtsp_real_base_init (gpointer klass)
 {
   GstElementClass *element_class = GST_ELEMENT_CLASS (klass);
 
-  gst_element_class_set_details (element_class, &rtspreal_details);
+  gst_element_class_set_details_simple (element_class,
+      "RealMedia RTSP Extension", "Network/Extension/Protocol",
+      "Extends RTSP so that it can handle RealMedia setup",
+      "Wim Taymans <wim.taymans@gmail.com>");
 }
 
 static void
 gst_rtsp_real_class_init (GstRTSPRealClass * g_class)
 {
-  GObjectClass *gobject_class;
-  GstElementClass *gstelement_class;
-  GstRTSPRealClass *klass;
-
-  klass = (GstRTSPRealClass *) g_class;
-  gobject_class = (GObjectClass *) klass;
-  gstelement_class = (GstElementClass *) klass;
+  GObjectClass *gobject_class = (GObjectClass *) g_class;
 
   gobject_class->finalize = gst_rtsp_real_finalize;
-
-  gstelement_class->change_state =
-      GST_DEBUG_FUNCPTR (gst_rtsp_real_change_state);
 
   GST_DEBUG_CATEGORY_INIT (rtspreal_debug, "rtspreal", 0,
       "RealMedia RTSP extension");
@@ -703,26 +716,26 @@ gst_rtsp_real_init (GstRTSPReal * rtspreal, GstRTSPRealClass * klass)
 }
 
 static void
-gst_rtsp_real_finalize (GObject * object)
+gst_rtsp_stream_free (GstRTSPRealStream * stream)
 {
-  GstRTSPReal *rtspreal;
+  g_free (stream->stream_name);
+  g_free (stream->mime_type);
+  gst_asm_rule_book_free (stream->rulebook);
+  g_free (stream->type_specific_data);
 
-  rtspreal = GST_RTSP_REAL (object);
-
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+  g_free (stream);
 }
 
-static GstStateChangeReturn
-gst_rtsp_real_change_state (GstElement * element, GstStateChange transition)
+static void
+gst_rtsp_real_finalize (GObject * obj)
 {
-  GstStateChangeReturn ret;
-  GstRTSPReal *rtspreal;
+  GstRTSPReal *r = (GstRTSPReal *) obj;
 
-  rtspreal = GST_RTSP_REAL (element);
+  g_list_foreach (r->streams, (GFunc) gst_rtsp_stream_free, NULL);
+  g_list_free (r->streams);
+  g_free (r->rules);
 
-  ret = GST_ELEMENT_CLASS (parent_class)->change_state (element, transition);
-
-  return ret;
+  G_OBJECT_CLASS (parent_class)->finalize (obj);
 }
 
 static void
