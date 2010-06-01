@@ -17,6 +17,7 @@ Most are not sure what Ogg Support is, and when they install decoders-support th
 =Technical stuff=
 
 ogg, flac, vorbis, theora - ogg-support
+
 mkv, rm, musepack, vp8, flv  - decoders-support
 
 1) Move all dependencies of ogg-support to decoders-support instead of the current "decoders-support depends on ogg-support".
