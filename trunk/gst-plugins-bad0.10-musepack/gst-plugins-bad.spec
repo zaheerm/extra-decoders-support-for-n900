@@ -5,7 +5,7 @@
 
 Name: 		%{gstreamer}-plugins-bad
 Version: 	0.10.13.1
-Release: 	0.20100104.174527.gst
+Release: 	0.20100603.225926.gst
 Summary: 	GStreamer plug-ins of bad quality
 
 %define 	majorminor	0.10

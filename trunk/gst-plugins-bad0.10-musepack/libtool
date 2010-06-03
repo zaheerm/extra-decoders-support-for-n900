@@ -44,7 +44,7 @@ available_tags=" CXX"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host tom-laptop:
+# Libtool was configured on host zafluendo:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7312,7 +7312,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host tom-laptop:
+# Libtool was configured on host zafluendo:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7506,15 +7506,15 @@ predeps=""
 
 # Dependencies to place after the objects being linked to create a
 # shared library.
-postdeps="-lstdc++ -lm -L/usr/local/lib -L/lib -L/usr/lib -lgcc_s -lc -lgcc_s"
+postdeps="-lstdc++ -lm -lgcc_s -lc -lgcc_s"
 
 # The directories searched by this compiler when creating a shared
 # library
-compiler_lib_search_dirs="/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1 /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1/../../../../arm-none-linux-gnueabi/lib /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/lib /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/usr/lib"
+compiler_lib_search_dirs="/lib /usr/lib /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1 /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1/../../../../arm-none-linux-gnueabi/lib /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/lib /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/usr/lib"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
-compiler_lib_search_path="-L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1 -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1/../../../../arm-none-linux-gnueabi/lib -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/lib -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/usr/lib"
+compiler_lib_search_path="-L/lib -L/usr/lib -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1 -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1/../../../../arm-none-linux-gnueabi/lib -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/lib -L/scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../arm-none-linux-gnueabi/libc/usr/lib"
 
 # Method to check whether dependent libraries are shared objects.
 deplibs_check_method="pass_all"
