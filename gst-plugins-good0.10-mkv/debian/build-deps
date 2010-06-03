@@ -1,0 +1,40 @@
+@GST_LIB_DEV_DEP@
+@GST_EXTRA_BUILD_DEPENDS@
+libgstreamer-plugins-base0.10-dev (>= 0.10.21)
+autotools-dev
+cdbs (>= 0.4.20)
+type-handling (>= 0.2.14)
+debhelper (>= 5)
+pkg-config (>= 0.11.0)
+gtk-doc-tools
+gconf2
+libglib2.0-dev (>= 2.12)
+liboil0.3-dev (>= 0.3.8)
+libcairo-dev
+libcaca-dev
+libspeex-dev (>= 1.1.6)
+libpng12-dev
+libshout3-dev
+libjpeg62-dev (>= 6b)
+libaa1-dev (>= 1.4p5)
+libesd0-dev (>= 0.2.28)
+libflac-dev (>= 1.1.3)
+libdv4-dev | libdv-dev
+libgconf2-dev
+libxdamage-dev
+libxext-dev
+libxfixes-dev
+libxv-dev
+libxml2-dev
+libgtk2.0-dev
+libdbus-1-dev (>= 0.32)
+libhal-dev (>= 0.5.6)
+libtag1-dev
+libwavpack-dev (>= 4.20)
+gstreamer-tools (>= 0.10.14)
+lsb-release
+gstreamer0.10-plugins-base
+libsoup2.4-dev (>= 2.3.2)
+libpulse-dev (>= 0.9.8)
+libbz2-dev
+libflac-dev

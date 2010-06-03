@@ -1,0 +1,5 @@
+gstreamer:Version=0.10
+gstreamer:Elements=matroskademux, matroskamux, webmmux
+gstreamer:Encoders=video/webm; video/x-matroska
+gstreamer:Decoders=video/webm; video/x-matroska
+shlibs:Depends=libc6 (>= 2.5.0-1), libgcc1 (>= 1:4.2.1), libglib2.0-0 (>= 2.20.0), libgstreamer-plugins-base0.10-0 (>= 0.10.25), libgstreamer0.10-0 (>= 0.10.25), libxml2 (>= 2.6.32)

@@ -1,0 +1,26 @@
+gst-plugins-good0.10-mkv (0.10.16-0maemo5) unstable; urgency=low
+
+  * Add webm typefinder
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Tue, 25 May 2010 01:39:11 +0100
+gst-plugins-good0.10-mkv (0.10.16-0maemo4) unstable; urgency=low
+
+  * Support webm.
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Tue, 25 May 2010 00:48:11 +0100
+gst-plugins-good0.10-mkv (0.10.16-0maemo3) unstable; urgency=low
+
+  * Remove registering with tracker, let decoders-support do that.
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Thu, 21 Jan 2010 10:32:00 +0000
+gst-plugins-good0.10-mkv (0.10.16-0maemo2) unstable; urgency=low
+
+  * PR1.1 has libgstreamer-plugins-base0.10-0 while PR1.0 has
+    libgstreamer-plugins-base0.10 so depend on either
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Wed, 20 Jan 2010 22:37:00 +0000
+gst-plugins-good0.10-mkv (0.10.16-0maemo1) unstable; urgency=low
+
+  * Initial package.
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Wed, 20 Jan 2010 18:13:00 +0000
