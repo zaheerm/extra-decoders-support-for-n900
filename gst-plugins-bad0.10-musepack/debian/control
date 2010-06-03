@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Tomasz Dominikowski <dominikowski@gmail.com>
 XSBC-Original-Maintainer: Maemo Multimedia <multimedia@maemo.org>
 XSBC-Original-Maintainer: Maintainers of GStreamer packages <pkg-gstreamer-maintainers@lists.alioth.debian.org>
-Build-Depends: libgstreamer0.10-dev (>= 0.10.20-3),  libasound2-dev (>= 0.9.1), libgstreamer-plugins-base0.10-dev (>= 0.10.20), gstreamer-tools (>= 0.10.14), autotools-dev, cdbs (>= 0.4.32), debhelper (>= 5), pkg-config (>= 0.11.0), gtk-doc-tools, liboil0.3-dev (>= 0.3.8), libbz2-dev, libsdl1.2-dev, libgtk2.0-dev (>= 2.2.0), libsndfile1-dev (>= 1.0.16), lsb-release, libglade2-dev (>= 2.6.0), libexif-dev (>= 0.6.16), libexempi-dev, libiptcdata0-dev (>= 1.0.2), libwildmidi-dev, libmpcdec-dev, gstreamer0.10-plugins-base
+Build-Depends: libgstreamer0.10-dev (>= 0.10.20-3),  libasound2-dev (>= 0.9.1), libgstreamer-plugins-base0.10-dev (>= 0.10.20), gstreamer-tools (>= 0.10.14), cdbs (>= 0.4.32), debhelper (>= 5), pkg-config (>= 0.11.0), liboil0.3-dev (>= 0.3.8), libmpcdec-dev, gstreamer0.10-plugins-base
 Standards-Version: 3.8.0
 
 Package: gstreamer0.10-musepack
