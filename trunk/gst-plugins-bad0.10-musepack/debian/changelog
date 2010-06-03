@@ -1,3 +1,9 @@
+gst-plugins-bad0.10-musepack (0.10.19-maemo1) unstable; urgency=low
+
+  * Updated to newest release
+
+ -- Tomasz <dominikowski@gmail.com>  Thu, 03 Jun 2010 20:56:28 +0200
+
 gst-plugins-bad0.10-musepack (0.10.13-git209-0maemo16+0m5) unstable; urgency=low
 
   * Initial release, all plugins disabled, apart from musepack
