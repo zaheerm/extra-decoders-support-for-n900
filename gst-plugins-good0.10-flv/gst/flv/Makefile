@@ -37,7 +37,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-host_triplet = i486-pc-linux-gnu
+host_triplet = arm-unknown-linux-gnueabi
 subdir = gst/flv
 DIST_COMMON = $(noinst_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in
@@ -85,13 +85,13 @@ am__DEPENDENCIES_1 =
 libgstflv_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 am_libgstflv_la_OBJECTS = libgstflv_la-gstflvdemux.lo \
-	libgstflv_la-gstflvmux.lo
+	libgstflv_la-gstflvmux.lo libgstflv_la-gstbytereader.lo
 libgstflv_la_OBJECTS = $(am_libgstflv_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 #DEP_FILES = ./$(DEPDIR)/libgstflv_la-gstflvdemux.Plo \
-#	./$(DEPDIR)/libgstflv_la-gstflvmux.Plo 
+#	./$(DEPDIR)/libgstflv_la-gstflvmux.Plo ./$(DEPDIR)/libgstflv_la-gstbytereader.Plo
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) \
@@ -109,19 +109,19 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 AALIB_CFLAGS = 
 AALIB_CONFIG = 
 AALIB_LIBS = 
-ACLOCAL = ${SHELL} /home/zaheer/MyDocs/gst-plugins-good0.10-flv-0.10.15/missing --run aclocal-1.8
+ACLOCAL = ${SHELL} /home/zaheer/gst-plugins-good0.10-flv/missing --run aclocal-1.8
 ACLOCAL_AMFLAGS = -I m4 -I common/m4
 AMDEP_FALSE = 
 AMDEP_TRUE = #
-AMTAR = ${SHELL} /home/zaheer/MyDocs/gst-plugins-good0.10-flv-0.10.15/missing --run tar
+AMTAR = ${SHELL} /home/zaheer/gst-plugins-good0.10-flv/missing --run tar
 AM_MAKEFLAGS = 
 ANNODEX_CFLAGS = 
 ANNODEX_LIBS = 
 AR = ar
 AS = as
-AUTOCONF = ${SHELL} /home/zaheer/MyDocs/gst-plugins-good0.10-flv-0.10.15/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/zaheer/MyDocs/gst-plugins-good0.10-flv-0.10.15/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/zaheer/MyDocs/gst-plugins-good0.10-flv-0.10.15/missing --run automake-1.8
+AUTOCONF = ${SHELL} /home/zaheer/gst-plugins-good0.10-flv/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/zaheer/gst-plugins-good0.10-flv/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/zaheer/gst-plugins-good0.10-flv/missing --run automake-1.8
 AWK = gawk
 BUILD_EXAMPLES_FALSE = 
 BUILD_EXAMPLES_TRUE = #
@@ -205,7 +205,7 @@ GST_BASE_CFLAGS = -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0
 GST_BASE_LIBS = -pthread -lgstbase-0.10 -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lxml2 -lglib-2.0  
 GST_CFLAGS = -I$(top_srcdir)/gst-libs -I$(top_builddir)/gst-libs -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libxml2   $(GST_OPTION_CFLAGS)
 GST_CHECK_CFLAGS = -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libxml2  
-GST_CHECK_LIBS = -pthread -lgstcheck-0.10 -lm -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lxml2 -lglib-2.0  
+GST_CHECK_LIBS = -pthread -lgstcheck-0.10 -lcheck_pic -lm -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lxml2 -lglib-2.0  
 GST_CONTROLLER_CFLAGS = -pthread -I/usr/include/gstreamer-0.10 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/libxml2  
 GST_CONTROLLER_LIBS = -pthread -lgstcontroller-0.10 -lgstreamer-0.10 -lgobject-2.0 -lgmodule-2.0 -lgthread-2.0 -lrt -lxml2 -lglib-2.0  
 GST_CXXFLAGS = -I$(top_srcdir)/gst-libs -I$(top_builddir)/gst-libs  $(GST_OPTION_CXXFLAGS)
@@ -232,7 +232,7 @@ GST_PLUGINS_SELECTED =                                                   flv
 GST_PLUGIN_LDFLAGS = -module -avoid-version -export-symbols-regex '^_*gst_plugin_desc$$' -no-undefined
 GST_PREFIX = /usr
 GST_TOOLS_DIR = /usr/bin
-GTKDOC_CHECK = /usr/bin/gtkdoc-check
+GTKDOC_CHECK = 
 GTK_CFLAGS = 
 GTK_DOC_USE_LIBTOOL_FALSE = #
 GTK_DOC_USE_LIBTOOL_TRUE = 
@@ -243,16 +243,16 @@ HAVE_AVC1394 =
 HAVE_BZ2 = 
 HAVE_CPU_ALPHA_FALSE = 
 HAVE_CPU_ALPHA_TRUE = #
-HAVE_CPU_ARM_FALSE = 
-HAVE_CPU_ARM_TRUE = #
+HAVE_CPU_ARM_FALSE = #
+HAVE_CPU_ARM_TRUE = 
 HAVE_CPU_CRISV32_FALSE = 
 HAVE_CPU_CRISV32_TRUE = #
 HAVE_CPU_CRIS_FALSE = 
 HAVE_CPU_CRIS_TRUE = #
 HAVE_CPU_HPPA_FALSE = 
 HAVE_CPU_HPPA_TRUE = #
-HAVE_CPU_I386_FALSE = #
-HAVE_CPU_I386_TRUE = 
+HAVE_CPU_I386_FALSE = 
+HAVE_CPU_I386_TRUE = #
 HAVE_CPU_IA64_FALSE = 
 HAVE_CPU_IA64_TRUE = #
 HAVE_CPU_M68K_FALSE = 
@@ -323,7 +323,7 @@ MAINT = #
 MAINTAINER_MODE_FALSE = 
 MAINTAINER_MODE_TRUE = #
 MAKEFLAGS = 
-MAKEINFO = ${SHELL} /home/zaheer/MyDocs/gst-plugins-good0.10-flv-0.10.15/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/zaheer/gst-plugins-good0.10-flv/missing --run makeinfo
 MKINSTALLDIRS = $(top_builddir)/./mkinstalldirs
 MSGFMT = /scratchbox/tools/bin/msgfmt
 MSGMERGE = /scratchbox/tools/bin/msgmerge
@@ -557,25 +557,25 @@ am__include = include
 am__leading_dot = .
 am__quote = 
 bindir = ${exec_prefix}/bin
-build = i486-pc-linux-gnu
-build_alias = i486-linux-gnu
-build_cpu = i486
-build_os = linux-gnu
-build_vendor = pc
+build = arm-unknown-linux-gnueabi
+build_alias = arm-linux-gnueabi
+build_cpu = arm
+build_os = linux-gnueabi
+build_vendor = unknown
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = i486-pc-linux-gnu
+host = arm-unknown-linux-gnueabi
 host_alias = 
-host_cpu = i486
-host_os = linux-gnu
-host_vendor = pc
+host_cpu = arm
+host_os = linux-gnueabi
+host_vendor = unknown
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${prefix}/share/info
-install_sh = /home/zaheer/MyDocs/gst-plugins-good0.10-flv-0.10.15/install-sh
+install_sh = /home/zaheer/gst-plugins-good0.10-flv/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${prefix}/lib/gst-plugins-good0.10-flv
 localedir = ${datarootdir}/locale
@@ -601,9 +601,9 @@ plugin_LTLIBRARIES = libgstflv.la
 libgstflv_la_CFLAGS = $(GST_BASE_CFLAGS) $(GST_CFLAGS)
 libgstflv_la_LIBADD = $(GST_BASE_LIBS) $(GST_LIBS)
 libgstflv_la_LDFLAGS = ${GST_PLUGIN_LDFLAGS} 
-libgstflv_la_SOURCES = gstflvdemux.c gstflvmux.c
+libgstflv_la_SOURCES = gstflvdemux.c gstflvmux.c gstbytereader.c
 libgstflv_la_LIBTOOLFLAGS = --tag=disable-static
-noinst_HEADERS = gstflvdemux.h gstflvmux.h
+noinst_HEADERS = gstflvdemux.h gstflvmux.h gstbytereader.h
 all: all-am
 
 .SUFFIXES:
@@ -723,6 +723,30 @@ libgstflv_la-gstflvdemux.lo: gstflvdemux.c
 #	depfile='$(DEPDIR)/libgstflv_la-gstflvdemux.Plo' tmpdepfile='$(DEPDIR)/libgstflv_la-gstflvdemux.TPlo' 
 #	$(CCDEPMODE) $(depcomp) 
 	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstflvdemux.lo `test -f 'gstflvdemux.c' || echo '$(srcdir)/'`gstflvdemux.c
+
+libgstflv_la-gstbytereader.o: gstbytereader
+#	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstbytereader.o -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" -c -o libgstflv_la-gstbytereader.o `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c; \
+#	then mv -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" "$(DEPDIR)/libgstflv_la-gstbytereader.Po"; else rm -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo"; exit 1; fi
+#       source='gstbytereader.c' object='libgstflv_la-gstbytereader.o' libtool=no 
+#       depfile='$(DEPDIR)/libgstflv_la-gstbytereader.Po' tmpdepfile='$(DEPDIR)/libgstflv_la-gstbytereader.TPo' 
+#       $(CCDEPMODE) $(depcomp) 
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstbytereader.o `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c
+
+libgstflv_la-gstbytereader.obj: gstbytereader.c
+#	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstbytereader.obj -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" -c -o libgstflv_la-gstbytereader.obj `if test -f 'gstbytereader.c'; then $(CYGPATH_W) 'gstbytereader.c'; else $(CYGPATH_W) '$(srcdir)/gstbytereader.c'; fi`; \
+#	then mv -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" "$(DEPDIR)/libgstflv_la-gstbytereader.Po"; else rm -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo"; exit 1; fi
+#       source='gstbytereader.c' object='libgstflv_la-gstbytereader.obj' libtool=no 
+#       depfile='$(DEPDIR)/libgstflv_la-gstbytereader.Po' tmpdepfile='$(DEPDIR)/libgstflv_la-gstbytereader.TPo' 
+#       $(CCDEPMODE) $(depcomp) 
+	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstbytereader.obj `if test -f 'gstbytereader.c'; then $(CYGPATH_W) 'gstbytereader.c'; else $(CYGPATH_W) '$(srcdir)/gstbytereader.c'; fi`
+
+libgstflv_la-gstbytereader.lo: gstbytereader.c
+#    if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstbytereader.lo -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" -c -o libgstflv_la-gstbytereader.lo `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c; \
+#    then mv -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" "$(DEPDIR)/libgstflv_la-gstbytereader.Plo"; else rm -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo"; exit 1; fi
+#       source='gstbytereader.c' object='libgstflv_la-gstbytereader.lo' libtool=yes 
+#       depfile='$(DEPDIR)/libgstflv_la-gstbytereader.Plo' tmpdepfile='$(DEPDIR)/libgstflv_la-gstbytereader.TPlo' 
+#	$(CCDEPMODE) $(depcomp) 
+	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstbytereader.lo `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c
 
 libgstflv_la-gstflvmux.o: gstflvmux.c
 #	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstflvmux.o -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstflvmux.Tpo" -c -o libgstflv_la-gstflvmux.o `test -f 'gstflvmux.c' || echo '$(srcdir)/'`gstflvmux.c; \

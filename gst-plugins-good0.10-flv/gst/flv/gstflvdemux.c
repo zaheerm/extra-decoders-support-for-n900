@@ -38,7 +38,7 @@
 #include "gstflvmux.h"
 
 #include <string.h>
-#include <gst/base/gstbytereader.h>
+#include "gstbytereader.h"
 
 static GstStaticPadTemplate flv_sink_template = GST_STATIC_PAD_TEMPLATE ("sink",
     GST_PAD_SINK,
