@@ -1,0 +1,5 @@
+gstreamer:Version=0.10
+gstreamer:Elements=vp8dec, vp8enc
+gstreamer:Encoders=video/x-vp8
+gstreamer:Decoders=video/x-vp8
+shlibs:Depends=libc6 (>= 2.5.0-1), libglib2.0-0 (>= 2.20.0), libgstreamer-plugins-base0.10-0 (>= 0.10.25), libgstreamer0.10-0 (>= 0.10.25), libvpx0 (>= 0.9.0), libxml2 (>= 2.6.32)

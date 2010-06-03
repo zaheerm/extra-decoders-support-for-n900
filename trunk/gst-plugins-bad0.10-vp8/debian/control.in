@@ -1,0 +1,23 @@
+Source: gst-plugins-bad0.10-vp8
+Section: libs
+Priority: optional
+Maintainer: Zaheer Abbas Merali <zaheermerali@gmail.com>
+Build-Depends:  libgstreamer0.10-dev (>= 0.10.23), 
+                libgstreamer-plugins-base0.10-dev (>= 0.10.23), 
+                autotools-dev, 
+                cdbs (>= 0.4.20), 
+                debhelper (>= 5), 
+                pkg-config (>= 0.11.0), 
+                libglib2.0-dev (>= 2.12), 
+                liboil0.3-dev (>= 0.3.8), 
+                gstreamer-tools (>= 0.10.23), 
+                gstreamer0.10-plugins-base,
+                libvpx-dev 
+Standards-Version: 3.8.0
+
+Package: gstreamer0.10-vp8
+Architecture: any
+Section: libs
+Depends: ${misc:Depends}, ${shlibs:Depends},  libgstreamer-plugins-base0.10 (>= 0.10.23) | libgstreamer-plugins-base0.10-0 (>= 0.10.23), libvpx0
+Description: VP8 gst plugin from the bad set
+

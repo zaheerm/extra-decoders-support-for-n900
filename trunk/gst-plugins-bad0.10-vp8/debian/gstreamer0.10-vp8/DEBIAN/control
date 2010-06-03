@@ -1,0 +1,10 @@
+Package: gstreamer0.10-vp8
+Version: 0.10.18-0maemo1
+Section: libs
+Priority: optional
+Architecture: armel
+Depends: libc6 (>= 2.5.0-1), libglib2.0-0 (>= 2.20.0), libgstreamer-plugins-base0.10-0 (>= 0.10.25), libgstreamer0.10-0 (>= 0.10.25), libvpx0 (>= 0.9.0), libxml2 (>= 2.6.32), libgstreamer-plugins-base0.10 (>= 0.10.23) | libgstreamer-plugins-base0.10-0 (>= 0.10.23), libvpx0
+Installed-Size: 132
+Maintainer: Zaheer Abbas Merali <zaheermerali@gmail.com>
+Source: gst-plugins-bad0.10-vp8
+Description: VP8 gst plugin from the bad set
