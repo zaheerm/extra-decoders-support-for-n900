@@ -67,7 +67,7 @@ VERSIONIZE= \
 	plugins-ugly-doc.install \
 
 # debug package
-DEB_DH_STRIP_ARGS := --dbg-package=$(gst_pkgname)-plugins-ugly-dbg
+# DEB_DH_STRIP_ARGS := --dbg-package=$(gst_pkgname)-plugins-rm-dbg
 
 
 # Let's decide the package name and url depending on the distribution
