@@ -85,13 +85,13 @@ am__DEPENDENCIES_1 =
 libgstflv_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 am_libgstflv_la_OBJECTS = libgstflv_la-gstflvdemux.lo \
-	libgstflv_la-gstflvmux.lo
+	libgstflv_la-gstflvmux.lo libgstflv_la-gstbytereader.lo
 libgstflv_la_OBJECTS = $(am_libgstflv_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/libgstflv_la-gstflvdemux.Plo \
-@AMDEP_TRUE@	./$(DEPDIR)/libgstflv_la-gstflvmux.Plo 
+@AMDEP_TRUE@	./$(DEPDIR)/libgstflv_la-gstflvmux.Plo ./$(DEPDIR)/libgstflv_la-gstbytereader.Plo
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) \
@@ -601,9 +601,9 @@ plugin_LTLIBRARIES = libgstflv.la
 libgstflv_la_CFLAGS = $(GST_BASE_CFLAGS) $(GST_CFLAGS)
 libgstflv_la_LIBADD = $(GST_BASE_LIBS) $(GST_LIBS)
 libgstflv_la_LDFLAGS = ${GST_PLUGIN_LDFLAGS} 
-libgstflv_la_SOURCES = gstflvdemux.c gstflvmux.c
+libgstflv_la_SOURCES = gstflvdemux.c gstflvmux.c gstbytereader.c
 libgstflv_la_LIBTOOLFLAGS = --tag=disable-static
-noinst_HEADERS = gstflvdemux.h gstflvmux.h
+noinst_HEADERS = gstflvdemux.h gstflvmux.h gstbytereader.h
 all: all-am
 
 .SUFFIXES:
@@ -723,6 +723,30 @@ libgstflv_la-gstflvdemux.lo: gstflvdemux.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/libgstflv_la-gstflvdemux.Plo' tmpdepfile='$(DEPDIR)/libgstflv_la-gstflvdemux.TPlo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstflvdemux.lo `test -f 'gstflvdemux.c' || echo '$(srcdir)/'`gstflvdemux.c
+
+libgstflv_la-gstbytereader.o: gstbytereader
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstbytereader.o -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" -c -o libgstflv_la-gstbytereader.o `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" "$(DEPDIR)/libgstflv_la-gstbytereader.Po"; else rm -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       source='gstbytereader.c' object='libgstflv_la-gstbytereader.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       depfile='$(DEPDIR)/libgstflv_la-gstbytereader.Po' tmpdepfile='$(DEPDIR)/libgstflv_la-gstbytereader.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstbytereader.o `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c
+
+libgstflv_la-gstbytereader.obj: gstbytereader.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstbytereader.obj -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" -c -o libgstflv_la-gstbytereader.obj `if test -f 'gstbytereader.c'; then $(CYGPATH_W) 'gstbytereader.c'; else $(CYGPATH_W) '$(srcdir)/gstbytereader.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" "$(DEPDIR)/libgstflv_la-gstbytereader.Po"; else rm -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       source='gstbytereader.c' object='libgstflv_la-gstbytereader.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       depfile='$(DEPDIR)/libgstflv_la-gstbytereader.Po' tmpdepfile='$(DEPDIR)/libgstflv_la-gstbytereader.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstbytereader.obj `if test -f 'gstbytereader.c'; then $(CYGPATH_W) 'gstbytereader.c'; else $(CYGPATH_W) '$(srcdir)/gstbytereader.c'; fi`
+
+libgstflv_la-gstbytereader.lo: gstbytereader.c
+@am__fastdepCC_TRUE@    if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstbytereader.lo -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" -c -o libgstflv_la-gstbytereader.lo `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c; \
+@am__fastdepCC_TRUE@    then mv -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo" "$(DEPDIR)/libgstflv_la-gstbytereader.Plo"; else rm -f "$(DEPDIR)/libgstflv_la-gstbytereader.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       source='gstbytereader.c' object='libgstflv_la-gstbytereader.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@       depfile='$(DEPDIR)/libgstflv_la-gstbytereader.Plo' tmpdepfile='$(DEPDIR)/libgstflv_la-gstbytereader.TPlo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -c -o libgstflv_la-gstbytereader.lo `test -f 'gstbytereader.c' || echo '$(srcdir)/'`gstbytereader.c
 
 libgstflv_la-gstflvmux.o: gstflvmux.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgstflv_la_CFLAGS) $(CFLAGS) -MT libgstflv_la-gstflvmux.o -MD -MP -MF "$(DEPDIR)/libgstflv_la-gstflvmux.Tpo" -c -o libgstflv_la-gstflvmux.o `test -f 'gstflvmux.c' || echo '$(srcdir)/'`gstflvmux.c; \
