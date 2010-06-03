@@ -1,0 +1,23 @@
+Source: gst-plugins-good0.10-mkv
+Section: libs
+Priority: optional
+Maintainer: Zaheer Abbas Merali <zaheermerali@gmail.com>
+Build-Depends: 	libgstreamer0.10-dev (>= 0.10.23), 
+		libgstreamer-plugins-base0.10-dev (>= 0.10.23), 
+		autotools-dev, 
+		cdbs (>= 0.4.20), 
+		debhelper (>= 5), 
+		pkg-config (>= 0.11.0), 
+		libglib2.0-dev (>= 2.12), 
+		liboil0.3-dev (>= 0.3.8), 
+		gstreamer-tools (>= 0.10.23), 
+		gstreamer0.10-plugins-base 
+Standards-Version: 3.8.0
+
+Package: gstreamer0.10-mkv
+Architecture: any
+Section: libs
+Depends: ${misc:Depends}, ${shlibs:Depends},  libgstreamer-plugins-base0.10 (>= 0.10.23) | libgstreamer-plugins-base0.10-0 (>= 0.10.23)
+Conflicts: gstreamer0.10-plugins-good-extra (= 0.10.15-git180-0maemo8+0m5)
+Description: MKV gst plugin from the good set
+ This package provides mkv (matroska) demuxer and muxer elements.
