@@ -18,7 +18,7 @@ Currently supported formats (0.4):
  * Real Media formats (may not be indexed, but seamless playback from built-in File Manager, seeking works, but might fail)
  * Matroska container (indexed, some formats used with this container may not be supported )
  * MPEG2 Transport Stream (mostly untested, works only for some people) 
- * WebM (untested)
+ * WebM (local WebM files tested, indexed, work fine)
 
 
 
