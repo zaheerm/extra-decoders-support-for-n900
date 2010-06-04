@@ -1,0 +1,2 @@
+patching file ext/ffmpeg/gstffmpegcodecmap.c
+Hunk #1 succeeded at 1423 with fuzz 2 (offset 372 lines).

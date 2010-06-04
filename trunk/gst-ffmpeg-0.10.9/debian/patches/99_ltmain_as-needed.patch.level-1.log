@@ -1,0 +1,12 @@
+missing header for unified diff at line 3 of patch
+can't find file to patch at input line 3
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|--- ltmain.sh.old	2007-10-09 07:38:25.000000000 +0200
+|+++ ltmain.sh	2007-10-09 07:39:25.000000000 +0200
+--------------------------
+File to patch: 
+Skip this patch? [y] 
+Skipping patch.
+2 out of 2 hunks ignored

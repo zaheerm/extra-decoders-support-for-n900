@@ -1,0 +1,23 @@
+Package: gstreamer0.10-ffmpeg-dbg
+Version: 0.10.9-2maemo2
+Section: debug
+Priority: extra
+Architecture: i386
+Depends: gstreamer0.10-ffmpeg (= 0.10.9-2maemo2)
+Installed-Size: 13772
+Maintainer: Zaheer Abbas Merali <zaheermerali@gmail.com>
+Source: gstreamer0.10-ffmpeg
+Description: FFmpeg plugin for GStreamer (debug symbols)
+ This GStreamer plugin supports a large number of audio and video compression
+ formats through the use of the FFmpeg library.  The plugin contains GStreamer
+ elements for decoding 90+ formats (AVI, MPEG, OGG, Matroska, ASF, ...),
+ demuxing 30+ formats and colorspace conversion.
+ .
+ http://www.ffmpeg.org/
+ http://gstreamer.freedesktop.org/
+ http://gstreamer.freedesktop.org/modules/gst-ffmpeg.html
+ .
+ This package contains unstripped shared libraries. It is provided primarily
+ to provide a backtrace with names in a debugger, this makes it somewhat
+ easier to interpret core dumps. The libraries are installed in
+ /usr/lib/debug and are automatically used by gdb.

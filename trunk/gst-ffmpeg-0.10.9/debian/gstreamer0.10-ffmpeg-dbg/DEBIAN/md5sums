@@ -1,0 +1,5 @@
+f87674eabb69faf74144600feb03f455  opt/maemo/usr/lib/debug/usr/lib/gstreamer-0.10/libgstffmpeg.so
+62b038b99b9e06e97161d0b2225c27e7  opt/maemo/usr/lib/debug/usr/lib/gstreamer-0.10/libgstffmpegscale.so
+b9626f0b8b807f16ad1135f8028d38ad  opt/maemo/usr/lib/debug/usr/lib/gstreamer-0.10/libgstpostproc.so
+006a58a1190fb4f4de81f990c1f6efe7  opt/maemo/usr/share/doc/gstreamer0.10-ffmpeg-dbg/changelog.gz
+d04471a6d9675e68f886672c378ba465  opt/maemo/usr/share/doc/gstreamer0.10-ffmpeg-dbg/changelog.Debian.gz
