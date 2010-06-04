@@ -1,3 +1,8 @@
+gst-plugins-good0.10-flv (0.10.23-0maemo2) unstable; urgency=low
+
+  * Remove unneeded dep.
+
+ -- Zaheer Merali <zaheermerali@gmail.com>  Fri, 4 Jun 2010 08:17:00 +0100
 gst-plugins-good0.10-flv (0.10.23-0maemo1) unstable; urgency=low
 
   * Remove registration of mimetypes.

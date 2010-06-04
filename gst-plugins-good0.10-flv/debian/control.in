@@ -17,6 +17,6 @@ Standards-Version: 3.8.0
 Package: gstreamer0.10-flv
 Architecture: any
 Section: libs
-Depends: ${misc:Depends}, ${shlibs:Depends},  gstreamer0.10-plugins-good (>= ${Source-Version})
+Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: FLV gst plugin from the good set
  This package provides flv demuxer, parser and muxer elements.
