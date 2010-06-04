@@ -2,9 +2,7 @@ Source: gst-plugins-bad0.10-musepack
 Section: libs
 Priority: extra
 Maintainer: Tomasz Dominikowski <dominikowski@gmail.com>
-XSBC-Original-Maintainer: Maemo Multimedia <multimedia@maemo.org>
-XSBC-Original-Maintainer: Maintainers of GStreamer packages <pkg-gstreamer-maintainers@lists.alioth.debian.org>
-Build-Depends: libgstreamer0.10-dev (>= 0.10.20-3),  libasound2-dev (>= 0.9.1), libgstreamer-plugins-base0.10-dev (>= 0.10.20), gstreamer-tools (>= 0.10.14), cdbs (>= 0.4.32), debhelper (>= 5), pkg-config (>= 0.11.0), liboil0.3-dev (>= 0.3.8), libmpcdec-dev, gstreamer0.10-plugins-base
+Build-Depends: libgstreamer0.10-dev (>= 0.10.21), , libgstreamer-plugins-base0.10-dev (>= 0.10.20), gstreamer-tools (>= 0.10.14), cdbs (>= 0.4.20), debhelper (>= 5), pkg-config (>= 0.11.0), liboil0.3-dev (>= 0.3.8), libmpcdec-dev, gstreamer0.10-plugins-base
 Standards-Version: 3.8.0
 
 Package: gstreamer0.10-musepack
@@ -13,12 +11,6 @@ Section: libs
 Depends: ${misc:Depends}, libmpcdec3,
          ${shlibs:Depends}
 Replaces: gstreamer0.10-plugins-bad (<< 0.10.5-3)
-XB-GStreamer-Version: ${gstreamer:Version}
-XB-GStreamer-Elements: ${gstreamer:Elements}
-XB-GStreamer-URI-Sources: ${gstreamer:URISources}
-XB-GStreamer-URI-Sinks: ${gstreamer:URISinks}
-XB-GStreamer-Encoders: ${gstreamer:Encoders}
-XB-GStreamer-Decoders: ${gstreamer:Decoders}
 Provides: ${gstreamer:Provides}
 Description: Musepack gst plugin from the bad set
  This package provides musepack decoder element.

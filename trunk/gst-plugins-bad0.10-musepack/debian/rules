@@ -5,12 +5,10 @@ include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/class/gnome.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
+
 DEB_DESTDIR=$(CURDIR)/debian/tmp
 
-LDFLAGS += -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
-#CFLAGS += -Wno-error
-#CXXFLAGS += -Wno-error
-#DEB_MAKE_CHECK_TARGET = check || true
+LDFLAGS += -Wl,-O1 -Wl,--as-needed
 
 # this is for compatibility with dpkg-dev < 1.13.5, see
 # <http://lists.debian.org/debian-devel-announce/2005/06/msg00010.html>
@@ -43,53 +41,55 @@ gst_abi=$(gst_major).$(gst_minor)
 gst_lib=libgstreamer$(gst_abi)-0
 gst_lib_dev=libgstreamer$(gst_abi)-dev
 # what gstreamer version is needed
-gst_lib_dev_dep=$(gst_lib_dev) (>= 0.10.20-3)
+gst_lib_dev_dep=$(gst_lib_dev) (>= 0.10.21)
 
 gst_pkgname=gstreamer$(gst_abi)
 gst_deb_abi=$(gst_abi)-0
 
-gst_extra_build_depends =
-gst_extra_build_depends += libasound2-dev (>= 0.9.1)
+# debug package
+#DEB_DH_STRIP_ARGS := --dbg-package=$(gst_pkgname)-plugins-good-dbg
 
+# disable all CPU specific optimizations in commands launched by this Makefile
+# using liboil; this is to work around liboil related build failures which
+# are not specially interesting to catch on buildds as these might run very
+# specific hardware
+OIL_CPU_FLAGS=0
+export OIL_CPU_FLAGS
+export echo=echo
 # The plugins are basically the same.
 # Link special names to a template file.
 # still need "*.install" to be done by hand
-# 
-# EXTRA_PLUGINS: See debian/README.Debian for docs
-EXTRA_PLUGINS +=
 
-PLUGINS += sdl plugins-bad-extra plugins-bad $(EXTRA_PLUGINS)
+PLUGINS += plugins-good plugins-good-extra
 ifeq ($(DEB_HOST_ARCH_OS),linux)
 PLUGINS +=
 endif
 VERSIONIZE= \
-	plugins-bad-doc.install \
-	plugins-bad-dev.install
+	plugins-good-doc.install \
 
-#debug package
-DEB_DH_STRIP_ARGS := --dbg-package=$(gst_pkgname)-plugins-bad-dbg
-
-# enable the real and spc plugin on x86
-ifeq ($(DEB_HOST_ARCH_CPU), i386)
-real = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstreal.so
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-spc = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstspc.so
-endif
+1394 = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgst1394.so
+video4linux2 = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstvideo4linux2.so
 endif
 
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-alsa_spdif = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstalsaspdif.so
-dvb = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstdvb.so
-fbdev = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstfbdevsink.so
-vcd = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstvcdsrc.so
-cdaudio = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstcdaudio.so
-dc1394 = debian/tmp/usr/lib/gstreamer-$(gst_abi)/libgstdc1394.so
+DEFAULT_AUDIOSINK = autoaudiosink
+DEFAULT_AUDIOSRC = alsasrc
+DEFAULT_VIDEOSINK = autovideosink
+DEFAULT_VIDEOSRC = v4l2src
+DEFAULT_VISUALIZER = goom
+else
+DEFAULT_AUDIOSINK = autoaudiosink
+DEFAULT_AUDIOSRC = osssrc
+DEFAULT_VIDEOSINK = autovideosink
+DEFAULT_VIDEOSRC = videotestsrc
+DEFAULT_VISUALIZER = goom
 endif
 
 # Let's decide the package name and url depending on the distribution
 DISTRO = "Maemo"
 
-GST_PACKAGE_NAME := "GStreamer MusePack Plugin (Maemo)"
+GST_PACKAGE_NAME := "GStreamer VP8 Plugins (Maemo)"
 GST_PACKAGE_ORIGIN="http://maemo.org"
 
 # setup links for packages
@@ -97,15 +97,9 @@ pre-build::
 	for p in $(PLUGINS); do \
 		rm -f debian/$(gst_pkgname)-$$p.install; \
 		cat debian/gstreamer-$$p.install | \
-			sed 's,@real@,$(real),g' | \
-			sed 's,@alsa_spdif@,$(alsa_spdif),g' | \
-			sed 's,@dvb@,$(dvb),g' | \
-			sed 's,@fbdev@,$(fbdev),g' | \
-			sed 's,@vcd@,$(vcd),g' | \
-			sed 's,@spc@,$(spc),g' | \
-			sed 's,@dc1394@,$(dc1394),g' | \
-			sed 's,@cdaudio@,$(cdaudio),g' | \
 			sed 's/@GST_ABI@/$(gst_abi)/g' \
+			| sed "s,@1394@,$(1394),g" \
+			| sed "s,@video4linux2@,$(video4linux2),g" \
 			> debian/$(gst_pkgname)-$$p.install; \
 	done
 
@@ -117,11 +111,13 @@ pre-build::
 
 maint: debian/control
 
+debian/stamp-autogen:
+	touch $@
+
+post-patches:: debian/stamp-autogen
+
 debian/build-deps: debian/build-deps.in debian/rules
 	cat $< > $@
-	for plugin in $(EXTRA_PLUGINS) ; do \
-		debian/extra deps $$plugin >> $@; \
-	done
 
 debian/control:: debian/control.in debian/build-deps debian/mk.control debian/rules
 	perl debian/mk.control | \
@@ -131,45 +127,26 @@ debian/control:: debian/control.in debian/build-deps debian/mk.control debian/ru
 		sed 's/@GST_LIB@/$(gst_lib)/g' | \
 		sed 's/@GST_LIB_DEV@/$(gst_lib_dev)/g' | \
 		sed 's/@GST_LIB_DEV_DEP@/$(gst_lib_dev_dep)/g' | \
-		sed "s/@GST_EXTRA_BUILD_DEPENDS@/$(gst_extra_build_depends)/g"> $@
-
-	for plugin in $(EXTRA_PLUGINS) ; do \
-		debian/extra control $$plugin | \
-			sed 's/@GST_ABI@/$(gst_abi)/g' | \
-			sed 's/@GST_PKGNAME@/$(gst_pkgname)/g' | \
-			sed 's/@GST_LIB@/$(gst_lib)/g' | \
-			sed 's/@GST_LIB_DEV@/$(gst_lib_dev)/g' | \
-			sed 's/@GST_LIB_DEV_DEP@/$(gst_lib_dev_dep)/g' | \
-			sed 's/@GST_PLUGINS_LIB@/$(gst_plugins_lib)/g' | \
-			sed 's/@GST_PLUGINS_LIB_DEV@/$(gst_plugins_lib_dev)/g' | \
-			sed 's/@GST_PLUGINS_LIB_DEV_DEP@/$(gst_plugins_lib_dev_dep)/g' | \
-			sed 's/@GST_GCONF_LIB@/$(gst_gconf_lib)/g' | \
-			sed 's/@GST_GCONF_LIB_DEV@/$(gst_gconf_lib_dev)/g' | \
-			sed 's/@GST_GCONF_LIB_DEV_DEP@/$(gst_gconf_lib_dev_dep)/g' >> $@; \
-	done
-
-debian/stamp-autogen:
-	./autogen.sh --noconfigure
-	touch $@
-
-post-patches:: debian/stamp-autogen
+		sed "s/@GST_EXTRA_BUILD_DEPENDS@/$(gst_extra_build_depends)/g" | \
+		sed "s/@linux@/`type-handling any linux-gnu`/g"> $@
 
 DEB_CONFIGURE_EXTRA_FLAGS += \
 	--disable-shave \
 	--disable-examples \
+	--enable-DEBUG \
 	--enable-debug \
-	--disable-deinterlace2 \
-	--enable-experimental \
-	--disable-gtk-doc \
-	--disable-aacparse \
+	--disable-nls \
 	--disable-adpcmdec \
-	--disable-aiffparse \
-	--disable-amrparse \
+	--disable-adpcmenc \
+	--disable-aiff \
+	--disable-asfmux \
+	--disable-audioparsers \
 	--disable-autoconvert \
 	--disable-camerabin \
 	--disable-legacyresample \
 	--disable-bayer \
 	--disable-cdxaparse \
+	--disable-dataurisrc \
 	--disable-dccp \
 	--disable-debugutils \
 	--disable-dtmf \
@@ -180,35 +157,40 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 	--disable-h264parse \
 	--disable-hdvparse \
 	--disable-id3tag \
+	--disable-invtelecine \
+	--enable-musepack \
+	--disable-jpegformat \
 	--disable-librfb \
 	--disable-liveadder \
 	--disable-mpegdemux \
 	--disable-mpegtsmux \
+	--disable-mpegpsmux \
 	--disable-mpeg4videoparse \
 	--disable-mpegvideoparse \
 	--disable-mve \
 	--disable-mxf \
 	--disable-nsf \
 	--disable-nuvdemux \
-	--disable-pcapparse  \
+	--disable-pcapparse \
+	--disable-pnm \
 	--disable-qtmux \
 	--disable-rawparse \
 	--disable-real \
-	--disable-rtpmanager \
 	--disable-rtpmux \
 	--disable-scaletempo \
 	--disable-sdp \
+	--disable-segmentclip \
 	--disable-selector \
-	--disable-shapewipe \
 	--disable-siren \
 	--disable-speed \
 	--disable-subenc \
 	--disable-stereo \
 	--disable-tta \
 	--disable-valve \
+	--disable-videomeasure \
 	--disable-videosignal \
 	--disable-vmnc \
-	--disable-xdgmime \
+	--disable-directsound \
 	--disable-directdraw \
 	--disable-osx_video \
 	--disable-quicktime \
@@ -220,20 +202,22 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 	--disable-bz2 \
 	--disable-cdaudio \
 	--disable-celt \
+	--disable-cog \
 	--disable-dc1394 \
 	--disable-directfb \
 	--disable-dirac \
 	--disable-dts \
 	--disable-divx \
-	--disable-dvdnav \
+	--disable-resindvd \
 	--disable-metadata \
 	--disable-faac \
 	--disable-faad \
 	--disable-fbdev \
+	--disable-flite \
 	--disable-gsm \
-	--disable-ivorbis \
 	--disable-jack \
 	--disable-jp2k \
+	--disable-kate \
 	--disable-ladspa \
 	--disable-lv2 \
 	--disable-libmms \
@@ -246,6 +230,10 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 	--disable-nas \
 	--disable-neon \
 	--disable-ofa \
+	--disable-oss4 \
+	--disable-rtpmanager \
+	--disable-rtpmux \
+	--disable-rsvg \
 	--disable-timidity \
 	--disable-wildmidi \
 	--disable-sdl \
@@ -253,24 +241,25 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 	--disable-sndfile \
 	--disable-soundtouch \
 	--disable-spc \
+	--disable-gme \
 	--disable-swfdec \
 	--disable-theoradec \
 	--disable-xvid \
 	--disable-dvb  \
-	--disable-oss4 \
 	--disable-wininet \
 	--disable-acm \
 	--disable-vdpau \
+	--disable-schro \
+	--disable-zbar \
 	--with-package-name=$(GST_PACKAGE_NAME) \
 	--with-package-origin=$(GST_PACKAGE_ORIGIN) \
+	--enable-experimental
 
 ifeq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
     DEB_CONFIGURE_EXTRA_FLAGS += \
-       CFLAGS="-DG_DISABLE_CAST_CHECKS -DGST_DISABLE_GST_DEBUG=1 -O2"
+       CFLAGS="-DG_DISABLE_CAST_CHECKS -DGST_DISABLE_GST_DEBUG=1"
 endif
 
-common-binary-fixup-arch::
-	# crash on qemu! dh_gstscancodecs
 
 clean::
 	# get rid of the sym links
@@ -281,6 +270,9 @@ clean::
 	for f in $(VERSIONIZE); do \
 		rm -f debian/$(gst_pkgname)-$$f; \
 	done
+
+common-binary-fixup-arch::
+	dh_gstscancodecs
 
 DEB_INSTALL_DOCS_ALL += debian/README.Debian NEWS
 
@@ -301,5 +293,8 @@ update-patch-series:
 		head -n $$(($$lines - 3)) $$patch > $${patch}.chomped ; \
 		mv $${patch}.chomped $$patch ; \
 	done
+
+binary-predeb/gstreamer0.10-plugins-musepack::
+	maemo-optify
 
 .PHONY: maint
